@@ -60,7 +60,7 @@ NI’MA is a web-based platform that helps people in Bahrain give unwanted but s
 ## WireFrame
 
 ## ERD
-![NI'MA ERD](assets/NI'MA%20ERD.jpeg)
+<img src="assets/NI&apos;MA ERD.jpeg" alt="NI'MA ERD" width="600"/>
 
 ## Attributions
 
