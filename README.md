@@ -56,3 +56,16 @@ NI’MA is a web-based platform that helps people in Bahrain give unwanted but s
 1. As the system, I want to enforce role-based access, so that a client cannot see another client's data and a collector cannot see unassigned donations.
 2. As the system, I want to allow only valid status transitions (pending → assigned → collected → completed), so that the data stays consistent.
 3. As the system, I want to validate all input (Pydantic) and limit upload file type and size, so that bad or unsafe data is rejected.
+
+## WireFrame
+
+## ERD
+![NI'MA ERD](assets/NI'MA%20ERD.jpeg)
+
+## Attributions
+
+## Technologies Used
+
+## Future Work
+
+
