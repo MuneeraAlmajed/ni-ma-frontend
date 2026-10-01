@@ -63,7 +63,7 @@ The main wireframes represent the core user journeys and role-based dashboards o
 [View the NI'MA Wireframes on Excalidraw](https://excalidraw.com/#json=9SUurKkLgBeb_STEJbZyB,D1y8F7jMOhDz4KHR5wKu4g)
 
 ## ERD
-<img src="assets/ERD NI&apos;MA.jpeg" alt="NI'MA ERD" width="500"/>
+<img src="assets/NI&apos;MA ERD (2).jpeg" alt="NI'MA ERD" width="500"/>
 
 ## Routes / Endpoints
 ### Authentication
