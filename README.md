@@ -58,6 +58,9 @@ NI’MA is a web-based platform that helps people in Bahrain give unwanted but s
 3. As the system, I want to validate all input (Pydantic) and limit upload file type and size, so that bad or unsafe data is rejected.
 
 ## WireFrame
+The main wireframes represent the core user journeys and role-based dashboards of NI’MA.
+
+[View the NI'MA Wireframes on Excalidraw](https://excalidraw.com/#json=9SUurKkLgBeb_STEJbZyB,D1y8F7jMOhDz4KHR5wKu4g)
 
 ## ERD
 <img src="assets/NI&apos;MA ERD.jpeg" alt="NI'MA ERD" width="600"/>
