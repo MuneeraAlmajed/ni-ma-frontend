@@ -65,50 +65,47 @@ The main wireframes represent the core user journeys and role-based dashboards o
 ## ERD
 <img src="assets/NI&apos;MA ERD (2).jpeg" alt="NI'MA ERD" width="500"/>
 
-## Routes / Endpoints
-### Authentication
+## Frontend Routes
 
-| Method | Route | Description | Access |
-|---|---|---|---|
-| POST | `/api/auth/register` | Register a new Client or Collector | Public |
-| POST | `/api/auth/login` | Login and receive JWT | Public |
-| GET | `/api/auth/me` | Get current user | Authenticated |
+| Route | Page | Description |
+|-------|------|-------------|
+| `/` | Home | Landing page explaining NI'MA and how it works |
+| `/login` | Login | User login |
+| `/register` | Register | Sign up as Client or Collector |
 
-### Client
+### Client Routes 
+| Route | Page | Description |
+|-------|------|-------------|
+| `/client/dashboard` | Client Dashboard | Overview of my items and donations |
+| `/client/items` | My Items | List all my items |
+| `/client/items/new` | Add Item | Create a new item |
+| `/client/items/:id/edit` | Edit Item | Update or delete an item |
+| `/client/donations` | My Donations | List my donations with status tracking |
+| `/client/donations/new` | Request Donation | Submit a donation request (pickup address and time) |
+| `/client/donations/:id` | Donation Details | View status and details, cancel if pending |
 
-| Method | Route | Description | Access |
-|---|---|---|---|
-| GET | `/api/donations` | View the client's donations | Client |
-| POST | `/api/donations` | Create a new donation request | Client |
-| GET | `/api/donations/{id}` | View donation details | Client |
-| PUT | `/api/donations/{id}` | Update a pending donation | Client |
-| DELETE | `/api/donations/{id}` | Cancel a pending donation | Client |
+### Collector Routes (role: `collector`)
+| Route | Page | Description |
+|-------|------|-------------|
+| `/collector/dashboard` | Collector Dashboard | Summary of assigned pickups |
+| `/collector/donations` | Assigned Donations | List of donations assigned to me |
+| `/collector/donations/:id` | Pickup Details | Item info, address, time, mark as collected |
+| `/collector/donations/:id/proof` | Upload Proof | Upload collection photo |
 
-### Collector
+### Admin Routes (role: `admin`)
+| Route | Page | Description |
+|-------|------|-------------|
+| `/admin/dashboard` | Admin Dashboard | Platform statistics |
+| `/admin/users` | Manage Users | View, activate, deactivate, delete users |
+| `/admin/items` | Manage Items | View and remove items |
+| `/admin/donations` | Manage Donations | View all donations with filters |
+| `/admin/donations/:id` | Donation Review | Assign collector, review proof, approve, complete |
 
-| Method | Route | Description | Access |
-|---|---|---|---|
-| GET | `/api/pickups` | View assigned pickups | Collector |
-| GET | `/api/pickups/available` | View available pickup requests | Collector |
-| POST | `/api/pickups/{id}/request` | Request to handle a pickup | Collector |
-| GET | `/api/pickups/{id}` | View pickup details | Collector |
-| PUT | `/api/pickups/{id}/status` | Update pickup status | Collector |
-| POST | `/api/pickups/{id}/proof` | Upload collection proof photo | Collector |
-| POST | `/api/pickups/{id}/failed` | Report a failed pickup | Collector |
-
-### Admin
-
-| Method | Route | Description | Access |
-|---|---|---|---|
-| GET | `/api/admin/users` | View all users | Admin |
-| PUT | `/api/admin/users/{id}` | Update user | Admin |
-| DELETE | `/api/admin/users/{id}` | Delete user | Admin |
-| GET | `/api/admin/donations` | View all donations | Admin |
-| GET | `/api/admin/donations/{id}` | View donation details | Admin |
-| PUT | `/api/admin/donations/{id}/assign` | Assign collector | Admin |
-| GET | `/api/admin/donations/{id}/proof` | Review collection proof | Admin |
-| PUT | `/api/admin/donations/{id}/approve` | Approve collection | Admin |
-| PUT | `/api/admin/donations/{id}/complete` | Mark donation as completed | Admin |
+### Other
+| Route | Page | Description |
+|-------|------|-------------|
+| `/unauthorized` | 403 | Shown when a user accesses a page outside their role |
+| `*` | 404 | Page not found |
 
 
 ## Component Hirerachy 
