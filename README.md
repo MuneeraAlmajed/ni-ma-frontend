@@ -109,7 +109,7 @@ The main wireframes represent the core user journeys and role-based dashboards o
 
 
 ## Component Hirerachy 
-<img src="assets/NI&apos;MA Component Horerachy.jpeg" alt="NI'MA component hirerachy" width="600"/>
+<img src="assets/NI&apos;MA Component Horerachy.jpeg" alt="NI'MA component hirerachy" />
 
 
 ## Attributions
