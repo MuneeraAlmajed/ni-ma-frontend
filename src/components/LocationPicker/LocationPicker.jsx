@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   MapContainer,
   TileLayer,
@@ -22,55 +22,95 @@ const LocationMarker = ({ setLocation }) => {
   return null;
 };
 
-const LocationController = ({ setMap }) => {
+const LocationController = ({ setMap, location }) => {
   const map = useMap();
 
   useEffect(() => {
     setMap(map);
   }, [map, setMap]);
 
+  useEffect(() => {
+    if (
+      location &&
+      typeof location.latitude === 'number' &&
+      typeof location.longitude === 'number'
+    ) {
+      map.setView(
+        [location.latitude, location.longitude],
+        16
+      );
+    }
+  }, [location, map]);
+
   return null;
 };
-
 
 const LocationPicker = ({ location, setLocation }) => {
   const [map, setMap] = useState(null);
 
+  const hasLocation =
+    location &&
+    typeof location.latitude === 'number' &&
+    typeof location.longitude === 'number';
+
   const handleCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      setLocation({
-        latitude,
-        longitude
-      });
+        const newLocation = {
+          latitude,
+          longitude
+        };
 
-      map.setView([latitude, longitude], 20);
-    });
+        setLocation(newLocation);
+
+        if (map) {
+          map.setView(
+            [latitude, longitude],
+            16
+          );
+        }
+      },
+      () => {
+        return;
+      }
+    );
   };
 
   return (
     <div className="location-picker">
+
       <p className="location-picker-label">
         Pickup Location
       </p>
 
       <MapContainer
         className="location-map"
-        center={[26.0667, 50.5577]}
-        zoom={11}
+        center={
+          hasLocation
+            ? [location.latitude, location.longitude]
+            : [26.0667, 50.5577]
+        }
+        zoom={hasLocation ? 16 : 11}
       >
+
         <TileLayer
           attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <LocationController setMap={setMap} />
+        <LocationController
+          setMap={setMap}
+          location={hasLocation ? location : null}
+        />
 
-        <LocationMarker setLocation={setLocation} />
+        <LocationMarker
+          setLocation={setLocation}
+        />
 
-        {location && (
+        {hasLocation && (
           <Marker
             position={[
               location.latitude,
@@ -78,6 +118,7 @@ const LocationPicker = ({ location, setLocation }) => {
             ]}
           />
         )}
+
       </MapContainer>
 
       <button
@@ -88,11 +129,12 @@ const LocationPicker = ({ location, setLocation }) => {
         Use My Current Location
       </button>
 
-      {location && (
+      {hasLocation && (
         <p className="location-picker-value">
           Location selected
         </p>
       )}
+
     </div>
   );
 };

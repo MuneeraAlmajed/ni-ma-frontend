@@ -171,6 +171,66 @@ const uploadItemImage = async (imageFile) => {
   }
 };
 
+const updateDonation = async (id, formData) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/donations/${id}`, {
+      method: "PUT",
+      headers: config.headers,
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error("Unable to update donation. Please try again");
+  }
+};
+
+const cancelDonation = async (id) => {
+  try {
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/donations/${id}/cancel`, {
+      method: "DELETE",
+      headers: config.headers
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error("Unable to cancel donation. Please try again");
+  }
+};
+
 export {
-    getDonations, getDonationById, getDonationItems, getItemById, createDonation, createItem, uploadItemImage
+    getDonations, 
+    getDonationById, 
+    getDonationItems, 
+    getItemById, 
+    createDonation, 
+    createItem, 
+    uploadItemImage, 
+    updateDonation, 
+    cancelDonation
 };
