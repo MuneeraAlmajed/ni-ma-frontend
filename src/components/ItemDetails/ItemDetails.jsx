@@ -44,7 +44,7 @@ const ItemDetails = () => {
 
       <img
         className="item-details-image"
-        src={item.image_url}
+        src={`http://localhost:8000${item.image_url}`}
         alt={item.name}
       />
     </div>

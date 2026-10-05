@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import LocationPicker from "../LocationPicker/LocationPicker";
 import "./DonationRequest.css";
 
-import { createDonation, createItem } from "../../services/donationService";
+import { createDonation, createItem, uploadItemImage } from "../../services/donationService";
 
 const DonationRequest = () => {
     const [location, setLocation] = useState(null)
@@ -26,12 +26,19 @@ const DonationRequest = () => {
         image_url: ''
     })
 
-    const handleSubmit = async () => {
+    const [imageFile, setImageFile] = useState(null)
+
+
+const handleSubmit = async () => {
   try {
     setError('');
 
     if (!location) {
       throw new Error('Please select your pickup location');
+    }
+
+    if (!imageFile) {
+      throw new Error('Please select an item photo');
     }
 
     const donationData = {
@@ -42,9 +49,11 @@ const DonationRequest = () => {
 
     const donation = await createDonation(donationData);
 
+    const image = await uploadItemImage(imageFile);
+
     const item = {
       ...itemData,
-      image_url: 'https://via.placeholder.com/300'
+      image_url: image.image_url
     };
 
     await createItem(donation.id, item);
@@ -53,7 +62,7 @@ const DonationRequest = () => {
   } catch (err) {
     setError(err.message);
   }
-}
+};
 
 
   return (
@@ -205,7 +214,12 @@ const DonationRequest = () => {
           <div className="form-group">
             <label className="form-label">Item Photo</label>
 
-            <input className="form-input" type="file" accept="image/*" />
+            <input 
+            className="form-input" 
+            type="file" 
+            accept="image/*" 
+            onChange={(event) => setImageFile(event.target.files[0])}
+            />
           </div>
 
           <button className="add-item-button" type="button">

@@ -142,6 +142,35 @@ const createItem = async (donationId, itemData) => {
   }
 };
 
+const uploadItemImage = async (imageFile) => {
+  try {
+    const formData = new FormData();
+    formData.append('file', imageFile);
+
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/items/upload`, {
+      method: 'POST',
+      headers: config.headers,
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error('Unable to upload item image. Please try again');
+  }
+};
+
 export {
-    getDonations, getDonationById, getDonationItems, getItemById, createDonation, createItem
+    getDonations, getDonationById, getDonationItems, getItemById, createDonation, createItem, uploadItemImage
 };
