@@ -1,36 +1,88 @@
-import { useContext } from 'react';
-import { Link } from 'react-router';
-import { UserContext } from '../../contexts/UserContext';
-import { removeToken } from '../../lib/helpers/jwt-helpers';
+import { useContext } from "react";
+import { Link } from "react-router";
+import { UserContext } from "../../contexts/UserContext";
+import { removeToken } from "../../lib/helpers/jwt-helpers";
+
+import "./NavBar.css";
+import logo from "../../../assets/NI'MA LOGO.png";
 
 const NavBar = () => {
+  const { user, setUser } = useContext(UserContext);
 
-  const { user, setUser } = useContext(UserContext)
-
-  const handleSignOut = ()=>{
-    removeToken()
-    setUser(null)
-  }
+  const handleSignOut = () => {
+    removeToken();
+    setUser(null);
+  };
 
   return (
-    <nav>
-      <ul>
+    <nav className="navbar">
+      <div className="navbar-container">
 
-        { user
-          ?
-          <>
-            <li>Hello {user.username}</li>
-            <li><Link to="/client/dashboard">Dashboard</Link></li>
-            <li><Link to="/" onClick={handleSignOut}>Sign Out</Link></li>
-          </>
-          :
-          <>
-            <li><Link to="/">Dashboard</Link></li>
-            <li><Link to='/register'>Register</Link></li>
-            <li><Link to='/login'>Login</Link></li>
-          </>
-        }
-      </ul>
+        <Link className="navbar-logo" to="/">
+          <img
+            className="navbar-logo-image"
+            src={logo}
+            alt="NI'MA logo"
+          />
+        </Link>
+
+        <div className="navbar-links">
+
+          {user ? (
+            <>
+              {user.role === "admin" ? (
+                <>
+                  <Link className="navbar-link" to="/admin/dashboard">
+                    Dashboard
+                  </Link>
+
+                  <Link className="navbar-link" to="/admin/dashboard">
+                    Collectors
+                  </Link>
+
+                  <Link className="navbar-link" to="/admin/dashboard">
+                    Donations
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  className="navbar-link"
+                  to={
+                    user.role === "collector"
+                      ? "/collector/dashboard"
+                      : "/client/dashboard"
+                  }
+                >
+                  Dashboard
+                </Link>
+              )}
+
+              <Link className="navbar-link" to="/profile">
+                Profile
+              </Link>
+
+              <button
+                className="navbar-signout"
+                type="button"
+                onClick={handleSignOut}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className="navbar-link" to="/register">
+                Register
+              </Link>
+
+              <Link className="navbar-login" to="/login">
+                Login
+              </Link>
+            </>
+          )}
+
+        </div>
+      </div>
     </nav>
   );
 };

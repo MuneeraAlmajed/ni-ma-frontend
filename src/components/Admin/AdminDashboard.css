@@ -1,131 +1,199 @@
 .admin-dashboard {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 30px;
+  min-height: 100vh;
+  padding: 40px 50px;
+  background-color: #F6FAF7;
 }
+
+/* Dashboard Header */
 
 .admin-dashboard-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
   margin-bottom: 30px;
 }
 
+.admin-dashboard-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .admin-dashboard-title {
-  margin: 0 0 8px;
+  margin: 0;
   color: #31543A;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .admin-dashboard-subtitle {
   margin: 0;
-  color: #5F6B61;
+  color: #6B7280;
+  font-size: 15px;
 }
 
 .add-collector-button {
-  padding: 12px 22px;
+  padding: 11px 20px;
   border: none;
   border-radius: 8px;
-  background-color: #527A5A;
-  color: white;
+  background-color: #31543A;
+  color: #FFFFFF;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .add-collector-button:hover {
-  background-color: #31543A;
+  background-color: #26432E;
 }
+
+/* Messages */
 
 .admin-success-message {
   margin: 0 0 20px;
-  padding: 12px 15px;
+  padding: 12px 16px;
   border-radius: 8px;
-  background-color: #DCE8DC;
+  background-color: #E7F3E9;
   color: #31543A;
   font-size: 14px;
 }
 
 .admin-error-message {
   margin: 0 0 20px;
-  padding: 12px 15px;
+  padding: 12px 16px;
   border-radius: 8px;
-  background-color: #F9EAEA;
-  color: #B04A4A;
+  background-color: #F8EAEA;
+  color: #8B3A3A;
   font-size: 14px;
 }
 
-.add-collector-card,
-.collectors-section {
-  padding: 30px;
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(49, 84, 58, 0.08);
-}
+/* Add Collector */
 
 .add-collector-card {
   margin-bottom: 30px;
+  padding: 28px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(49, 84, 58, 0.08);
 }
 
 .admin-section-title {
-  margin: 0 0 25px;
+  margin: 0;
   color: #31543A;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .add-collector-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 24px;
 }
 
 .admin-form-group {
   display: flex;
   flex-direction: column;
+  gap: 7px;
 }
 
 .admin-form-label {
-  margin-bottom: 8px;
   color: #31543A;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .admin-form-input {
-  padding: 12px 14px;
-  border: 1px solid #D8E1D8;
-  border-radius: 8px;
-  background-color: #FAF7F0;
-  color: #29352D;
-  font-size: 15px;
+  width: 100%;
   box-sizing: border-box;
+  padding: 11px 13px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #31543A;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
 
 .admin-form-input:focus {
-  outline: none;
-  border-color: #527A5A;
-  background-color: white;
+  border-color: #31543A;
 }
 
 .save-collector-button {
-  grid-column: 1 / -1;
   width: fit-content;
-  padding: 12px 22px;
+  padding: 11px 20px;
   border: none;
   border-radius: 8px;
-  background-color: #527A5A;
-  color: white;
+  background-color: #31543A;
+  color: #FFFFFF;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .save-collector-button:hover {
-  background-color: #31543A;
+  background-color: #26432E;
+}
+
+/* Main Content */
+
+.admin-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Section Header */
+
+.admin-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.admin-section-header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.admin-section-description {
+  margin: 0;
+  color: #6B7280;
+  font-size: 14px;
+}
+
+.admin-section-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 20px;
+  background-color: #E7F3E9;
+  color: #31543A;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Collectors */
+
+.collectors-section {
+  padding: 26px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(49, 84, 58, 0.08);
 }
 
 .collectors-list {
-  display: grid;
-  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .collector-card {
@@ -133,10 +201,16 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 20px;
-  border: 1px solid #D8E1D8;
-  border-radius: 12px;
-  background-color: #FAF7F0;
+  padding: 16px 18px;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.collector-card:hover {
+  border-color: #B8CDBD;
+  box-shadow: 0 4px 12px rgba(49, 84, 58, 0.08);
 }
 
 .collector-information {
@@ -146,249 +220,398 @@
 .collector-name {
   margin: 0 0 5px;
   color: #31543A;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.collector-username,
-.collector-email,
-.collector-phone {
-  margin: 5px 0;
-  color: #5F6B61;
-  font-size: 14px;
+.collector-username {
+  margin: 0;
+  color: #6B7280;
+  font-size: 13px;
+}
+
+.collector-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .collector-status {
+  padding: 5px 11px;
+  border-radius: 20px;
+  background-color: #E7F3E9;
+  color: #31543A;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.collector-status.inactive {
+  background-color: #F1F1F1;
+  color: #6B7280;
+}
+
+.view-collector-button {
+  padding: 8px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 7px;
+  background-color: #FFFFFF;
+  color: #31543A;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-collector-button:hover {
+  border-color: #31543A;
+  background-color: #F4F8F5;
+}
+
+.no-collectors-message {
+  margin: 0;
+  padding: 18px;
+  border-radius: 10px;
+  background-color: #F8FBF8;
+  color: #6B7280;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Donation Requests */
+
+.admin-donations-section {
+  padding: 26px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(49, 84, 58, 0.08);
+}
+
+/* Donation Tabs */
+
+.admin-donation-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #F4F7F4;
+  overflow-x: auto;
+}
+
+.admin-donation-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 110px;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 7px;
+  background-color: transparent;
+  color: #6B7280;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-donation-tab:hover {
+  color: #31543A;
+  background-color: #EAF2EB;
+}
+
+.admin-donation-tab.active {
+  background-color: #FFFFFF;
+  color: #31543A;
+  box-shadow: 0 2px 7px rgba(49, 84, 58, 0.1);
+}
+
+.admin-tab-label {
+  white-space: nowrap;
+}
+
+.admin-tab-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 21px;
+  height: 21px;
+  padding: 0 5px;
+  border-radius: 50%;
+  background-color: #E7F3E9;
+  color: #31543A;
+  font-size: 11px;
+}
+
+.admin-donation-tab:not(.active) .admin-tab-count {
+  background-color: #E1E5E2;
+  color: #6B7280;
+}
+
+/* Donation List */
+
+.admin-active-donations {
+  min-height: 100px;
+}
+
+.admin-donations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-donation-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 20px;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-donation-card:hover {
+  transform: translateY(-2px);
+  border-color: #B8CDBD;
+  box-shadow: 0 6px 16px rgba(49, 84, 58, 0.1);
+}
+
+.admin-donation-card-information {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.admin-donation-title {
+  margin: 0;
+  color: #31543A;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.admin-donation-area,
+.admin-donation-date {
+  margin: 0;
+  color: #6B7280;
+  font-size: 13px;
+}
+
+.admin-donation-card-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   flex-shrink: 0;
+}
+
+.admin-donation-status {
   padding: 6px 12px;
   border-radius: 20px;
-  background-color: #DCE8DC;
+  background-color: #E7F3E9;
+  color: #31543A;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.admin-view-donation {
   color: #31543A;
   font-size: 13px;
   font-weight: 600;
 }
 
-.no-collectors-message {
+.admin-empty-donations {
+  padding: 25px 10px;
+}
+
+.admin-no-donations {
   margin: 0;
-  color: #5F6B61;
+  padding: 18px;
+  border-radius: 10px;
+  background-color: #F8FBF8;
+  color: #6B7280;
+  font-size: 14px;
+  text-align: center;
 }
 
-.collector-card {
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.collector-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(49, 84, 58, 0.12);
-}
-
-.collector-status.inactive {
-  background-color: #F1E4E4;
-  color: #9B4A4A;
-}
+/* Collector Details */
 
 .collector-details-card {
-  padding: 30px;
-  background-color: white;
+  padding: 28px;
+  background-color: #FFFFFF;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(49, 84, 58, 0.08);
+  box-shadow: 0 4px 14px rgba(49, 84, 58, 0.08);
 }
 
 .collector-details-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
+}
+
+.collector-details-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .collector-details-status {
-  margin: -15px 0 0;
-  color: #5F6B61;
-  font-size: 14px;
+  width: fit-content;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #E7F3E9;
+  color: #31543A;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.close-details-button {
-  padding: 9px 18px;
-  border: 1px solid #D8E1D8;
-  border-radius: 8px;
-  background-color: white;
-  color: #5F6B61;
-  cursor: pointer;
-}
-
-.close-details-button:hover {
-  background-color: #F3F0E9;
+.collector-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 .collector-details-information {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .collector-detail {
-  padding: 18px;
+  padding: 16px;
+  background-color: #F8FBF8;
   border-radius: 10px;
-  background-color: #FAF7F0;
 }
 
-.collector-detail span {
-  color: #5F6B61;
+.collector-detail-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #6B7280;
   font-size: 13px;
+  font-weight: 600;
 }
 
-.collector-detail p {
-  margin: 7px 0 0;
-  color: #29352D;
-  font-size: 16px;
+.collector-detail-value {
+  margin: 0;
+  color: #31543A;
+  font-size: 15px;
+}
+
+.close-details-button {
+  padding: 8px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #31543A;
+  font-size: 13px;
   font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-details-button:hover {
+  border-color: #31543A;
+  background-color: #F3F6F3;
 }
 
 .collector-details-actions {
   display: flex;
   gap: 12px;
-  margin-top: 30px;
 }
 
 .edit-collector-button,
 .deactivate-collector-button,
 .activate-collector-button {
-  padding: 12px 20px;
-  border: none;
+  padding: 11px 18px;
   border-radius: 8px;
-  color: white;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .edit-collector-button {
-  background-color: #527A5A;
+  border: none;
+  background-color: #31543A;
+  color: #FFFFFF;
 }
 
 .edit-collector-button:hover {
-  background-color: #31543A;
+  background-color: #26432E;
 }
 
 .deactivate-collector-button {
-  background-color: #9B4A4A;
+  border: 1px solid #8B3A3A;
+  background-color: #FFFFFF;
+  color: #8B3A3A;
 }
 
 .deactivate-collector-button:hover {
-  background-color: #7D3939;
+  background-color: #F8EAEA;
 }
 
 .activate-collector-button {
-  background-color: #527A5A;
+  border: 1px solid #31543A;
+  background-color: #FFFFFF;
+  color: #31543A;
 }
 
 .activate-collector-button:hover {
-  background-color: #31543A;
+  background-color: #E7F3E9;
 }
+
+/* Edit Collector */
 
 .edit-collector-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
 }
 
 .collector-edit-actions {
-  grid-column: 1 / -1;
-  display: flex;
-  gap: 12px;
-}
-
-.admin-popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.admin-popup {
-  width: 420px;
-  max-width: 90%;
-  padding: 30px;
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  text-align: center;
-}
-
-.admin-popup h2 {
-  margin: 0 0 12px;
-  color: #29352D;
-}
-
-.admin-popup p {
-  margin: 0 0 25px;
-  color: #5F6B61;
-  line-height: 1.5;
-}
-
-.admin-popup-actions {
-  display: flex;
-  justify-content: center;
   gap: 12px;
 }
 
-.admin-popup-cancel,
-.admin-popup-confirm {
-  padding: 11px 20px;
+.cancel-profile-button {
+  padding: 11px 18px;
+  border: 1px solid #D1D5DB;
   border-radius: 8px;
-  border: none;
-  cursor: pointer;
+  background-color: #FFFFFF;
+  color: #6B7280;
   font-size: 14px;
   font-weight: 600;
-}
-
-.admin-popup-cancel {
-  background-color: #F3F0E9;
-  color: #5F6B61;
-}
-
-.admin-popup-confirm {
-  background-color: #9B4A4A;
-  color: white;
-}
-
-.admin-popup-cancel:hover {
-  background-color: #E7E2D8;
-}
-
-.admin-popup-confirm:hover {
-  background-color: #7D3939;
-}
-
-.admin-donation-card {
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.admin-donation-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(49, 84, 58, 0.12);
+.cancel-profile-button:hover {
+  background-color: #F3F4F6;
 }
+
+/* Donation Details */
 
 .admin-donation-details-card {
+  margin-top: 24px;
+  padding: 28px;
   background-color: #FFFFFF;
   border-radius: 16px;
-  padding: 28px;
-  margin-top: 24px;
   box-shadow: 0 4px 14px rgba(49, 84, 58, 0.08);
 }
 
 .admin-donation-details-header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 24px;
+  justify-content: space-between;
+  margin-bottom: 28px;
 }
 
 .admin-donation-details-heading {
@@ -412,8 +635,8 @@
 .admin-donation-information {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-bottom: 28px;
+  gap: 16px;
+  margin-bottom: 30px;
 }
 
 .admin-donation-detail {
@@ -434,21 +657,96 @@
   margin: 0;
   color: #31543A;
   font-size: 15px;
+  font-weight: 500;
 }
 
-.admin-assignment-section {
+/* Donation Items */
+
+.admin-items-section {
   padding-top: 24px;
   border-top: 1px solid #E5E7EB;
 }
 
 .admin-subtitle {
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   color: #31543A;
   font-size: 18px;
+  font-weight: 600;
+}
+
+.admin-items-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.admin-item-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  background-color: #F8FBF8;
+  border-radius: 12px;
+}
+
+.admin-item-information {
+  flex: 1;
+}
+
+.admin-item-name {
+  margin: 0 0 8px;
+  color: #31543A;
+  font-size: 16px;
+}
+
+.admin-item-category,
+.admin-item-condition,
+.admin-item-description {
+  margin: 5px 0;
+  color: #6B7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.admin-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.admin-no-items {
+  margin: 0;
+  color: #6B7280;
+  font-size: 14px;
+}
+
+/* Collector Assignment */
+
+.admin-assignment-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #E5E7EB;
+}
+
+.admin-assigned-collector {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background-color: #E7F3E9;
+  color: #31543A;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-assignment-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .admin-collector-select {
-  width: 100%;
+  flex: 1;
   padding: 12px 14px;
   border: 1px solid #D1D5DB;
   border-radius: 8px;
@@ -468,7 +766,6 @@
 }
 
 .admin-assign-button {
-  margin-top: 14px;
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -484,20 +781,7 @@
   background-color: #26432E;
 }
 
-.admin-donation-status-section {
-  margin-bottom: 32px;
-}
-
-.admin-donation-status-title {
-  margin: 0 0 16px;
-  color: #31543A;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.admin-donation-status-section .admin-donations-list {
-  margin-bottom: 0;
-}
+/* Delete Donation */
 
 .admin-delete-donation-section {
   margin-top: 24px;
@@ -514,34 +798,119 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .admin-delete-donation-button:hover {
   background-color: #6F2E2E;
 }
 
+/* Cancelled Donation */
+
+.admin-cancelled-message {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background-color: #F8F1F1;
+}
+
+.admin-cancelled-text {
+  margin: 0;
+  color: #8B3A3A;
+  font-size: 14px;
+}
+
+/* Popups */
+
+.admin-popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 2000;
+}
+
+.admin-popup {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(49, 84, 58, 0.18);
+}
+
+.admin-popup-title {
+  margin: 0 0 10px;
+  color: #31543A;
+  font-size: 20px;
+}
+
+.admin-popup-message {
+  margin: 0 0 24px;
+  color: #6B7280;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.admin-popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.admin-popup-cancel {
+  padding: 10px 18px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #6B7280;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-popup-cancel:hover {
+  background-color: #F3F4F6;
+}
+
+.admin-popup-confirm {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #31543A;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-popup-confirm:hover {
+  background-color: #26432E;
+}
+
+/* Responsive */
 
 @media (max-width: 700px) {
   .admin-dashboard {
-    margin: 20px;
-    padding: 20px;
+    padding: 24px 18px;
   }
 
   .admin-dashboard-header {
+    align-items: flex-start;
     flex-direction: column;
-    align-items: stretch;
+    gap: 18px;
   }
 
   .add-collector-button {
     width: 100%;
   }
 
-  .add-collector-form {
+  .add-collector-form,
+  .edit-collector-form {
     grid-template-columns: 1fr;
-  }
-
-  .save-collector-button {
-    width: 100%;
   }
 
   .collector-card {
@@ -549,7 +918,16 @@
     flex-direction: column;
   }
 
-  collector-details-information {
+  .collector-card-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .view-collector-button {
+    flex: 1;
+  }
+
+  .collector-details-information {
     grid-template-columns: 1fr;
   }
 
@@ -557,19 +935,76 @@
     flex-direction: column;
   }
 
-  .edit-collector-form {
-    grid-template-columns: 1fr;
+  .edit-collector-button,
+  .deactivate-collector-button,
+  .activate-collector-button {
+    width: 100%;
   }
 
   .collector-edit-actions {
-    grid-column: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .save-collector-button,
+  .cancel-profile-button {
+    width: 100%;
+  }
+
+  .admin-donations-section,
+  .collectors-section {
+    padding: 20px;
+  }
+
+  .admin-donation-tabs {
+    justify-content: flex-start;
+  }
+
+  .admin-donation-tab {
+    flex: 0 0 auto;
+  }
+
+  .admin-donation-card {
+    align-items: flex-start;
     flex-direction: column;
   }
-    .admin-donation-information {
+
+  .admin-donation-card-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .admin-donation-information {
     grid-template-columns: 1fr;
   }
 
   .admin-donation-details-card {
     padding: 20px;
+  }
+
+  .admin-items-list {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-item-card {
+    flex-direction: column;
+  }
+
+  .admin-item-image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .admin-assignment-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-assign-button {
+    width: 100%;
+  }
+
+  .admin-popup {
+    padding: 22px;
   }
 }
