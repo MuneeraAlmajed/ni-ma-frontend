@@ -1,0 +1,39 @@
+.item-details {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.item-details-title {
+  margin: 0 0 20px;
+}
+
+.item-details-category,
+.item-details-condition,
+.item-details-description {
+  margin: 12px 0;
+}
+
+.item-details-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.item-details-message {
+  margin: 0;
+}
+
+.back-to-donation-button {
+  margin-bottom: 25px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}

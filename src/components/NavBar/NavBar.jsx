@@ -20,14 +20,14 @@ const NavBar = () => {
           ?
           <>
             <li>Hello {user.username}</li>
-            <li><Link to="/">Dashboard</Link></li>
+            <li><Link to="/client/dashboard">Dashboard</Link></li>
             <li><Link to="/" onClick={handleSignOut}>Sign Out</Link></li>
           </>
           :
           <>
             <li><Link to="/">Dashboard</Link></li>
-            <li><Link to='/sign-up'>Sign Up</Link></li>
-            <li><Link to='/sign-in'>Sign In</Link></li>
+            <li><Link to='/register'>Register</Link></li>
+            <li><Link to='/login'>Login</Link></li>
           </>
         }
       </ul>

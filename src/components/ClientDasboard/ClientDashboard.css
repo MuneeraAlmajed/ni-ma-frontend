@@ -1,0 +1,29 @@
+.client-dashbaord{
+    padding: 40px;
+}
+
+.client-dashbaord-title{
+    margin: 0;
+}
+
+.donations-list{
+    display: grid;
+    gap: 20px;
+}
+
+.donation-card {
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.donation-card-title {
+  margin: 0 0 12px;
+}
+
+.donation-card-status,
+.donation-card-date {
+  margin: 8px 0;
+}
