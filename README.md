@@ -76,43 +76,44 @@ The main wireframes represent the core user journeys and role-based dashboards o
 
 ## Frontend Routes
 
-| Route | Page | Description |
-|-------|------|-------------|
+| **Route** | **Page** | **Description** |
+| ---------- | -------- | --------------- |
 | `/` | Home | Landing page explaining NI'MA and how it works |
 | `/login` | Login | User login |
-| `/register` | Register | Sign up as Client or Collector |
+| `/register` | Register | Register a new Client account |
+| `/profile` | Profile | View and update profile information, avatar, and password |
 
-### Client Routes 
-| Route | Page | Description |
-|-------|------|-------------|
-| `/client/dashboard` | Client Dashboard | Overview of my items and donations |
-| `/client/items` | My Items | List all my items |
-| `/client/items/new` | Add Item | Create a new item |
-| `/client/items/:id/edit` | Edit Item | Update or delete an item |
+### Client Routes
+
+| **Route** | **Page** | **Description** |
+| ---------- | -------- | --------------- |
+| `/client/dashboard` | Client Dashboard | Overview of my donations and their statuses |
 | `/client/donations` | My Donations | List my donations with status tracking |
-| `/client/donations/new` | Request Donation | Submit a donation request (pickup address and time) |
-| `/client/donations/:id` | Donation Details | View status and details, cancel if pending |
+| `/client/donations/new` | Request Donation | Submit a donation request with items, pickup address, date, and time |
+| `/client/donations/:id` | Donation Details | View donation details, items, status, and cancel if pending |
 
-### Collector Routes (role: `collector`)
-| Route | Page | Description |
-|-------|------|-------------|
-| `/collector/dashboard` | Collector Dashboard | Summary of assigned pickups |
+### Collector Routes
+
+| **Route** | **Page** | **Description** |
+| ---------- | -------- | --------------- |
+| `/collector/dashboard` | Collector Dashboard | Overview of assigned pickups |
 | `/collector/donations` | Assigned Donations | List of donations assigned to me |
-| `/collector/donations/:id` | Pickup Details | Item info, address, time, mark as collected |
-| `/collector/donations/:id/proof` | Upload Proof | Upload collection photo |
+| `/collector/donations/:id` | Pickup Details | View items, address, pickup time, and update pickup status |
+| `/collector/donations/:id/proof` | Upload Proof | Upload collection proof photo |
 
-### Admin Routes (role: `admin`)
-| Route | Page | Description |
-|-------|------|-------------|
-| `/admin/dashboard` | Admin Dashboard | Platform statistics |
-| `/admin/users` | Manage Users | View, activate, deactivate, delete users |
-| `/admin/items` | Manage Items | View and remove items |
-| `/admin/donations` | Manage Donations | View all donations with filters |
-| `/admin/donations/:id` | Donation Review | Assign collector, review proof, approve, complete |
+### Admin Routes
+
+| **Route** | **Page** | **Description** |
+| ---------- | -------- | --------------- |
+| `/admin/dashboard` | Admin Dashboard | Manage donations and collector activities |
+| `/admin/users` | Manage Users | View users and manage collectors |
+| `/admin/donations` | Manage Donations | View and manage all donations |
+| `/admin/donations/:id` | Donation Review | Review donation, assign collector, review proof, and complete donation |
 
 ### Other
-| Route | Page | Description |
-|-------|------|-------------|
+
+| **Route** | **Page** | **Description** |
+| ---------- | -------- | --------------- |
 | `/unauthorized` | 403 | Shown when a user accesses a page outside their role |
 | `*` | 404 | Page not found |
 
