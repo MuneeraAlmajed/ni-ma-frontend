@@ -4,17 +4,23 @@
   padding: 30px;
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(49, 84, 58, 0.08);
 }
 
 .item-details-title {
   margin: 0 0 20px;
+  color: #31543A;
 }
 
 .item-details-category,
 .item-details-condition,
 .item-details-description {
   margin: 12px 0;
+  color: #29352D;
+}
+
+.item-details-description {
+  line-height: 1.6;
 }
 
 .item-details-image {
@@ -27,13 +33,253 @@
 
 .item-details-message {
   margin: 0;
+  color: #5F6B61;
 }
 
 .back-to-donation-button {
   margin-bottom: 25px;
   padding: 10px 18px;
-  border: none;
+  border: 1px solid #527A5A;
   border-radius: 8px;
+  background-color: white;
+  color: #31543A;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
+}
+
+.back-to-donation-button:hover {
+  background-color: #DCE8DC;
+}
+
+.item-details-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.edit-item-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #527A5A;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.edit-item-button:hover {
+  background-color: #31543A;
+}
+
+.delete-item-button {
+  padding: 10px 18px;
+  border: 1px solid #D8A0A0;
+  border-radius: 8px;
+  background-color: white;
+  color: #B04A4A;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.delete-item-button:hover {
+  background-color: #F9EAEA;
+}
+
+.item-edit-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #31543A;
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #D8E1D8;
+  border-radius: 8px;
+  background-color: #FAF7F0;
+  color: #29352D;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #527A5A;
+  background-color: white;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.condition-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.condition-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.condition-radio {
+  accent-color: #527A5A;
+  cursor: pointer;
+}
+
+.condition-option-text {
+  color: #29352D;
+  font-size: 15px;
+}
+
+.item-edit-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.save-item-button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #527A5A;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.save-item-button:hover {
+  background-color: #31543A;
+}
+
+.cancel-item-edit-button {
+  padding: 12px 22px;
+  border: 1px solid #D8E1D8;
+  border-radius: 8px;
+  background-color: white;
+  color: #5F6B61;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cancel-item-edit-button:hover {
+  background-color: #F3F0E9;
+}
+
+.form-error {
+  margin: 15px 0 0;
+  color: #B04A4A;
+  font-size: 14px;
+}
+
+.delete-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(41, 53, 45, 0.45);
+  z-index: 1000;
+}
+
+.delete-popup {
+  width: 400px;
+  max-width: 90%;
+  padding: 30px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(49, 84, 58, 0.2);
+  text-align: center;
+}
+
+.delete-popup-title {
+  margin: 0 0 12px;
+  color: #31543A;
+}
+
+.delete-popup-message {
+  margin: 0 0 25px;
+  color: #5F6B61;
+  line-height: 1.5;
+}
+
+.delete-popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.keep-item-button {
+  padding: 10px 18px;
+  border: 1px solid #D8E1D8;
+  border-radius: 8px;
+  background-color: white;
+  color: #31543A;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.keep-item-button:hover {
+  background-color: #F3F0E9;
+}
+
+.confirm-delete-item-button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #B04A4A;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm-delete-item-button:hover {
+  background-color: #923C3C;
+}
+
+@media (max-width: 600px) {
+  .item-details {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .item-details-actions,
+  .item-edit-actions {
+    flex-direction: column;
+  }
+
+  .edit-item-button,
+  .delete-item-button,
+  .save-item-button,
+  .cancel-item-edit-button {
+    width: 100%;
+  }
+
+  .condition-options {
+    flex-direction: column;
+    gap: 12px;
+  }
 }

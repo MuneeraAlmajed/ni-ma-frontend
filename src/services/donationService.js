@@ -223,6 +223,57 @@ const cancelDonation = async (id) => {
   }
 };
 
+const updateItem = async (id, itemData) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/items/${id}`, {
+      method: "PUT",
+      headers: config.headers,
+      body: JSON.stringify(itemData)
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error("Unable to update item. Please try again");
+  }
+};
+
+const deleteItem = async (id) => {
+  try {
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/items/${id}`, {
+      method: "DELETE",
+      headers: config.headers
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      throw new Error(data.detail);
+    }
+
+    return true;
+  } catch (err) {
+    throw new Error("Unable to delete item. Please try again");
+  }
+};
+
 export {
     getDonations, 
     getDonationById, 
@@ -232,5 +283,7 @@ export {
     createItem, 
     uploadItemImage, 
     updateDonation, 
-    cancelDonation
+    cancelDonation, 
+    updateItem, 
+    deleteItem
 };
