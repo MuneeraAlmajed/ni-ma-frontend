@@ -1,7 +1,258 @@
 .profile-page {
-    padding: 40px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
 }
 
-.profile-title{
-    margin: 0;
+.profile-title {
+  margin: 0 0 30px;
+  color: #31543A;
+}
+
+.profile-card,
+.password-card {
+  margin-bottom: 30px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(49, 84, 58, 0.08);
+}
+
+.profile-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #DCE8DC;
+  font-size: 45px;
+}
+
+.avatar-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.avatar-option {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #D8E1D8;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.avatar-option:hover {
+  background-color: #DCE8DC;
+  border-color: #527A5A;
+}
+
+.profile-section-title {
+  margin: 0 0 25px;
+  color: #31543A;
+}
+
+.profile-field {
+  margin-bottom: 20px;
+}
+
+.profile-field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #5F6B61;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-field-value {
+  display: block;
+  color: #29352D;
+  font-size: 16px;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #D8E1D8;
+  border-radius: 8px;
+  background-color: #FAF7F0;
+  color: #29352D;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.profile-input:focus {
+  outline: none;
+  border-color: #527A5A;
+  background-color: white;
+}
+
+.profile-role {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #DCE8DC;
+  color: #31543A;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.edit-profile-button,
+.save-profile-button,
+.cancel-profile-button,
+.change-password-button {
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-profile-button,
+.save-profile-button,
+.change-password-button {
+  border: none;
+  background-color: #527A5A;
+  color: white;
+}
+
+.edit-profile-button:hover,
+.save-profile-button:hover,
+.change-password-button:hover {
+  background-color: #31543A;
+}
+
+.cancel-profile-button {
+  border: 1px solid #D8E1D8;
+  background-color: white;
+  color: #5F6B61;
+}
+
+.cancel-profile-button:hover {
+  background-color: #F3F0E9;
+}
+
+.profile-error {
+  margin: 15px 0 0;
+  color: #B04A4A;
+  font-size: 14px;
+}
+
+.profile-success {
+  margin: 15px 0 0;
+  color: #527A5A;
+  font-size: 14px;
+}
+
+.change-password-button {
+  margin-top: 5px;
+}
+
+.profile-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(41, 53, 45, 0.45);
+  z-index: 1000;
+}
+
+.profile-popup {
+  width: 400px;
+  max-width: 90%;
+  padding: 35px 30px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(49, 84, 58, 0.2);
+  text-align: center;
+}
+
+.profile-popup-icon {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background-color: #DCE8DC;
+  color: #527A5A;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-popup-title {
+  margin: 0 0 12px;
+  color: #31543A;
+}
+
+.profile-popup-message {
+  margin: 0 0 25px;
+  color: #5F6B61;
+  line-height: 1.5;
+}
+
+.profile-popup-button {
+  padding: 11px 28px;
+  border: none;
+  border-radius: 8px;
+  background-color: #527A5A;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-popup-button:hover {
+  background-color: #31543A;
+}
+
+@media (max-width: 600px) {
+  .profile-popup {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-page {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .profile-card,
+  .password-card {
+    padding: 20px;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .edit-profile-button,
+  .save-profile-button,
+  .cancel-profile-button,
+  .change-password-button {
+    width: 100%;
+  }
 }

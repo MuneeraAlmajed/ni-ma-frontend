@@ -24,7 +24,63 @@ const currentUser = async () => {
   }
 };
 
+const updateProfile = async (formData) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/auth`, {
+      method: "PUT",
+      headers: config.headers,
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error("Unable to update profile. Please try again");
+  }
+};
+
+const updatePassword = async (formData) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/auth/password`, {
+      method: "PUT",
+      headers: config.headers,
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error("Unable to update password. Please try again");
+  }
+};
+
 
 export {
-  currentUser,
+  currentUser, 
+  updateProfile, 
+  updatePassword
 };
