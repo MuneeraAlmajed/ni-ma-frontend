@@ -79,8 +79,117 @@ const updatePassword = async (formData) => {
 };
 
 
+const getCollectors = async () => {
+  try {
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/collectors`, config);
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error("Unable to load collectors");
+  }
+};
+
+const createCollector = async (collectorData) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/collectors`, {
+      method: "POST",
+      headers: config.headers,
+      body: JSON.stringify(collectorData)
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to add collector");
+  }
+};
+
+const updateCollector = async (userId, collectorData) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/users/${userId}`, {
+      method: "PUT",
+      headers: config.headers,
+      body: JSON.stringify(collectorData)
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to update collector");
+  }
+};
+
+const updateCollectorStatus = async (userId, isActive) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(`${BASE_URL}/users/${userId}/status`, {
+      method: "PUT",
+      headers: config.headers,
+      body: JSON.stringify({
+        is_active: isActive
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to update collector status");
+  }
+};
+
 export {
   currentUser, 
   updateProfile, 
-  updatePassword
+  updatePassword, 
+  getCollectors, 
+  createCollector,
+  updateCollector,
+  updateCollectorStatus
 };

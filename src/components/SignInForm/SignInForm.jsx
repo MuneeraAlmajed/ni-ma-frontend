@@ -19,16 +19,25 @@ const SignInForm = () => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
   };
 
-  const handleSubmit = async (evt) => {
-    evt.preventDefault();
-    try {
-      const signedInUser = await signIn(formData);
-      setUser(signedInUser);
-      navigate('/');
-    } catch (err) {
-      setMessage(err.message);
+ const handleSubmit = async (evt) => {
+  evt.preventDefault();
+
+  try {
+    const signedInUser = await signIn(formData);
+
+    setUser(signedInUser);
+
+    if (signedInUser.role === 'admin') {
+      navigate('/admin/dashboard');
+    } else if (signedInUser.role === 'collector') {
+      navigate('/collector/dashboard');
+    } else {
+      navigate('/client/dashboard');
     }
-  };
+  } catch (err) {
+    setMessage(err.message);
+  }
+};
 
   return (
     <main>

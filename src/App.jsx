@@ -12,8 +12,9 @@ import ClientDashboard from './components/ClientDasboard/ClientDashboard';
 import DonationDetails from './components/DonationDetails/DonationDetails';
 import ItemDetails from './components/ItemDetails/ItemDetails';
 import DonationRequest from './components/DonationRequest/DonationRequest';
+import AdminDashboard from './components/Admin/AdminDashboard';
 
-// Context
+
 import { UserContext } from './contexts/UserContext';
 
 const App = () => {
@@ -33,6 +34,8 @@ const App = () => {
         <Route path='/client/donations/new' element={<DonationRequest />}/>
 
         <Route path='/client/items/:id' element={<ItemDetails /> }/>
+
+        <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
 
       </Routes>
     </>
