@@ -13,7 +13,7 @@ import DonationDetails from './components/DonationDetails/DonationDetails';
 import ItemDetails from './components/ItemDetails/ItemDetails';
 import DonationRequest from './components/DonationRequest/DonationRequest';
 import AdminDashboard from './components/Admin/AdminDashboard';
-
+import CollectorDashboard from './components/Collector/CollectorDashboard';
 
 import { UserContext } from './contexts/UserContext';
 
@@ -37,6 +37,7 @@ const App = () => {
 
         <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
 
+        <Route path='/collector/dashbaord' element={<CollectorDashboard/>}/>
       </Routes>
     </>
   );

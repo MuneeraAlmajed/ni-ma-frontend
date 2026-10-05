@@ -366,6 +366,161 @@
   background-color: #7D3939;
 }
 
+.admin-donation-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-donation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(49, 84, 58, 0.12);
+}
+
+.admin-donation-details-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 28px;
+  margin-top: 24px;
+  box-shadow: 0 4px 14px rgba(49, 84, 58, 0.08);
+}
+
+.admin-donation-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.admin-donation-details-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-donation-details-status {
+  width: fit-content;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #E7F3E9;
+  color: #31543A;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.admin-donation-information {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.admin-donation-detail {
+  padding: 16px;
+  background-color: #F8FBF8;
+  border-radius: 10px;
+}
+
+.admin-donation-detail-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #6B7280;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-donation-detail-value {
+  margin: 0;
+  color: #31543A;
+  font-size: 15px;
+}
+
+.admin-assignment-section {
+  padding-top: 24px;
+  border-top: 1px solid #E5E7EB;
+}
+
+.admin-subtitle {
+  margin: 0 0 14px;
+  color: #31543A;
+  font-size: 18px;
+}
+
+.admin-collector-select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #31543A;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.admin-collector-select:focus {
+  border-color: #31543A;
+}
+
+.admin-collector-option {
+  color: #31543A;
+}
+
+.admin-assign-button {
+  margin-top: 14px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #31543A;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-assign-button:hover {
+  background-color: #26432E;
+}
+
+.admin-donation-status-section {
+  margin-bottom: 32px;
+}
+
+.admin-donation-status-title {
+  margin: 0 0 16px;
+  color: #31543A;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.admin-donation-status-section .admin-donations-list {
+  margin-bottom: 0;
+}
+
+.admin-delete-donation-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #E5E7EB;
+}
+
+.admin-delete-donation-button {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #8B3A3A;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-delete-donation-button:hover {
+  background-color: #6F2E2E;
+}
+
+
 @media (max-width: 700px) {
   .admin-dashboard {
     margin: 20px;
@@ -409,5 +564,12 @@
   .collector-edit-actions {
     grid-column: auto;
     flex-direction: column;
+  }
+    .admin-donation-information {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-donation-details-card {
+    padding: 20px;
   }
 }

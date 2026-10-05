@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
+
 import {
   getCollectors,
   createCollector,
   updateCollector,
   updateCollectorStatus
 } from "../../services/userService";
+
+import {
+  getAdminDonations,
+  assignCollector,
+  deleteAdminDonation
+} from "../../services/donationService";
+
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
@@ -13,6 +21,11 @@ const AdminDashboard = () => {
   const [selectedCollector, setSelectedCollector] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
   const [showStatusPopup, setShowStatusPopup] = useState(false);
+
+  const [donations, setDonations] = useState([]);
+  const [selectedDonation, setSelectedDonation] = useState(null);
+  const [selectedCollectorId, setSelectedCollectorId] = useState("");
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   const [collectorData, setCollectorData] = useState({
     name: "",
@@ -34,6 +47,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     loadCollectors();
+    loadDonations();
   }, []);
 
   const loadCollectors = async () => {
@@ -41,7 +55,20 @@ const AdminDashboard = () => {
       setError("");
 
       const data = await getCollectors();
+
       setCollectors(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const loadDonations = async () => {
+    try {
+      setError("");
+
+      const data = await getAdminDonations();
+
+      setDonations(data);
     } catch (err) {
       setError(err.message);
     }
@@ -81,6 +108,7 @@ const AdminDashboard = () => {
       });
 
       setShowAddForm(false);
+
       setMessage("Collector added successfully.");
     } catch (err) {
       setError(err.message);
@@ -98,6 +126,8 @@ const AdminDashboard = () => {
     });
 
     setShowEditForm(false);
+    setSelectedDonation(null);
+    setShowDeletePopup(false);
     setError("");
     setMessage("");
   };
@@ -123,7 +153,9 @@ const AdminDashboard = () => {
       );
 
       setSelectedCollector(updatedCollector);
+
       setShowEditForm(false);
+
       setMessage("Collector information updated successfully.");
     } catch (err) {
       setError(err.message);
@@ -135,7 +167,9 @@ const AdminDashboard = () => {
   };
 
   const confirmStatusChange = async () => {
-    if (!selectedCollector) return;
+    if (!selectedCollector) {
+      return;
+    }
 
     const newStatus = !selectedCollector.is_active;
 
@@ -169,6 +203,79 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleDonationClick = (donation) => {
+    setSelectedDonation(donation);
+    setSelectedCollector(null);
+    setSelectedCollectorId("");
+    setShowDeletePopup(false);
+    setError("");
+    setMessage("");
+  };
+
+  const handleAssignCollector = async () => {
+    if (!selectedDonation || !selectedCollectorId) {
+      setError("Please select a collector.");
+      return;
+    }
+
+    if (selectedDonation.status === "cancelled") {
+      setError("Cannot assign a cancelled donation.");
+      return;
+    }
+
+    setError("");
+    setMessage("");
+
+    try {
+      const updatedDonation = await assignCollector(
+        selectedDonation.id,
+        selectedCollectorId
+      );
+
+      setDonations(
+        donations.map((donation) =>
+          donation.id === updatedDonation.id
+            ? updatedDonation
+            : donation
+        )
+      );
+
+      setSelectedDonation(updatedDonation);
+      setSelectedCollectorId("");
+
+      setMessage("Collector assigned successfully.");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleDeleteDonation = async () => {
+    if (!selectedDonation) {
+      return;
+    }
+
+    setError("");
+    setMessage("");
+
+    try {
+      await deleteAdminDonation(selectedDonation.id);
+
+      setDonations(
+        donations.filter(
+          (donation) => donation.id !== selectedDonation.id
+        )
+      );
+
+      setSelectedDonation(null);
+      setShowDeletePopup(false);
+
+      setMessage("Donation deleted successfully.");
+    } catch (err) {
+      setShowDeletePopup(false);
+      setError(err.message);
+    }
+  };
+
   const closeCollectorDetails = () => {
     setSelectedCollector(null);
     setShowEditForm(false);
@@ -177,19 +284,77 @@ const AdminDashboard = () => {
     setMessage("");
   };
 
+  const closeDonationDetails = () => {
+    setSelectedDonation(null);
+    setSelectedCollectorId("");
+    setShowDeletePopup(false);
+    setError("");
+    setMessage("");
+  };
+
+  const pendingDonations = donations.filter(
+    (donation) => donation.status === "pending"
+  );
+
+  const assignedDonations = donations.filter(
+    (donation) => donation.status === "assigned"
+  );
+
+  const collectedDonations = donations.filter(
+    (donation) => donation.status === "collected"
+  );
+
+  const failedDonations = donations.filter(
+    (donation) => donation.status === "failed"
+  );
+
+  const cancelledDonations = donations.filter(
+    (donation) => donation.status === "cancelled"
+  );
+
+  const renderDonationCard = (donation) => (
+    <div
+      className="admin-donation-card"
+      key={donation.id}
+      onClick={() => handleDonationClick(donation)}
+    >
+      <div className="admin-donation-card-information">
+
+        <h3 className="admin-donation-title">
+          Donation #{donation.id}
+        </h3>
+
+        <p className="admin-donation-area">
+          {donation.pickup_area}
+        </p>
+
+        <p className="admin-donation-date">
+          {donation.preferred_pickup_date}
+        </p>
+
+      </div>
+
+      <span className="admin-donation-status">
+        {donation.status}
+      </span>
+    </div>
+  );
+
   return (
     <div className="admin-dashboard">
 
       <div className="admin-dashboard-header">
 
         <div className="admin-dashboard-heading">
+
           <h1 className="admin-dashboard-title">
             Admin Dashboard
           </h1>
 
           <p className="admin-dashboard-subtitle">
-            Manage NI'MA collectors
+            Manage NI'MA collectors and donation requests
           </p>
+
         </div>
 
         <button
@@ -198,6 +363,8 @@ const AdminDashboard = () => {
           onClick={() => {
             setShowAddForm(!showAddForm);
             setSelectedCollector(null);
+            setSelectedDonation(null);
+            setShowDeletePopup(false);
             setError("");
             setMessage("");
           }}
@@ -319,11 +486,13 @@ const AdminDashboard = () => {
       )}
 
       {selectedCollector ? (
+
         <div className="collector-details-card">
 
           <div className="collector-details-header">
 
-            <div>
+            <div className="collector-details-heading">
+
               <h2 className="admin-section-title">
                 Collector Details
               </h2>
@@ -333,6 +502,7 @@ const AdminDashboard = () => {
                   ? "Active"
                   : "Inactive"}
               </p>
+
             </div>
 
             <button
@@ -346,27 +516,49 @@ const AdminDashboard = () => {
           </div>
 
           {!showEditForm ? (
-            <>
+
+            <div className="collector-details-content">
+
               <div className="collector-details-information">
 
                 <div className="collector-detail">
-                  <span>Name</span>
-                  <p>{selectedCollector.name}</p>
+                  <span className="collector-detail-label">
+                    Name
+                  </span>
+
+                  <p className="collector-detail-value">
+                    {selectedCollector.name}
+                  </p>
                 </div>
 
                 <div className="collector-detail">
-                  <span>Username</span>
-                  <p>{selectedCollector.username}</p>
+                  <span className="collector-detail-label">
+                    Username
+                  </span>
+
+                  <p className="collector-detail-value">
+                    {selectedCollector.username}
+                  </p>
                 </div>
 
                 <div className="collector-detail">
-                  <span>Email</span>
-                  <p>{selectedCollector.email}</p>
+                  <span className="collector-detail-label">
+                    Email
+                  </span>
+
+                  <p className="collector-detail-value">
+                    {selectedCollector.email}
+                  </p>
                 </div>
 
                 <div className="collector-detail">
-                  <span>Phone</span>
-                  <p>{selectedCollector.phone}</p>
+                  <span className="collector-detail-label">
+                    Phone
+                  </span>
+
+                  <p className="collector-detail-value">
+                    {selectedCollector.phone}
+                  </p>
                 </div>
 
               </div>
@@ -400,8 +592,11 @@ const AdminDashboard = () => {
                 </button>
 
               </div>
-            </>
+
+            </div>
+
           ) : (
+
             <form
               className="edit-collector-form"
               onSubmit={handleUpdateCollector}
@@ -487,82 +682,491 @@ const AdminDashboard = () => {
               </div>
 
             </form>
+
           )}
 
         </div>
-      ) : (
-        <div className="collectors-section">
 
-          <h2 className="admin-section-title">
-            Collectors
-          </h2>
+      ) : selectedDonation ? (
 
-          {collectors.length === 0 ? (
-            <p className="no-collectors-message">
-              No collectors to display.
-            </p>
-          ) : (
-            <div className="collectors-list">
+        <div className="admin-donation-details-card">
 
-              {collectors.map((collector) => (
-                <div
-                  className="collector-card"
-                  key={collector.id}
-                  onClick={() => handleCollectorClick(collector)}
-                >
+          <div className="admin-donation-details-header">
 
-                  <div className="collector-information">
+            <div className="admin-donation-details-heading">
 
-                    <h3 className="collector-name">
-                      {collector.name}
-                    </h3>
+              <h2 className="admin-section-title">
+                Donation Request #{selectedDonation.id}
+              </h2>
 
-                    <p className="collector-username">
-                      @{collector.username}
-                    </p>
+              <p className="admin-donation-details-status">
+                {selectedDonation.status}
+              </p>
 
-                    <p className="collector-email">
-                      {collector.email}
-                    </p>
+            </div>
 
-                    <p className="collector-phone">
-                      {collector.phone}
-                    </p>
+            <button
+              className="close-details-button"
+              type="button"
+              onClick={closeDonationDetails}
+            >
+              Close
+            </button>
+
+          </div>
+
+          <div className="admin-donation-information">
+
+            <div className="admin-donation-detail">
+              <span className="admin-donation-detail-label">
+                Client ID
+              </span>
+
+              <p className="admin-donation-detail-value">
+                {selectedDonation.client_id}
+              </p>
+            </div>
+
+            <div className="admin-donation-detail">
+              <span className="admin-donation-detail-label">
+                Collector ID
+              </span>
+
+              <p className="admin-donation-detail-value">
+                {selectedDonation.collector_id || "Not assigned"}
+              </p>
+            </div>
+
+            <div className="admin-donation-detail">
+              <span className="admin-donation-detail-label">
+                House
+              </span>
+
+              <p className="admin-donation-detail-value">
+                {selectedDonation.pickup_house}
+              </p>
+            </div>
+
+            <div className="admin-donation-detail">
+              <span className="admin-donation-detail-label">
+                Road
+              </span>
+
+              <p className="admin-donation-detail-value">
+                {selectedDonation.pickup_road}
+              </p>
+            </div>
+
+            <div className="admin-donation-detail">
+              <span className="admin-donation-detail-label">
+                Block
+              </span>
+
+              <p className="admin-donation-detail-value">
+                {selectedDonation.pickup_block}
+              </p>
+            </div>
+
+            <div className="admin-donation-detail">
+              <span className="admin-donation-detail-label">
+                Area
+              </span>
+
+              <p className="admin-donation-detail-value">
+                {selectedDonation.pickup_area}
+              </p>
+            </div>
+
+            <div className="admin-donation-detail">
+              <span className="admin-donation-detail-label">
+                Preferred Date
+              </span>
+
+              <p className="admin-donation-detail-value">
+                {selectedDonation.preferred_pickup_date}
+              </p>
+            </div>
+
+            <div className="admin-donation-detail">
+              <span className="admin-donation-detail-label">
+                Preferred Time
+              </span>
+
+              <p className="admin-donation-detail-value">
+                {selectedDonation.preferred_pickup_time}
+              </p>
+            </div>
+
+          </div>
+
+          <div className="admin-items-section">
+
+            <h3 className="admin-subtitle">
+              Donation Items
+            </h3>
+
+            {selectedDonation.items &&
+            selectedDonation.items.length > 0 ? (
+
+              <div className="admin-items-list">
+
+                {selectedDonation.items.map((item) => (
+
+                  <div
+                    className="admin-item-card"
+                    key={item.id}
+                  >
+
+                    <div className="admin-item-information">
+
+                      <h4 className="admin-item-name">
+                        {item.name}
+                      </h4>
+
+                      <p className="admin-item-category">
+                        Category: {item.category}
+                      </p>
+
+                      <p className="admin-item-condition">
+                        Condition: {item.condition}
+                      </p>
+
+                      <p className="admin-item-description">
+                        {item.description}
+                      </p>
+
+                    </div>
+
+                    {item.image_url && (
+                      <img
+                        className="admin-item-image"
+                        src={item.image_url}
+                        alt={item.name}
+                      />
+                    )}
 
                   </div>
 
-                  <span
-                    className={
-                      collector.is_active
-                        ? "collector-status"
-                        : "collector-status inactive"
-                    }
-                  >
-                    {collector.is_active
-                      ? "Active"
-                      : "Inactive"}
-                  </span>
+                ))}
 
-                </div>
-              ))}
+              </div>
+
+            ) : (
+
+              <p className="admin-no-items">
+                No items found for this donation.
+              </p>
+
+            )}
+
+          </div>
+
+          {(selectedDonation.status === "cancelled" ||
+            selectedDonation.status === "failed") && (
+
+            <div className="admin-delete-donation-section">
+
+              <button
+                className="admin-delete-donation-button"
+                type="button"
+                onClick={() => setShowDeletePopup(true)}
+              >
+                Delete Donation
+              </button>
 
             </div>
+
+          )}
+
+          {selectedDonation.status !== "cancelled" &&
+            selectedDonation.status !== "failed" && (
+              <div className="admin-assignment-section">
+
+                <h3 className="admin-subtitle">
+                  Assign Collector
+                </h3>
+
+                {selectedDonation.collector_id ? (
+
+                  <p className="admin-assigned-collector">
+                    Collector #{selectedDonation.collector_id} is assigned
+                  </p>
+
+                ) : (
+
+                  <div className="admin-assignment-controls">
+
+                    <select
+                      className="admin-collector-select"
+                      value={selectedCollectorId}
+                      onChange={(event) =>
+                        setSelectedCollectorId(event.target.value)
+                      }
+                    >
+
+                      <option
+                        className="admin-collector-option"
+                        value=""
+                      >
+                        Select a collector
+                      </option>
+
+                      {collectors
+                        .filter(
+                          (collector) => collector.is_active
+                        )
+                        .map((collector) => (
+
+                          <option
+                            className="admin-collector-option"
+                            key={collector.id}
+                            value={collector.id}
+                          >
+                            {collector.name}
+                          </option>
+
+                        ))}
+
+                    </select>
+
+                    <button
+                      className="admin-assign-button"
+                      type="button"
+                      onClick={handleAssignCollector}
+                    >
+                      Assign Collector
+                    </button>
+
+                  </div>
+
+                )}
+
+              </div>
+            )}
+
+          {selectedDonation.status === "cancelled" && (
+
+            <div className="admin-cancelled-message">
+
+              <p className="admin-cancelled-text">
+                This donation request was cancelled by the client.
+              </p>
+
+            </div>
+
           )}
 
         </div>
+
+      ) : (
+
+        <div className="admin-main-sections">
+
+          <div className="collectors-section">
+
+            <h2 className="admin-section-title">
+              Collectors
+            </h2>
+
+            {collectors.length === 0 ? (
+
+              <p className="no-collectors-message">
+                No collectors to display.
+              </p>
+
+            ) : (
+
+              <div className="collectors-list">
+
+                {collectors.map((collector) => (
+
+                  <div
+                    className="collector-card"
+                    key={collector.id}
+                    onClick={() => handleCollectorClick(collector)}
+                  >
+
+                    <div className="collector-information">
+
+                      <h3 className="collector-name">
+                        {collector.name}
+                      </h3>
+
+                      <p className="collector-username">
+                        @{collector.username}
+                      </p>
+
+                      <p className="collector-email">
+                        {collector.email}
+                      </p>
+
+                      <p className="collector-phone">
+                        {collector.phone}
+                      </p>
+
+                    </div>
+
+                    <span
+                      className={
+                        collector.is_active
+                          ? "collector-status"
+                          : "collector-status inactive"
+                      }
+                    >
+                      {collector.is_active
+                        ? "Active"
+                        : "Inactive"}
+                    </span>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            )}
+
+          </div>
+
+          <div className="admin-donations-section">
+
+            <h2 className="admin-section-title">
+              Donation Requests
+            </h2>
+
+            <div className="admin-donation-status-section">
+
+              <h3 className="admin-donation-status-title">
+                Pending Donations
+              </h3>
+
+              {pendingDonations.length === 0 ? (
+
+                <p className="admin-no-donations">
+                  No pending donations.
+                </p>
+
+              ) : (
+
+                <div className="admin-donations-list">
+                  {pendingDonations.map(renderDonationCard)}
+                </div>
+
+              )}
+
+            </div>
+
+
+            <div className="admin-donation-status-section">
+
+              <h3 className="admin-donation-status-title">
+                Assigned Donations
+              </h3>
+
+              {assignedDonations.length === 0 ? (
+
+                <p className="admin-no-donations">
+                  No assigned donations.
+                </p>
+
+              ) : (
+
+                <div className="admin-donations-list">
+                  {assignedDonations.map(renderDonationCard)}
+                </div>
+
+              )}
+
+            </div>
+
+
+            <div className="admin-donation-status-section">
+
+              <h3 className="admin-donation-status-title">
+                Collected Donations
+              </h3>
+
+              {collectedDonations.length === 0 ? (
+
+                <p className="admin-no-donations">
+                  No collected donations.
+                </p>
+
+              ) : (
+
+                <div className="admin-donations-list">
+                  {collectedDonations.map(renderDonationCard)}
+                </div>
+
+              )}
+
+            </div>
+
+
+            <div className="admin-donation-status-section">
+
+              <h3 className="admin-donation-status-title">
+                Failed Donations
+              </h3>
+
+              {failedDonations.length === 0 ? (
+
+                <p className="admin-no-donations">
+                  No failed donations.
+                </p>
+
+              ) : (
+
+                <div className="admin-donations-list">
+                  {failedDonations.map(renderDonationCard)}
+                </div>
+
+              )}
+
+            </div>
+
+
+            <div className="admin-donation-status-section">
+
+              <h3 className="admin-donation-status-title">
+                Cancelled Donations
+              </h3>
+
+              {cancelledDonations.length === 0 ? (
+
+                <p className="admin-no-donations">
+                  No cancelled donations.
+                </p>
+
+              ) : (
+
+                <div className="admin-donations-list">
+                  {cancelledDonations.map(renderDonationCard)}
+                </div>
+
+              )}
+
+            </div>
+
+          </div>
+
+        </div>
+
       )}
 
       {showStatusPopup && (
+
         <div className="admin-popup-overlay">
+
           <div className="admin-popup">
 
-            <h2>
+            <h2 className="admin-popup-title">
               {selectedCollector?.is_active
                 ? "Make Collector Inactive?"
                 : "Activate Collector?"}
             </h2>
 
-            <p>
+            <p className="admin-popup-message">
               {selectedCollector?.is_active
                 ? `Are you sure you want to make ${selectedCollector?.name} inactive?`
                 : `Are you sure you want to activate ${selectedCollector?.name}?`}
@@ -591,7 +1195,49 @@ const AdminDashboard = () => {
             </div>
 
           </div>
+
         </div>
+
+      )}
+
+      {showDeletePopup && (
+
+        <div className="admin-popup-overlay">
+
+          <div className="admin-popup">
+
+            <h2 className="admin-popup-title">
+              Delete Donation?
+            </h2>
+
+            <p className="admin-popup-message">
+              Are you sure you want to permanently delete Donation #{selectedDonation?.id}?
+            </p>
+
+            <div className="admin-popup-actions">
+
+              <button
+                type="button"
+                className="admin-popup-cancel"
+                onClick={() => setShowDeletePopup(false)}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                className="admin-popup-confirm"
+                onClick={handleDeleteDonation}
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       )}
 
     </div>

@@ -274,6 +274,212 @@ const deleteItem = async (id) => {
   }
 };
 
+const getCollectorDonations = async () => {
+  try {
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/collector/donations`,
+      config
+    );
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to load donations");
+  }
+};
+
+const updateCollectorDonationStatus = async (donationId, status) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/collector/donations/${donationId}/status?status=${status}`,
+      {
+        method: "PUT",
+        headers: config.headers
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to update donation status");
+  }
+};
+
+const updatePickupResult = async (
+  donationId,
+  pickupSuccessful,
+  failedReason = null
+) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/collector/donations/${donationId}/result`,
+      {
+        method: "PUT",
+        headers: config.headers,
+        body: JSON.stringify({
+          pickup_successful: pickupSuccessful,
+          failed_reason: failedReason
+        })
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to update pickup result");
+  }
+};
+
+const uploadProofPhoto = async (donationId, file) => {
+  try {
+    const formData = new FormData();
+
+    formData.append("file", file);
+
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/collector/donations/${donationId}/proof`,
+      {
+        method: "POST",
+        headers: config.headers,
+        body: formData
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to upload proof photo");
+  }
+};
+
+const assignCollector = async (donationId, collectorId) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/admin/donations/${donationId}/assign?collector_id=${collectorId}`,
+      {
+        method: "PUT",
+        headers: config.headers
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to assign collector");
+  }
+};
+
+const getAdminDonations = async () => {
+  try {
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/admin/donations`,
+      config
+    );
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to load donations");
+  }
+};
+
+const deleteAdminDonation = async (donationId) => {
+  try {
+    const config = {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/admin/donations/${donationId}`,
+      {
+        method: "DELETE",
+        headers: config.headers
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.detail) {
+      throw new Error(data.detail);
+    }
+
+    return data;
+  } catch (err) {
+    throw new Error(err.message || "Unable to delete donation");
+  }
+};
+
 export {
     getDonations, 
     getDonationById, 
@@ -285,5 +491,14 @@ export {
     updateDonation, 
     cancelDonation, 
     updateItem, 
-    deleteItem
+    deleteItem,
+    getCollectorDonations,
+    updateCollectorDonationStatus,
+    updatePickupResult,
+    uploadProofPhoto,
+    assignCollector,
+    getAdminDonations,
+    deleteAdminDonation
+    
+
 };
