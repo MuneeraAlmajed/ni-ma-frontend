@@ -126,6 +126,37 @@
   cursor: pointer;
   font-size: 14px;
 }
+.donation-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.donation-item-header .donation-item-form-title {
+  margin: 0;
+}
+
+.remove-item-button {
+  padding: 8px 14px;
+  border: 1px solid #D8A0A0;
+  border-radius: 8px;
+  background-color: white;
+  color: #B04A4A;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.remove-item-button:hover {
+  background-color: #F9EAEA;
+}
+
+.donation-item-form + .donation-item-form {
+  margin-top: 35px;
+  padding-top: 30px;
+  border-top: 1px solid #E9DDC9;
+}
 
 @media (max-width: 768px) {
   .donation-details {
@@ -151,3 +182,4 @@
     font-size: 14px;
   }
 }
+
