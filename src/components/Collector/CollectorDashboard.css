@@ -1,277 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
+
 .collector-dashboard {
+  min-height: calc(100vh - 80px);
+  padding: 3.5rem 6%;
+  background-color: #f5f0e6;
+  font-family: "DM Sans", sans-serif;
+  color: #173f35;
+}
+
+/* Dashboard Header */
+
+.collector-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
   max-width: 1100px;
-  margin: 40px auto;
-  padding: 30px;
-}
-
-.collector-dashboard-header {
-  margin-bottom: 30px;
-}
-
-.collector-dashboard-title {
-  margin: 0 0 8px;
-  color: #31543A;
-}
-
-.collector-dashboard-subtitle {
-  margin: 0;
-  color: #5F6B61;
-}
-
-.collector-success-message {
-  margin: 0 0 20px;
-  padding: 12px 15px;
-  border-radius: 8px;
-  background-color: #DCE8DC;
-  color: #31543A;
-  font-size: 14px;
-}
-
-.collector-error-message {
-  margin: 0 0 20px;
-  padding: 12px 15px;
-  border-radius: 8px;
-  background-color: #F9EAEA;
-  color: #B04A4A;
-  font-size: 14px;
-}
-
-.collector-donations-section,
-.collector-donation-details {
-  padding: 30px;
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(49, 84, 58, 0.08);
-}
-
-.collector-section-title {
-  margin: 0 0 25px;
-  color: #31543A;
-}
-
-.collector-donations-list {
-  display: grid;
-  gap: 15px;
-}
-
-.collector-donation-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
-  border: 1px solid #D8E1D8;
-  border-radius: 12px;
-  background-color: #FAF7F0;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.collector-donation-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(49, 84, 58, 0.12);
-}
-
-.collector-donation-information {
-  min-width: 0;
-}
-
-.collector-donation-title {
-  margin: 0 0 8px;
-  color: #31543A;
-}
-
-.collector-donation-date,
-.collector-donation-area {
-  margin: 5px 0;
-  color: #5F6B61;
-  font-size: 14px;
-}
-
-.collector-donation-status {
-  flex-shrink: 0;
-  padding: 6px 12px;
-  border-radius: 20px;
-  background-color: #DCE8DC;
-  color: #31543A;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.no-donations-message {
-  margin: 0;
-  color: #5F6B61;
-}
-
-.collector-donation-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.collector-donation-heading {
-  min-width: 0;
-}
-
-.collector-donation-header .collector-section-title {
-  margin-bottom: 10px;
-}
-
-.collector-close-button {
-  padding: 9px 18px;
-  border: 1px solid #D8E1D8;
-  border-radius: 8px;
-  background-color: white;
-  color: #5F6B61;
-  cursor: pointer;
-}
-
-.collector-close-button:hover {
-  background-color: #F3F0E9;
-}
-
-.collector-pickup-information {
-  padding: 20px;
-  border-radius: 12px;
-  background-color: #FAF7F0;
-}
-
-.collector-subtitle {
-  margin: 0 0 15px;
-  color: #31543A;
-}
-
-.collector-pickup-detail {
-  margin: 8px 0;
-  color: #5F6B61;
-  font-size: 14px;
-}
-
-.collector-status-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.collector-action-button,
-.collector-failed-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.collector-action-button {
-  background-color: #527A5A;
-}
-
-.collector-action-button:hover {
-  background-color: #31543A;
-}
-
-.collector-failed-button {
-  background-color: #9B4A4A;
-}
-
-.collector-failed-button:hover {
-  background-color: #7D3939;
-}
-.collector-dashboard {
-  min-height: 100vh;
-  padding: 40px 60px;
-  background-color: #f7faf8;
-}
-
-.collector-dashboard-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
+  margin: 0 auto 2.5rem;
 }
 
 .collector-dashboard-heading {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .collector-dashboard-title {
   margin: 0;
-  color: #31543a;
-  font-size: 32px;
+  color: #173f35;
+  font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
 
 .collector-dashboard-subtitle {
   margin: 0;
-  color: #6b7d70;
-  font-size: 15px;
+  color: #64716a;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .collector-dashboard-count {
-  padding: 10px 18px;
-  border-radius: 20px;
-  background-color: #e5f0e7;
-  color: #31543a;
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 0.9rem;
+  border-radius: 30px;
+  background-color: #e2eadf;
+  color: #173f35;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 
+/* Messages */
+
 .collector-success-message,
 .collector-error-message {
-  margin-bottom: 24px;
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 14px;
+  max-width: 1100px;
+  margin: 0 auto 1.5rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
 }
 
 .collector-success-message {
-  background-color: #e7f4e9;
-  color: #31543a;
+  background-color: #dce9df;
+  color: #3f7652;
 }
 
 .collector-error-message {
-  background-color: #f9e8e8;
-  color: #8a3d3d;
+  background-color: #f9e2e2;
+  color: #b34d4d;
 }
+
+/* Main Content */
 
 .collector-main-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
 }
+
+/* Sections */
 
 .collector-donations-section,
 .collector-history-section {
-  padding: 28px;
-  border: 1px solid #e1e9e3;
-  border-radius: 14px;
-  background-color: #ffffff;
+  padding: 1.8rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 18px;
+  background-color: #fffdf8;
+  box-shadow: 0 6px 20px rgba(23, 63, 53, 0.06);
 }
 
 .collector-section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 22px;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .collector-section-title {
-  margin: 0 0 6px;
-  color: #31543a;
-  font-size: 22px;
-  font-weight: 650;
+  margin: 0 0 0.4rem;
+  color: #173f35;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .collector-section-description {
   margin: 0;
-  color: #718078;
-  font-size: 14px;
+  color: #64716a;
+  font-size: 0.8rem;
+  line-height: 1.6;
 }
 
 .collector-section-count {
@@ -280,367 +126,501 @@
   justify-content: center;
   min-width: 34px;
   height: 34px;
-  padding: 0 10px;
+  padding: 0 0.7rem;
   border-radius: 50%;
-  background-color: #e5f0e7;
-  color: #31543a;
-  font-size: 14px;
+  background-color: #e2eadf;
+  color: #173f35;
+  font-size: 0.75rem;
   font-weight: 600;
 }
+
+/* Donations List */
 
 .collector-donations-list,
 .collector-history-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.8rem;
 }
+
+/* Donation Card */
 
 .collector-donation-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 20px;
-  border: 1px solid #e2e9e4;
-  border-radius: 10px;
-  background-color: #ffffff;
+  gap: 1.5rem;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 14px;
+  background-color: #f9f6ef;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .collector-donation-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(49, 84, 58, 0.08);
+  transform: translateY(-3px);
+  border-color: #c9d3cc;
+  box-shadow: 0 10px 25px rgba(23, 63, 53, 0.09);
 }
 
 .collector-donation-information {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.35rem;
+  min-width: 0;
 }
 
 .collector-donation-title {
   margin: 0;
-  color: #31543a;
-  font-size: 16px;
-  font-weight: 600;
+  color: #173f35;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .collector-donation-area,
 .collector-donation-date {
   margin: 0;
-  color: #718078;
-  font-size: 13px;
+  color: #64716a;
+  font-size: 0.78rem;
 }
 
 .collector-donation-card-right {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 1.2rem;
+  flex-shrink: 0;
 }
 
+/* Donation Status */
+
 .collector-donation-status {
-  padding: 6px 12px;
-  border-radius: 15px;
-  background-color: #e5f0e7;
-  color: #31543a;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.7rem;
   font-weight: 600;
-  text-transform: capitalize;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.collector-donation-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+/* Assigned */
+
+.collector-donation-status-assigned {
+  background-color: #e2edf3;
+  border-color: #c5d9e4;
+  color: #47728a;
+}
+
+/* Collected */
+
+.collector-donation-status-collected {
+  background-color: #dce9df;
+  border-color: #bfd6c5;
+  color: #3f7652;
+}
+
+/* Failed */
+
+.collector-donation-status-failed {
+  background-color: #f9e2e2;
+  border-color: #edc4c4;
+  color: #b34d4d;
+}
+
+/* Completed */
+
+.collector-donation-status-completed {
+  background-color: #dce9df;
+  border-color: #bfd6c5;
+  color: #3f7652;
 }
 
 .collector-view-details {
-  color: #6b8f71;
-  font-size: 13px;
+  color: #527a5a;
+  font-size: 0.75rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
+/* Empty State */
+
 .collector-empty-state {
-  padding: 35px 20px;
+  padding: 3rem 1.5rem;
+  border: 1px dashed #d5d2c9;
+  border-radius: 14px;
+  background-color: #faf8f2;
   text-align: center;
-  border: 1px dashed #d4dfd7;
-  border-radius: 10px;
-  background-color: #fafcfb;
 }
 
 .collector-empty-message {
   margin: 0;
-  color: #7a887e;
-  font-size: 14px;
+  color: #7a837d;
+  font-size: 0.8rem;
+}
+
+/* Donation Details */
+
+.collector-donation-details {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .collector-donation-details-card {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 30px;
-  border: 1px solid #e1e9e3;
-  border-radius: 14px;
-  background-color: #ffffff;
+  width: 100%;
+  padding: 1.8rem;
+  box-sizing: border-box;
+  border: 1px solid #ddd6c8;
+  border-radius: 18px;
+  background-color: #fffdf8;
+  box-shadow: 0 6px 20px rgba(23, 63, 53, 0.06);
 }
+
+/* Details Header */
 
 .collector-details-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 22px;
-  border-bottom: 1px solid #e7ece8;
+  gap: 1rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid #eee9df;
 }
 
 .collector-details-heading {
   display: flex;
   align-items: center;
-  gap: 14px;
-}
-
-.collector-details-status {
-  padding: 6px 12px;
-  border-radius: 15px;
-  background-color: #e5f0e7;
-  color: #31543a;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: capitalize;
+  gap: 0.8rem;
+  min-width: 0;
 }
 
 .collector-close-button {
-  padding: 8px 16px;
-  border: 1px solid #d5dfd7;
-  border-radius: 7px;
-  background-color: #ffffff;
-  color: #52645a;
-  font-size: 13px;
+  padding: 0.55rem 1rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 8px;
+  background-color: #fffdf8;
+  color: #64716a;
+  font-family: inherit;
+  font-size: 0.75rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .collector-close-button:hover {
-  background-color: #f2f6f3;
+  background-color: #f5f0e6;
+  color: #173f35;
 }
+
+/* Details Status */
+
+.collector-details-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Details Status Colors */
+
+.collector-details-status-assigned {
+  background-color: #e2edf3;
+  border: 1px solid #c5d9e4;
+  color: #47728a;
+}
+
+.collector-details-status-collected {
+  background-color: #dce9df;
+  border: 1px solid #bfd6c5;
+  color: #3f7652;
+}
+
+.collector-details-status-failed {
+  background-color: #f9e2e2;
+  border: 1px solid #edc4c4;
+  color: #b34d4d;
+}
+
+.collector-details-status-completed {
+  background-color: #dce9df;
+  border: 1px solid #bfd6c5;
+  color: #3f7652;
+}
+
+/* Detail Sections */
 
 .collector-pickup-information,
 .collector-items-section,
 .collector-result-section,
 .collector-proof-section,
 .collector-failed-section {
-  padding: 26px 0;
-  border-bottom: 1px solid #e7ece8;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid #eee9df;
 }
 
 .collector-subtitle {
-  margin: 0 0 18px;
-  color: #31543a;
-  font-size: 17px;
-  font-weight: 600;
+  margin: 0 0 1rem;
+  color: #173f35;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .collector-information-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 0.9rem;
 }
 
 .collector-information-item {
-  padding: 15px;
-  border-radius: 8px;
-  background-color: #f7faf8;
+  padding: 0.9rem;
+  border-radius: 10px;
+  background-color: #f9f6ef;
 }
 
 .collector-information-label {
   display: block;
-  margin-bottom: 6px;
-  color: #7a887e;
-  font-size: 12px;
+  margin-bottom: 0.35rem;
+  color: #7a837d;
+  font-size: 0.7rem;
 }
 
 .collector-information-value {
   margin: 0;
-  color: #31543a;
-  font-size: 14px;
-  font-weight: 500;
+  color: #173f35;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
+
+/* Items */
 
 .collector-items-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0.9rem;
 }
 
 .collector-item-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 18px;
-  border: 1px solid #e2e9e4;
-  border-radius: 10px;
-  background-color: #fafcfb;
+  gap: 1.2rem;
+  padding: 1rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 12px;
+  background-color: #f9f6ef;
 }
 
 .collector-item-information {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.35rem;
+  min-width: 0;
 }
 
 .collector-item-name {
   margin: 0;
-  color: #31543a;
-  font-size: 16px;
+  color: #173f35;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .collector-item-category,
 .collector-item-condition,
 .collector-item-description {
   margin: 0;
-  color: #718078;
-  font-size: 13px;
+  color: #64716a;
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
 .collector-item-image {
   width: 110px;
   height: 90px;
+  flex-shrink: 0;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .collector-no-items {
   margin: 0;
-  color: #7a887e;
-  font-size: 14px;
+  color: #7a837d;
+  font-size: 0.8rem;
 }
+
+/* Action Buttons */
 
 .collector-result-button,
 .collector-proof-button,
 .collector-submit-result-button,
 .collector-submit-proof-button {
-  padding: 10px 18px;
+  padding: 0.7rem 1rem;
   border: none;
-  border-radius: 7px;
-  background-color: #31543a;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 9px;
+  background-color: #173f35;
+  color: #fffdf8;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .collector-result-button:hover,
 .collector-proof-button:hover,
 .collector-submit-result-button:hover,
 .collector-submit-proof-button:hover {
-  background-color: #42694a;
+  background-color: #2d6656;
   transform: translateY(-1px);
 }
+
+/* Result Form */
 
 .collector-result-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 1rem;
 }
 
 .collector-result-options {
   display: flex;
-  gap: 25px;
+  gap: 1.5rem;
 }
 
 .collector-radio-label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #52645a;
-  font-size: 14px;
+  gap: 0.5rem;
+  color: #64716a;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
 .collector-radio-input {
-  accent-color: #31543a;
+  accent-color: #173f35;
 }
 
 .collector-failed-reason {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #d5dfd7;
-  border-radius: 8px;
-  color: #31543a;
-  font-family: inherit;
-  font-size: 14px;
-  resize: vertical;
+  padding: 0.8rem;
   box-sizing: border-box;
+  border: 1px solid #ddd6c8;
+  border-radius: 9px;
+  background-color: #f9f6ef;
+  color: #173f35;
+  font-family: inherit;
+  font-size: 0.8rem;
+  resize: vertical;
 }
 
 .collector-failed-reason:focus {
   outline: none;
-  border-color: #6b8f71;
+  border-color: #527a5a;
 }
+
+/* Result Actions */
 
 .collector-result-actions,
 .collector-proof-actions {
   display: flex;
-  gap: 10px;
+  gap: 0.7rem;
 }
 
 .collector-cancel-result-button,
 .collector-cancel-proof-button {
-  padding: 10px 18px;
-  border: 1px solid #d5dfd7;
-  border-radius: 7px;
-  background-color: #ffffff;
-  color: #52645a;
-  font-size: 14px;
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 9px;
+  background-color: #fffdf8;
+  color: #64716a;
+  font-family: inherit;
+  font-size: 0.75rem;
   cursor: pointer;
 }
 
 .collector-cancel-result-button:hover,
 .collector-cancel-proof-button:hover {
-  background-color: #f2f6f3;
+  background-color: #f5f0e6;
+  color: #173f35;
 }
+
+/* Proof */
 
 .collector-proof-preview {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 0.8rem;
 }
 
 .collector-proof-image {
   width: 280px;
   max-height: 220px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .collector-proof-message {
   margin: 0;
-  color: #718078;
-  font-size: 13px;
+  color: #64716a;
+  font-size: 0.75rem;
 }
 
 .collector-proof-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 1rem;
 }
 
 .collector-proof-input {
-  padding: 10px;
-  border: 1px solid #d5dfd7;
-  border-radius: 7px;
-  background-color: #fafcfb;
-  color: #52645a;
-  font-size: 13px;
+  padding: 0.7rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 9px;
+  background-color: #f9f6ef;
+  color: #64716a;
+  font-family: inherit;
+  font-size: 0.75rem;
 }
+
+/* Failed Pickup */
 
 .collector-failed-message {
   margin: 0;
-  padding: 14px;
+  padding: 0.9rem;
+  border-left: 3px solid #b34d4d;
   border-radius: 8px;
-  background-color: #faf3f3;
-  color: #7a4a4a;
-  font-size: 14px;
+  background-color: #fff5f5;
+  color: #8a4a4a;
+  font-size: 0.8rem;
+  line-height: 1.6;
 }
+
+/* Tablet */
 
 @media (max-width: 900px) {
   .collector-dashboard {
-    padding: 30px;
+    padding: 3rem 5%;
   }
 
   .collector-information-grid {
@@ -648,32 +628,48 @@
   }
 }
 
+/* Mobile */
+
 @media (max-width: 650px) {
   .collector-dashboard {
-    padding: 20px;
+    min-height: calc(100vh - 70px);
+    padding: 2.5rem 5%;
   }
 
   .collector-dashboard-header {
     align-items: flex-start;
     flex-direction: column;
-    gap: 15px;
+    gap: 1.2rem;
   }
 
   .collector-dashboard-title {
-    font-size: 26px;
+    font-size: 2.2rem;
+  }
+
+  .collector-dashboard-subtitle {
+    font-size: 0.82rem;
   }
 
   .collector-donations-section,
   .collector-history-section,
   .collector-donation-details-card {
-    padding: 20px;
+    padding: 1.3rem;
+    border-radius: 14px;
+  }
+
+  .collector-section-title {
+    font-size: 1.2rem;
+  }
+
+  .collector-section-header {
+    align-items: flex-start;
   }
 
   .collector-donation-card {
     align-items: flex-start;
     flex-direction: column;
-    gap: 15px;
-    cursor: pointer;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .collector-donation-card-right {
@@ -684,7 +680,6 @@
   .collector-details-header {
     align-items: flex-start;
     flex-direction: column;
-    gap: 15px;
   }
 
   .collector-information-grid {
@@ -703,7 +698,7 @@
 
   .collector-result-options {
     flex-direction: column;
-    gap: 12px;
+    gap: 0.8rem;
   }
 
   .collector-result-actions,
@@ -724,31 +719,31 @@
     width: 100%;
     max-height: 300px;
   }
-
-
 }
 
-@media (max-width: 700px) {
+/* Small Mobile */
+
+@media (max-width: 400px) {
   .collector-dashboard {
-    margin: 20px;
-    padding: 20px;
+    padding: 2rem 4%;
   }
 
-  .collector-donation-card {
+  .collector-dashboard-title {
+    font-size: 1.9rem;
+  }
+
+  .collector-donation-card-right {
     align-items: flex-start;
     flex-direction: column;
+    gap: 0.7rem;
   }
 
-  .collector-donation-header {
+  .collector-view-details {
+    font-size: 0.72rem;
+  }
+
+  .collector-details-heading {
+    align-items: flex-start;
     flex-direction: column;
-  }
-
-  .collector-status-actions {
-    flex-direction: column;
-  }
-
-  .collector-action-button,
-  .collector-failed-button {
-    width: 100%;
   }
 }
