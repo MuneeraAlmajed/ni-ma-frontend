@@ -17,7 +17,9 @@ import CollectorDashboard from "./components/Collector/CollectorDashboard";
 const App = () => {
   const location = useLocation();
 
-  const hideNavBar = location.pathname === "/register";
+  const hideNavBar = 
+  location.pathname === "/register" ||
+  location.pathname === "/login";
 
   return (
     <>
