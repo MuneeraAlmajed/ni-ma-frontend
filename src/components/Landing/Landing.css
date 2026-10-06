@@ -488,8 +488,8 @@ html {
   justify-content: center;
   min-height: 360px;
   padding: 3rem;
-  color: var(--cream);
-  background: var(--green);
+  color: var(--dark-text);
+  background: var(--cream);
   border-radius: 50%;
   text-align: center;
   box-shadow: var(--shadow-lg);
@@ -500,7 +500,7 @@ html {
   content: "";
   position: absolute;
   inset: 18px;
-  border: 1px solid rgba(245, 240, 230, 0.2);
+border: 1px solid rgba(23, 63, 53, 0.15);
   border-radius: 50%;
 }
 
@@ -526,7 +526,7 @@ html {
   z-index: 1;
   max-width: 190px;
   margin-top: 0.7rem;
-  color: rgba(245, 240, 230, 0.72);
+  color: var(--text);
   font-size: 0.85rem;
   line-height: 1.6;
 }
@@ -806,6 +806,33 @@ html {
 .footer-location {
   color: rgba(245, 240, 230, 0.45);
   font-size: 0.75rem;
+}
+
+.our-story-logo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.our-story-logo-image {
+  width: 150px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.our-story-highlight-text {
+  position: relative;
+  z-index: 1;
+  max-width: 210px;
+  margin-top: 1.2rem;
+  color: rgba(245, 240, 230, 0.72);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
 }
 
 @keyframes storyFloat {

@@ -24,10 +24,6 @@ const Landing = () => {
 
         <div className="hero-content">
 
-          <div className="hero-label">
-            NI’MA | نِعمة
-          </div>
-
           <h1 className="hero-title">
             Give what you have
             <br />
@@ -216,17 +212,17 @@ const Landing = () => {
 
         <div className="our-story-highlight">
 
-          <span className="our-story-symbol">
-            ن
-          </span>
+<div className="our-story-logo">
+  <img
+    className="our-story-logo-image"
+    src="../../../assets/NI'MA LOGO.png"
+    alt="NI'MA logo"
+  />
 
-          <span className="our-story-highlight-title">
-            نِعمة
-          </span>
-
-          <span className="our-story-highlight-text">
-            Something of value, shared with purpose.
-          </span>
+  <span className="our-story-highlight-text">
+    Something of value, shared with purpose.
+  </span>
+</div>
 
         </div>
 
