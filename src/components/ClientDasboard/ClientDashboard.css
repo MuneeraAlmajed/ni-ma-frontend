@@ -223,7 +223,6 @@
   color: #47728a;
 }
 
-/* Collected */
 
 .donation-status.donation-status-collected {
   background-color: #dce9df;
@@ -231,7 +230,6 @@
   color: #3f7652;
 }
 
-/* Failed */
 
 .donation-status.donation-status-failed {
   background-color: #f9e2e2;
@@ -239,14 +237,13 @@
   color: #b34d4d;
 }
 
-/* Cancelled */
 
 .donation-status.donation-status-cancelled {
   background-color: #e8e6e1;
   border-color: #d5d2cb;
   color: #74736e;
 }
-/* Donation Information */
+
 
 .donation-card-date {
   margin: 1rem 0 0;
