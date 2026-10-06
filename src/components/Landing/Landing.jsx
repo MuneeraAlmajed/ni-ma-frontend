@@ -39,7 +39,7 @@ const Landing = () => {
 
             <Link
               className="hero-primary-button"
-              to="/client/donations/new"
+              to="/register"
             >
               Share Something Good
               <span className="button-arrow">
@@ -319,7 +319,7 @@ const Landing = () => {
 
           <Link
             className="join-button"
-            to="/client/donations/new"
+            to="/register"
           >
             Share Something Good
             <span className="button-arrow">
