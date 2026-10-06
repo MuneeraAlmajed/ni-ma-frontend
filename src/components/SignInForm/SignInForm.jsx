@@ -66,12 +66,6 @@ const SignInForm = () => {
 
           <div className="signin-branding-content">
 
-            <img
-              className="signin-logo"
-              src={logo}
-              alt="NI'MA logo"
-            />
-
             <span className="signin-label">
               WELCOME BACK
             </span>
