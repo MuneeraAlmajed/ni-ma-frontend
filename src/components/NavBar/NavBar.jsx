@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { UserContext } from "../../contexts/UserContext";
 import { removeToken } from "../../lib/helpers/jwt-helpers";
 
@@ -8,10 +8,12 @@ import logo from "../../../assets/NI'MA LOGO.png";
 
 const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     removeToken();
     setUser(null);
+    navigate("/");
   };
 
   const handleSectionClick = (sectionId) => {
@@ -65,9 +67,9 @@ const NavBar = () => {
               </button>
 
               <button
-              className="navbar-section-link"
-              type='button'
-              onClick={() => handleSectionClick('donate')}
+                className="navbar-section-link"
+                type="button"
+                onClick={() => handleSectionClick("donate")}
               >
                 Donate
               </button>
