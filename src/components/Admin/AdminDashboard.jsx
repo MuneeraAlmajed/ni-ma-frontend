@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 import {
   getCollectors,
@@ -16,6 +17,11 @@ import {
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
+  const location = useLocation();
+
+  const isCollectorsPage = location.pathname === "/admin/collectors";
+  const isDonationsPage = location.pathname === "/admin/donations";
+
   const [collectors, setCollectors] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedCollector, setSelectedCollector] = useState(null);
@@ -55,7 +61,9 @@ const AdminDashboard = () => {
   const loadCollectors = async () => {
     try {
       setError("");
+
       const data = await getCollectors();
+
       setCollectors(data);
     } catch (err) {
       setError(err.message);
@@ -65,7 +73,9 @@ const AdminDashboard = () => {
   const loadDonations = async () => {
     try {
       setError("");
+
       const data = await getAdminDonations();
+
       setDonations(data);
     } catch (err) {
       setError(err.message);
@@ -88,6 +98,7 @@ const AdminDashboard = () => {
 
   const handleAddCollector = async (event) => {
     event.preventDefault();
+
     setError("");
     setMessage("");
 
@@ -130,6 +141,7 @@ const AdminDashboard = () => {
 
   const handleUpdateCollector = async (event) => {
     event.preventDefault();
+
     setError("");
     setMessage("");
 
@@ -149,6 +161,7 @@ const AdminDashboard = () => {
 
       setSelectedCollector(updatedCollector);
       setShowEditForm(false);
+
       setMessage("Collector information updated successfully.");
     } catch (err) {
       setError(err.message);
@@ -238,6 +251,7 @@ const AdminDashboard = () => {
 
       setSelectedDonation(updatedDonation);
       setSelectedCollectorId("");
+
       setMessage("Collector assigned successfully.");
     } catch (err) {
       setError(err.message);
@@ -263,6 +277,7 @@ const AdminDashboard = () => {
 
       setSelectedDonation(null);
       setShowDeletePopup(false);
+
       setMessage("Donation deleted successfully.");
     } catch (err) {
       setShowDeletePopup(false);
@@ -392,30 +407,44 @@ const AdminDashboard = () => {
     <div className="admin-dashboard">
 
       <div className="admin-dashboard-header">
+
         <div className="admin-dashboard-heading">
+
           <h1 className="admin-dashboard-title">
-            Admin Dashboard
+            {isCollectorsPage
+              ? "Collectors"
+              : isDonationsPage
+              ? "Donations"
+              : "Admin Dashboard"}
           </h1>
 
           <p className="admin-dashboard-subtitle">
-            Manage NI'MA collectors and donation requests
+            {isCollectorsPage
+              ? "Manage your NI'MA collection team"
+              : isDonationsPage
+              ? "Review and manage donation requests"
+              : "Manage NI'MA collectors and donation requests"}
           </p>
+
         </div>
 
-        <button
-          className="add-collector-button"
-          type="button"
-          onClick={() => {
-            setShowAddForm(!showAddForm);
-            setSelectedCollector(null);
-            setSelectedDonation(null);
-            setShowDeletePopup(false);
-            setError("");
-            setMessage("");
-          }}
-        >
-          {showAddForm ? "Close" : "Add Collector"}
-        </button>
+        {(isCollectorsPage || !isDonationsPage) && (
+          <button
+            className="add-collector-button"
+            type="button"
+            onClick={() => {
+              setShowAddForm(!showAddForm);
+              setSelectedCollector(null);
+              setSelectedDonation(null);
+              setShowDeletePopup(false);
+              setError("");
+              setMessage("");
+            }}
+          >
+            {showAddForm ? "Close" : "Add Collector"}
+          </button>
+        )}
+
       </div>
 
       {message && (
@@ -431,6 +460,7 @@ const AdminDashboard = () => {
       )}
 
       {showAddForm && (
+
         <div className="add-collector-card">
 
           <h2 className="admin-section-title">
@@ -525,15 +555,18 @@ const AdminDashboard = () => {
             </button>
 
           </form>
+
         </div>
       )}
 
       {selectedCollector ? (
+
         <div className="collector-details-card">
 
           <div className="collector-details-header">
 
             <div className="collector-details-heading">
+
               <h2 className="admin-section-title">
                 Collector Details
               </h2>
@@ -543,6 +576,7 @@ const AdminDashboard = () => {
                   ? "Active"
                   : "Inactive"}
               </p>
+
             </div>
 
             <button
@@ -556,6 +590,7 @@ const AdminDashboard = () => {
           </div>
 
           {!showEditForm ? (
+
             <div className="collector-details-content">
 
               <div className="collector-details-information">
@@ -633,7 +668,9 @@ const AdminDashboard = () => {
               </div>
 
             </div>
+
           ) : (
+
             <form
               className="edit-collector-form"
               onSubmit={handleUpdateCollector}
@@ -719,9 +756,11 @@ const AdminDashboard = () => {
               </div>
 
             </form>
+
           )}
 
         </div>
+
       ) : selectedDonation ? (
 
         <div className="admin-donation-details-card">
@@ -875,11 +914,13 @@ const AdminDashboard = () => {
                     </div>
 
                     {item.image_url && (
+
                       <img
                         className="admin-item-image"
                         src={item.image_url}
                         alt={item.name}
                       />
+
                     )}
 
                   </div>
@@ -897,6 +938,32 @@ const AdminDashboard = () => {
             )}
 
           </div>
+
+          {selectedDonation.proof_photo_url && (
+
+            <div className="admin-proof-section">
+
+              <h3 className="admin-subtitle">
+                Collection Proof
+              </h3>
+
+              <div className="admin-proof-content">
+
+                <img
+                  className="admin-proof-image"
+                  src={`http://localhost:8000/${selectedDonation.proof_photo_url}`}
+                  alt="Collection proof"
+                />
+
+                <p className="admin-proof-message">
+                  Proof photo uploaded by the collector.
+                </p>
+
+              </div>
+
+            </div>
+
+          )}
 
           {selectedDonation.status !== "cancelled" &&
           selectedDonation.status !== "failed" && (
@@ -1001,163 +1068,183 @@ const AdminDashboard = () => {
 
         <div className="admin-content">
 
-          <section className="collectors-section">
+          {/* COLLECTORS */}
 
-            <div className="admin-section-header">
+          {!isDonationsPage && (
 
-              <div>
-                <h2 className="admin-section-title">
-                  Collectors
-                </h2>
+            <section className="collectors-section">
 
-                <p className="admin-section-description">
-                  Manage your NI'MA collection team
-                </p>
-              </div>
+              <div className="admin-section-header">
 
-              <span className="admin-section-count">
-                {collectors.length}
-              </span>
+                <div>
 
-            </div>
+                  <h2 className="admin-section-title">
+                    Collectors
+                  </h2>
 
-            {collectors.length === 0 ? (
-
-              <p className="no-collectors-message">
-                No collectors to display.
-              </p>
-
-            ) : (
-
-              <div className="collectors-list">
-
-                {collectors.map((collector) => (
-
-                  <div
-                    className="collector-card"
-                    key={collector.id}
-                  >
-
-                    <div className="collector-information">
-
-                      <h3 className="collector-name">
-                        {collector.name}
-                      </h3>
-
-                      <p className="collector-username">
-                        @{collector.username}
-                      </p>
-
-                    </div>
-
-                    <div className="collector-card-actions">
-
-                      <span
-                        className={
-                          collector.is_active
-                            ? "collector-status"
-                            : "collector-status inactive"
-                        }
-                      >
-                        {collector.is_active
-                          ? "Active"
-                          : "Inactive"}
-                      </span>
-
-                      <button
-                        className="view-collector-button"
-                        type="button"
-                        onClick={() =>
-                          handleCollectorClick(collector)
-                        }
-                      >
-                        View Details
-                      </button>
-
-                    </div>
-
-                  </div>
-
-                ))}
-
-              </div>
-
-            )}
-
-          </section>
-
-          <section className="admin-donations-section">
-
-            <div className="admin-section-header">
-
-              <div>
-                <h2 className="admin-section-title">
-                  Donation Requests
-                </h2>
-
-                <p className="admin-section-description">
-                  Review and manage pickup requests
-                </p>
-              </div>
-
-              <span className="admin-section-count">
-                {donations.length}
-              </span>
-
-            </div>
-
-            <div className="admin-donation-tabs">
-
-              {donationTabs.map((tab) => (
-
-                <button
-                  className={
-                    activeDonationTab === tab.name
-                      ? "admin-donation-tab active"
-                      : "admin-donation-tab"
-                  }
-                  type="button"
-                  key={tab.name}
-                  onClick={() => setActiveDonationTab(tab.name)}
-                >
-                  <span className="admin-tab-label">
-                    {tab.label}
-                  </span>
-
-                  <span className="admin-tab-count">
-                    {tab.count}
-                  </span>
-                </button>
-
-              ))}
-
-            </div>
-
-            <div className="admin-active-donations">
-
-              {activeDonations.length === 0 ? (
-
-                <div className="admin-empty-donations">
-
-                  <p className="admin-no-donations">
-                    No {activeDonationTab} donations.
+                  <p className="admin-section-description">
+                    Manage your NI'MA collection team
                   </p>
 
                 </div>
 
+                <span className="admin-section-count">
+                  {collectors.length}
+                </span>
+
+              </div>
+
+              {collectors.length === 0 ? (
+
+                <p className="no-collectors-message">
+                  No collectors to display.
+                </p>
+
               ) : (
 
-                <div className="admin-donations-list">
+                <div className="collectors-list">
 
-                  {activeDonations.map(renderDonationCard)}
+                  {collectors.map((collector) => (
+
+                    <div
+                      className="collector-card"
+                      key={collector.id}
+                    >
+
+                      <div className="collector-information">
+
+                        <h3 className="collector-name">
+                          {collector.name}
+                        </h3>
+
+                        <p className="collector-username">
+                          @{collector.username}
+                        </p>
+
+                      </div>
+
+                      <div className="collector-card-actions">
+
+                        <span
+                          className={
+                            collector.is_active
+                              ? "collector-status"
+                              : "collector-status inactive"
+                          }
+                        >
+                          {collector.is_active
+                            ? "Active"
+                            : "Inactive"}
+                        </span>
+
+                        <button
+                          className="view-collector-button"
+                          type="button"
+                          onClick={() =>
+                            handleCollectorClick(collector)
+                          }
+                        >
+                          View Details
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                  ))}
 
                 </div>
 
               )}
 
-            </div>
+            </section>
 
-          </section>
+          )}
+
+          {/* DONATIONS */}
+
+          {!isCollectorsPage && (
+
+            <section className="admin-donations-section">
+
+              <div className="admin-section-header">
+
+                <div>
+
+                  <h2 className="admin-section-title">
+                    Donation Requests
+                  </h2>
+
+                  <p className="admin-section-description">
+                    Review and manage pickup requests
+                  </p>
+
+                </div>
+
+                <span className="admin-section-count">
+                  {donations.length}
+                </span>
+
+              </div>
+
+              <div className="admin-donation-tabs">
+
+                {donationTabs.map((tab) => (
+
+                  <button
+                    className={
+                      activeDonationTab === tab.name
+                        ? "admin-donation-tab active"
+                        : "admin-donation-tab"
+                    }
+                    type="button"
+                    key={tab.name}
+                    onClick={() =>
+                      setActiveDonationTab(tab.name)
+                    }
+                  >
+
+                    <span className="admin-tab-label">
+                      {tab.label}
+                    </span>
+
+                    <span className="admin-tab-count">
+                      {tab.count}
+                    </span>
+
+                  </button>
+
+                ))}
+
+              </div>
+
+              <div className="admin-active-donations">
+
+                {activeDonations.length === 0 ? (
+
+                  <div className="admin-empty-donations">
+
+                    <p className="admin-no-donations">
+                      No {activeDonationTab} donations.
+                    </p>
+
+                  </div>
+
+                ) : (
+
+                  <div className="admin-donations-list">
+
+                    {activeDonations.map(renderDonationCard)}
+
+                  </div>
+
+                )}
+
+              </div>
+
+            </section>
+
+          )}
 
         </div>
 

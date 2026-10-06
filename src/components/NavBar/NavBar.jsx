@@ -32,32 +32,57 @@ const NavBar = () => {
             <>
               {user.role === "admin" ? (
                 <>
-                  <Link className="navbar-link" to="/admin/dashboard">
-                    Dashboard
+                  <Link
+                    className="navbar-link"
+                    to="/admin/dashboard"
+                  >
+                    Home
                   </Link>
 
-                  <Link className="navbar-link" to="/admin/dashboard">
+                  <Link
+                    className="navbar-link"
+                    to="/admin/collectors"
+                  >
                     Collectors
                   </Link>
 
-                  <Link className="navbar-link" to="/admin/dashboard">
+                  <Link
+                    className="navbar-link"
+                    to="/admin/donations"
+                  >
                     Donations
                   </Link>
                 </>
               ) : (
-                <Link
-                  className="navbar-link"
-                  to={
-                    user.role === "collector"
-                      ? "/collector/dashboard"
-                      : "/client/dashboard"
-                  }
-                >
-                  Dashboard
-                </Link>
+                <>
+                  <Link
+                    className="navbar-link"
+                    to={
+                      user.role === "collector"
+                        ? "/collector/dashboard"
+                        : "/client/dashboard"
+                    }
+                  >
+                    Home
+                  </Link>
+
+                  <Link
+                    className="navbar-link"
+                    to={
+                      user.role === "collector"
+                        ? "/collector/dashboard"
+                        : "/client/dashboard"
+                    }
+                  >
+                    Dashboard
+                  </Link>
+                </>
               )}
 
-              <Link className="navbar-link" to="/profile">
+              <Link
+                className="navbar-link"
+                to="/profile"
+              >
                 Profile
               </Link>
 
@@ -71,11 +96,24 @@ const NavBar = () => {
             </>
           ) : (
             <>
-              <Link className="navbar-link" to="/register">
+              <Link
+                className="navbar-link"
+                to="/"
+              >
+                Home
+              </Link>
+
+              <Link
+                className="navbar-link"
+                to="/register"
+              >
                 Register
               </Link>
 
-              <Link className="navbar-login" to="/login">
+              <Link
+                className="navbar-login"
+                to="/login"
+              >
                 Login
               </Link>
             </>
