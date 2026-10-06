@@ -5,13 +5,13 @@ import {
   getCollectors,
   createCollector,
   updateCollector,
-  updateCollectorStatus
+  updateCollectorStatus,
 } from "../../services/userService";
 
 import {
   getAdminDonations,
   assignCollector,
-  deleteAdminDonation
+  deleteAdminDonation,
 } from "../../services/donationService";
 
 import "./AdminDashboard.css";
@@ -40,14 +40,14 @@ const AdminDashboard = () => {
     username: "",
     email: "",
     phone: "",
-    password: ""
+    password: "",
   });
 
   const [editData, setEditData] = useState({
     name: "",
     username: "",
     email: "",
-    phone: ""
+    phone: "",
   });
 
   const [error, setError] = useState("");
@@ -85,14 +85,14 @@ const AdminDashboard = () => {
   const handleChange = (event) => {
     setCollectorData({
       ...collectorData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
   const handleEditChange = (event) => {
     setEditData({
       ...editData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -112,7 +112,7 @@ const AdminDashboard = () => {
         username: "",
         email: "",
         phone: "",
-        password: ""
+        password: "",
       });
 
       setShowAddForm(false);
@@ -129,7 +129,7 @@ const AdminDashboard = () => {
       name: collector.name || "",
       username: collector.username || "",
       email: collector.email || "",
-      phone: collector.phone || ""
+      phone: collector.phone || "",
     });
 
     setShowEditForm(false);
@@ -148,15 +148,13 @@ const AdminDashboard = () => {
     try {
       const updatedCollector = await updateCollector(
         selectedCollector.id,
-        editData
+        editData,
       );
 
       setCollectors(
         collectors.map((collector) =>
-          collector.id === updatedCollector.id
-            ? updatedCollector
-            : collector
-        )
+          collector.id === updatedCollector.id ? updatedCollector : collector,
+        ),
       );
 
       setSelectedCollector(updatedCollector);
@@ -186,15 +184,13 @@ const AdminDashboard = () => {
     try {
       const updatedCollector = await updateCollectorStatus(
         selectedCollector.id,
-        newStatus
+        newStatus,
       );
 
       setCollectors(
         collectors.map((collector) =>
-          collector.id === updatedCollector.id
-            ? updatedCollector
-            : collector
-        )
+          collector.id === updatedCollector.id ? updatedCollector : collector,
+        ),
       );
 
       setSelectedCollector(updatedCollector);
@@ -202,7 +198,7 @@ const AdminDashboard = () => {
       setMessage(
         newStatus
           ? "Collector activated successfully."
-          : "Collector made inactive successfully."
+          : "Collector made inactive successfully.",
       );
     } catch (err) {
       setError(err.message);
@@ -238,15 +234,13 @@ const AdminDashboard = () => {
     try {
       const updatedDonation = await assignCollector(
         selectedDonation.id,
-        selectedCollectorId
+        selectedCollectorId,
       );
 
       setDonations(
         donations.map((donation) =>
-          donation.id === updatedDonation.id
-            ? updatedDonation
-            : donation
-        )
+          donation.id === updatedDonation.id ? updatedDonation : donation,
+        ),
       );
 
       setSelectedDonation(updatedDonation);
@@ -270,9 +264,7 @@ const AdminDashboard = () => {
       await deleteAdminDonation(selectedDonation.id);
 
       setDonations(
-        donations.filter(
-          (donation) => donation.id !== selectedDonation.id
-        )
+        donations.filter((donation) => donation.id !== selectedDonation.id),
       );
 
       setSelectedDonation(null);
@@ -302,51 +294,51 @@ const AdminDashboard = () => {
   };
 
   const pendingDonations = donations.filter(
-    (donation) => donation.status === "pending"
+    (donation) => donation.status === "pending",
   );
 
   const assignedDonations = donations.filter(
-    (donation) => donation.status === "assigned"
+    (donation) => donation.status === "assigned",
   );
 
   const collectedDonations = donations.filter(
-    (donation) => donation.status === "collected"
+    (donation) => donation.status === "collected",
   );
 
   const failedDonations = donations.filter(
-    (donation) => donation.status === "failed"
+    (donation) => donation.status === "failed",
   );
 
   const cancelledDonations = donations.filter(
-    (donation) => donation.status === "cancelled"
+    (donation) => donation.status === "cancelled",
   );
 
   const donationTabs = [
     {
       name: "pending",
       label: "Pending",
-      count: pendingDonations.length
+      count: pendingDonations.length,
     },
     {
       name: "assigned",
       label: "Assigned",
-      count: assignedDonations.length
+      count: assignedDonations.length,
     },
     {
       name: "collected",
       label: "Collected",
-      count: collectedDonations.length
+      count: collectedDonations.length,
     },
     {
       name: "failed",
       label: "Failed",
-      count: failedDonations.length
+      count: failedDonations.length,
     },
     {
       name: "cancelled",
       label: "Cancelled",
-      count: cancelledDonations.length
-    }
+      count: cancelledDonations.length,
+    },
   ];
 
   const getActiveDonations = () => {
@@ -378,13 +370,9 @@ const AdminDashboard = () => {
       onClick={() => handleDonationClick(donation)}
     >
       <div className="admin-donation-card-information">
-        <h3 className="admin-donation-title">
-          Donation #{donation.id}
-        </h3>
+        <h3 className="admin-donation-title">Donation #{donation.id}</h3>
 
-        <p className="admin-donation-area">
-          {donation.pickup_area}
-        </p>
+        <p className="admin-donation-area">{donation.pickup_area}</p>
 
         <p className="admin-donation-date">
           Preferred pickup: {donation.preferred_pickup_date}
@@ -392,40 +380,32 @@ const AdminDashboard = () => {
       </div>
 
       <div className="admin-donation-card-right">
-        <span className="admin-donation-status">
-          {donation.status}
-        </span>
+        <span className="admin-donation-status">{donation.status}</span>
 
-        <span className="admin-view-donation">
-          View Details
-        </span>
+        <span className="admin-view-donation">View Details</span>
       </div>
     </div>
   );
 
   return (
     <div className="admin-dashboard">
-
       <div className="admin-dashboard-header">
-
         <div className="admin-dashboard-heading">
-
           <h1 className="admin-dashboard-title">
             {isCollectorsPage
               ? "Collectors"
               : isDonationsPage
-              ? "Donations"
-              : "Admin Dashboard"}
+                ? "Donations"
+                : "Admin Dashboard"}
           </h1>
 
           <p className="admin-dashboard-subtitle">
             {isCollectorsPage
               ? "Manage your NI'MA collection team"
               : isDonationsPage
-              ? "Review and manage donation requests"
-              : "Manage NI'MA collectors and donation requests"}
+                ? "Review and manage donation requests"
+                : "Manage NI'MA collectors and donation requests"}
           </p>
-
         </div>
 
         {(isCollectorsPage || !isDonationsPage) && (
@@ -444,38 +424,19 @@ const AdminDashboard = () => {
             {showAddForm ? "Close" : "Add Collector"}
           </button>
         )}
-
       </div>
 
-      {message && (
-        <p className="admin-success-message">
-          {message}
-        </p>
-      )}
+      {message && <p className="admin-success-message">{message}</p>}
 
-      {error && (
-        <p className="admin-error-message">
-          {error}
-        </p>
-      )}
+      {error && <p className="admin-error-message">{error}</p>}
 
       {showAddForm && (
-
         <div className="add-collector-card">
+          <h2 className="admin-section-title">Add New Collector</h2>
 
-          <h2 className="admin-section-title">
-            Add New Collector
-          </h2>
-
-          <form
-            className="add-collector-form"
-            onSubmit={handleAddCollector}
-          >
-
+          <form className="add-collector-form" onSubmit={handleAddCollector}>
             <div className="admin-form-group">
-              <label className="admin-form-label">
-                Name
-              </label>
+              <label className="admin-form-label">Name</label>
 
               <input
                 className="admin-form-input"
@@ -488,9 +449,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-form-group">
-              <label className="admin-form-label">
-                Username
-              </label>
+              <label className="admin-form-label">Username</label>
 
               <input
                 className="admin-form-input"
@@ -503,9 +462,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-form-group">
-              <label className="admin-form-label">
-                Email
-              </label>
+              <label className="admin-form-label">Email</label>
 
               <input
                 className="admin-form-input"
@@ -518,9 +475,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-form-group">
-              <label className="admin-form-label">
-                Phone
-              </label>
+              <label className="admin-form-label">Phone</label>
 
               <input
                 className="admin-form-input"
@@ -533,9 +488,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-form-group">
-              <label className="admin-form-label">
-                Password
-              </label>
+              <label className="admin-form-label">Password</label>
 
               <input
                 className="admin-form-input"
@@ -547,36 +500,22 @@ const AdminDashboard = () => {
               />
             </div>
 
-            <button
-              className="save-collector-button"
-              type="submit"
-            >
+            <button className="save-collector-button" type="submit">
               Add Collector
             </button>
-
           </form>
-
         </div>
       )}
 
       {selectedCollector ? (
-
         <div className="collector-details-card">
-
           <div className="collector-details-header">
-
             <div className="collector-details-heading">
-
-              <h2 className="admin-section-title">
-                Collector Details
-              </h2>
+              <h2 className="admin-section-title">Collector Details</h2>
 
               <p className="collector-details-status">
-                {selectedCollector.is_active
-                  ? "Active"
-                  : "Inactive"}
+                {selectedCollector.is_active ? "Active" : "Inactive"}
               </p>
-
             </div>
 
             <button
@@ -586,19 +525,13 @@ const AdminDashboard = () => {
             >
               Close
             </button>
-
           </div>
 
           {!showEditForm ? (
-
             <div className="collector-details-content">
-
               <div className="collector-details-information">
-
                 <div className="collector-detail">
-                  <span className="collector-detail-label">
-                    Name
-                  </span>
+                  <span className="collector-detail-label">Name</span>
 
                   <p className="collector-detail-value">
                     {selectedCollector.name}
@@ -606,9 +539,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="collector-detail">
-                  <span className="collector-detail-label">
-                    Username
-                  </span>
+                  <span className="collector-detail-label">Username</span>
 
                   <p className="collector-detail-value">
                     {selectedCollector.username}
@@ -616,9 +547,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="collector-detail">
-                  <span className="collector-detail-label">
-                    Email
-                  </span>
+                  <span className="collector-detail-label">Email</span>
 
                   <p className="collector-detail-value">
                     {selectedCollector.email}
@@ -626,19 +555,15 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="collector-detail">
-                  <span className="collector-detail-label">
-                    Phone
-                  </span>
+                  <span className="collector-detail-label">Phone</span>
 
                   <p className="collector-detail-value">
                     {selectedCollector.phone}
                   </p>
                 </div>
-
               </div>
 
               <div className="collector-details-actions">
-
                 <button
                   className="edit-collector-button"
                   type="button"
@@ -664,22 +589,15 @@ const AdminDashboard = () => {
                     ? "Make Inactive"
                     : "Activate Collector"}
                 </button>
-
               </div>
-
             </div>
-
           ) : (
-
             <form
               className="edit-collector-form"
               onSubmit={handleUpdateCollector}
             >
-
               <div className="admin-form-group">
-                <label className="admin-form-label">
-                  Name
-                </label>
+                <label className="admin-form-label">Name</label>
 
                 <input
                   className="admin-form-input"
@@ -692,9 +610,7 @@ const AdminDashboard = () => {
               </div>
 
               <div className="admin-form-group">
-                <label className="admin-form-label">
-                  Username
-                </label>
+                <label className="admin-form-label">Username</label>
 
                 <input
                   className="admin-form-input"
@@ -707,9 +623,7 @@ const AdminDashboard = () => {
               </div>
 
               <div className="admin-form-group">
-                <label className="admin-form-label">
-                  Email
-                </label>
+                <label className="admin-form-label">Email</label>
 
                 <input
                   className="admin-form-input"
@@ -722,9 +636,7 @@ const AdminDashboard = () => {
               </div>
 
               <div className="admin-form-group">
-                <label className="admin-form-label">
-                  Phone
-                </label>
+                <label className="admin-form-label">Phone</label>
 
                 <input
                   className="admin-form-input"
@@ -737,11 +649,7 @@ const AdminDashboard = () => {
               </div>
 
               <div className="collector-edit-actions">
-
-                <button
-                  className="save-collector-button"
-                  type="submit"
-                >
+                <button className="save-collector-button" type="submit">
                   Save Changes
                 </button>
 
@@ -752,23 +660,14 @@ const AdminDashboard = () => {
                 >
                   Cancel
                 </button>
-
               </div>
-
             </form>
-
           )}
-
         </div>
-
       ) : selectedDonation ? (
-
         <div className="admin-donation-details-card">
-
           <div className="admin-donation-details-header">
-
             <div className="admin-donation-details-heading">
-
               <h2 className="admin-section-title">
                 Donation Request #{selectedDonation.id}
               </h2>
@@ -776,7 +675,6 @@ const AdminDashboard = () => {
               <p className="admin-donation-details-status">
                 {selectedDonation.status}
               </p>
-
             </div>
 
             <button
@@ -786,15 +684,11 @@ const AdminDashboard = () => {
             >
               Close
             </button>
-
           </div>
 
           <div className="admin-donation-information">
-
             <div className="admin-donation-detail">
-              <span className="admin-donation-detail-label">
-                Client ID
-              </span>
+              <span className="admin-donation-detail-label">Client ID</span>
 
               <p className="admin-donation-detail-value">
                 {selectedDonation.client_id}
@@ -802,9 +696,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-donation-detail">
-              <span className="admin-donation-detail-label">
-                Collector
-              </span>
+              <span className="admin-donation-detail-label">Collector</span>
 
               <p className="admin-donation-detail-value">
                 {selectedDonation.collector_id
@@ -814,9 +706,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-donation-detail">
-              <span className="admin-donation-detail-label">
-                House
-              </span>
+              <span className="admin-donation-detail-label">House</span>
 
               <p className="admin-donation-detail-value">
                 {selectedDonation.pickup_house}
@@ -824,9 +714,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-donation-detail">
-              <span className="admin-donation-detail-label">
-                Road
-              </span>
+              <span className="admin-donation-detail-label">Road</span>
 
               <p className="admin-donation-detail-value">
                 {selectedDonation.pickup_road}
@@ -834,9 +722,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-donation-detail">
-              <span className="admin-donation-detail-label">
-                Block
-              </span>
+              <span className="admin-donation-detail-label">Block</span>
 
               <p className="admin-donation-detail-value">
                 {selectedDonation.pickup_block}
@@ -844,9 +730,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin-donation-detail">
-              <span className="admin-donation-detail-label">
-                Area
-              </span>
+              <span className="admin-donation-detail-label">Area</span>
 
               <p className="admin-donation-detail-value">
                 {selectedDonation.pickup_area}
@@ -872,32 +756,17 @@ const AdminDashboard = () => {
                 {selectedDonation.preferred_pickup_time}
               </p>
             </div>
-
           </div>
 
           <div className="admin-items-section">
+            <h3 className="admin-subtitle">Donation Items</h3>
 
-            <h3 className="admin-subtitle">
-              Donation Items
-            </h3>
-
-            {selectedDonation.items &&
-            selectedDonation.items.length > 0 ? (
-
+            {selectedDonation.items && selectedDonation.items.length > 0 ? (
               <div className="admin-items-list">
-
                 {selectedDonation.items.map((item) => (
-
-                  <div
-                    className="admin-item-card"
-                    key={item.id}
-                  >
-
+                  <div className="admin-item-card" key={item.id}>
                     <div className="admin-item-information">
-
-                      <h4 className="admin-item-name">
-                        {item.name}
-                      </h4>
+                      <h4 className="admin-item-name">{item.name}</h4>
 
                       <p className="admin-item-category">
                         Category: {item.category}
@@ -910,45 +779,30 @@ const AdminDashboard = () => {
                       <p className="admin-item-description">
                         {item.description}
                       </p>
-
                     </div>
 
                     {item.image_url && (
-
                       <img
                         className="admin-item-image"
                         src={item.image_url}
                         alt={item.name}
                       />
-
                     )}
-
                   </div>
-
                 ))}
-
               </div>
-
             ) : (
-
               <p className="admin-no-items">
                 No items found for this donation.
               </p>
-
             )}
-
           </div>
 
           {selectedDonation.proof_photo_url && (
-
             <div className="admin-proof-section">
-
-              <h3 className="admin-subtitle">
-                Collection Proof
-              </h3>
+              <h3 className="admin-subtitle">Collection Proof</h3>
 
               <div className="admin-proof-content">
-
                 <img
                   className="admin-proof-image"
                   src={`http://localhost:8000/${selectedDonation.proof_photo_url}`}
@@ -958,86 +812,60 @@ const AdminDashboard = () => {
                 <p className="admin-proof-message">
                   Proof photo uploaded by the collector.
                 </p>
-
               </div>
-
             </div>
-
           )}
 
           {selectedDonation.status !== "cancelled" &&
-          selectedDonation.status !== "failed" && (
+            selectedDonation.status !== "failed" && (
+              <div className="admin-assignment-section">
+                <h3 className="admin-subtitle">Assign Collector</h3>
 
-            <div className="admin-assignment-section">
-
-              <h3 className="admin-subtitle">
-                Assign Collector
-              </h3>
-
-              {selectedDonation.collector_id ? (
-
-                <p className="admin-assigned-collector">
-                  Collector #{selectedDonation.collector_id} is assigned
-                </p>
-
-              ) : (
-
-                <div className="admin-assignment-controls">
-
-                  <select
-                    className="admin-collector-select"
-                    value={selectedCollectorId}
-                    onChange={(event) =>
-                      setSelectedCollectorId(event.target.value)
-                    }
-                  >
-
-                    <option
-                      className="admin-collector-option"
-                      value=""
+                {selectedDonation.collector_id ? (
+                  <p className="admin-assigned-collector">
+                    Collector #{selectedDonation.collector_id} is assigned
+                  </p>
+                ) : (
+                  <div className="admin-assignment-controls">
+                    <select
+                      className="admin-collector-select"
+                      value={selectedCollectorId}
+                      onChange={(event) =>
+                        setSelectedCollectorId(event.target.value)
+                      }
                     >
-                      Select a collector
-                    </option>
+                      <option className="admin-collector-option" value="">
+                        Select a collector
+                      </option>
 
-                    {collectors
-                      .filter(
-                        (collector) => collector.is_active
-                      )
-                      .map((collector) => (
+                      {collectors
+                        .filter((collector) => collector.is_active)
+                        .map((collector) => (
+                          <option
+                            className="admin-collector-option"
+                            key={collector.id}
+                            value={collector.id}
+                          >
+                            {collector.name}
+                          </option>
+                        ))}
+                    </select>
 
-                        <option
-                          className="admin-collector-option"
-                          key={collector.id}
-                          value={collector.id}
-                        >
-                          {collector.name}
-                        </option>
-
-                      ))}
-
-                  </select>
-
-                  <button
-                    className="admin-assign-button"
-                    type="button"
-                    onClick={handleAssignCollector}
-                  >
-                    Assign Collector
-                  </button>
-
-                </div>
-
-              )}
-
-            </div>
-
-          )}
+                    <button
+                      className="admin-assign-button"
+                      type="button"
+                      onClick={handleAssignCollector}
+                    >
+                      Assign Collector
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
 
           {(selectedDonation.status === "cancelled" ||
             selectedDonation.status === "failed") && (
-
             <div className="admin-delete-donation-section">
-
               <button
                 className="admin-delete-donation-button"
                 type="button"
@@ -1045,86 +873,63 @@ const AdminDashboard = () => {
               >
                 Delete Donation
               </button>
-
             </div>
-
           )}
 
+          {selectedDonation.status === "failed" &&
+            selectedDonation.failed_reason && (
+              <div className="admin-failed-section">
+                <span className="admin-info-label">Pickup Failed Reason</span>
+
+                <p className="admin-failed-reason">
+                  {selectedDonation.failed_reason}
+                </p>
+              </div>
+            )}
+
           {selectedDonation.status === "cancelled" && (
-
             <div className="admin-cancelled-message">
-
               <p className="admin-cancelled-text">
                 This donation request was cancelled by the client.
               </p>
-
             </div>
-
           )}
-
         </div>
-
       ) : (
-
         <div className="admin-content">
-
           {/* COLLECTORS */}
 
           {!isDonationsPage && (
-
             <section className="collectors-section">
-
               <div className="admin-section-header">
-
                 <div>
-
-                  <h2 className="admin-section-title">
-                    Collectors
-                  </h2>
+                  <h2 className="admin-section-title">Collectors</h2>
 
                   <p className="admin-section-description">
                     Manage your NI'MA collection team
                   </p>
-
                 </div>
 
-                <span className="admin-section-count">
-                  {collectors.length}
-                </span>
-
+                <span className="admin-section-count">{collectors.length}</span>
               </div>
 
               {collectors.length === 0 ? (
-
                 <p className="no-collectors-message">
                   No collectors to display.
                 </p>
-
               ) : (
-
                 <div className="collectors-list">
-
                   {collectors.map((collector) => (
-
-                    <div
-                      className="collector-card"
-                      key={collector.id}
-                    >
-
+                    <div className="collector-card" key={collector.id}>
                       <div className="collector-information">
-
-                        <h3 className="collector-name">
-                          {collector.name}
-                        </h3>
+                        <h3 className="collector-name">{collector.name}</h3>
 
                         <p className="collector-username">
                           @{collector.username}
                         </p>
-
                       </div>
 
                       <div className="collector-card-actions">
-
                         <span
                           className={
                             collector.is_active
@@ -1132,65 +937,42 @@ const AdminDashboard = () => {
                               : "collector-status inactive"
                           }
                         >
-                          {collector.is_active
-                            ? "Active"
-                            : "Inactive"}
+                          {collector.is_active ? "Active" : "Inactive"}
                         </span>
 
                         <button
                           className="view-collector-button"
                           type="button"
-                          onClick={() =>
-                            handleCollectorClick(collector)
-                          }
+                          onClick={() => handleCollectorClick(collector)}
                         >
                           View Details
                         </button>
-
                       </div>
-
                     </div>
-
                   ))}
-
                 </div>
-
               )}
-
             </section>
-
           )}
 
           {/* DONATIONS */}
 
           {!isCollectorsPage && (
-
             <section className="admin-donations-section">
-
               <div className="admin-section-header">
-
                 <div>
-
-                  <h2 className="admin-section-title">
-                    Donation Requests
-                  </h2>
+                  <h2 className="admin-section-title">Donation Requests</h2>
 
                   <p className="admin-section-description">
                     Review and manage pickup requests
                   </p>
-
                 </div>
 
-                <span className="admin-section-count">
-                  {donations.length}
-                </span>
-
+                <span className="admin-section-count">{donations.length}</span>
               </div>
 
               <div className="admin-donation-tabs">
-
                 {donationTabs.map((tab) => (
-
                   <button
                     className={
                       activeDonationTab === tab.name
@@ -1199,63 +981,36 @@ const AdminDashboard = () => {
                     }
                     type="button"
                     key={tab.name}
-                    onClick={() =>
-                      setActiveDonationTab(tab.name)
-                    }
+                    onClick={() => setActiveDonationTab(tab.name)}
                   >
+                    <span className="admin-tab-label">{tab.label}</span>
 
-                    <span className="admin-tab-label">
-                      {tab.label}
-                    </span>
-
-                    <span className="admin-tab-count">
-                      {tab.count}
-                    </span>
-
+                    <span className="admin-tab-count">{tab.count}</span>
                   </button>
-
                 ))}
-
               </div>
 
               <div className="admin-active-donations">
-
                 {activeDonations.length === 0 ? (
-
                   <div className="admin-empty-donations">
-
                     <p className="admin-no-donations">
                       No {activeDonationTab} donations.
                     </p>
-
                   </div>
-
                 ) : (
-
                   <div className="admin-donations-list">
-
                     {activeDonations.map(renderDonationCard)}
-
                   </div>
-
                 )}
-
               </div>
-
             </section>
-
           )}
-
         </div>
-
       )}
 
       {showStatusPopup && (
-
         <div className="admin-popup-overlay">
-
           <div className="admin-popup">
-
             <h2 className="admin-popup-title">
               {selectedCollector?.is_active
                 ? "Make Collector Inactive?"
@@ -1269,7 +1024,6 @@ const AdminDashboard = () => {
             </p>
 
             <div className="admin-popup-actions">
-
               <button
                 type="button"
                 className="admin-popup-cancel"
@@ -1283,35 +1037,24 @@ const AdminDashboard = () => {
                 className="admin-popup-confirm"
                 onClick={confirmStatusChange}
               >
-                {selectedCollector?.is_active
-                  ? "Make Inactive"
-                  : "Activate"}
+                {selectedCollector?.is_active ? "Make Inactive" : "Activate"}
               </button>
-
             </div>
-
           </div>
-
         </div>
-
       )}
 
       {showDeletePopup && (
-
         <div className="admin-popup-overlay">
-
           <div className="admin-popup">
-
-            <h2 className="admin-popup-title">
-              Delete Donation?
-            </h2>
+            <h2 className="admin-popup-title">Delete Donation?</h2>
 
             <p className="admin-popup-message">
-              Are you sure you want to permanently delete Donation #{selectedDonation?.id}?
+              Are you sure you want to permanently delete Donation #
+              {selectedDonation?.id}?
             </p>
 
             <div className="admin-popup-actions">
-
               <button
                 type="button"
                 className="admin-popup-cancel"
@@ -1327,15 +1070,10 @@ const AdminDashboard = () => {
               >
                 Delete
               </button>
-
             </div>
-
           </div>
-
         </div>
-
       )}
-
     </div>
   );
 };

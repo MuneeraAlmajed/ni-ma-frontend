@@ -1,14 +1,26 @@
-.client-dashbaord{
-    padding: 40px;
+.client-dashboard {
+  padding: 40px;
 }
 
-.client-dashbaord-title{
-    margin: 0;
+.dashboard-welcome {
+  margin-bottom: 40px;
 }
 
-.donations-list{
-    display: grid;
-    gap: 20px;
+.dashboard-welcome-title {
+  margin: 0 0 10px;
+}
+
+.dashboard-welcome-text {
+  margin: 0;
+}
+
+.client-dashboard-title {
+  margin: 0 0 20px;
+}
+
+.donations-list {
+  display: grid;
+  gap: 20px;
 }
 
 .donation-card {
@@ -26,4 +38,8 @@
 .donation-card-status,
 .donation-card-date {
   margin: 8px 0;
+}
+
+.donation-card-status {
+  font-weight: 600;
 }

@@ -21,6 +21,17 @@ const CollectorDashboard = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
+  const getStatusText = (status) => {
+    const statusTexts = {
+      assigned: "Assigned",
+      collected: "Collected",
+      completed: "Completed",
+      failed: "Failed",
+    };
+
+    return statusTexts[status] || status;
+  };
+
   useEffect(() => {
     loadDonations();
   }, []);
@@ -152,8 +163,9 @@ const CollectorDashboard = () => {
       </div>
 
       <div className="collector-donation-card-right">
-        <span className="collector-donation-status">{donation.status}</span>
-
+        <span className="collector-donation-status">
+          {getStatusText(donation.status)}
+        </span>
         <span className="collector-view-details">View Details</span>
       </div>
     </div>
@@ -188,7 +200,7 @@ const CollectorDashboard = () => {
               </h2>
 
               <span className="collector-details-status">
-                {selectedDonation.status}
+                {getStatusText(selectedDonation.status)}
               </span>
             </div>
 

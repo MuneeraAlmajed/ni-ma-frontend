@@ -916,6 +916,17 @@
   font-size: 13px;
 }
 
+.admin-failed-section {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #f5f7fa;
+  border-radius: 10px;
+}
+
+.admin-failed-reason {
+  margin: 8px 0 0;
+}
+
 @media (max-width: 650px) {
   .admin-proof-image {
     width: 100%;

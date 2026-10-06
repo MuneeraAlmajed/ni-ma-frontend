@@ -6,7 +6,7 @@ import './ClientDashboard.css';
 
 const ClientDashboard = () => {
   const { user } = useContext(UserContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [donations, setDonations] = useState([]);
 
   useEffect(() => {
@@ -18,6 +18,19 @@ const ClientDashboard = () => {
         setDonations([]);
       });
   }, []);
+
+  const getStatusText = (status) => {
+    const statusTexts = {
+      pending: 'Pending',
+      assigned: 'Collector Assigned',
+      collected: 'Collected',
+      completed: 'Completed',
+      failed: 'Pickup Failed',
+      cancelled: 'Cancelled'
+    };
+
+    return statusTexts[status] || status;
+  };
 
   return (
     <div className="client-dashboard">
@@ -35,16 +48,17 @@ const ClientDashboard = () => {
 
       <div className="donations-list">
         {donations.map((donation) => (
-          <div className="donation-card" 
-          key={donation.id}
-          onClick={() => navigate(`/client/donations/${donation.id}`)}
+          <div
+            className="donation-card"
+            key={donation.id}
+            onClick={() => navigate(`/client/donations/${donation.id}`)}
           >
             <h2 className="donation-card-title">
               Donation #{donation.id}
             </h2>
 
             <p className="donation-card-status">
-              Status: {donation.status}
+              Status: {getStatusText(donation.status)}
             </p>
 
             <p className="donation-card-date">

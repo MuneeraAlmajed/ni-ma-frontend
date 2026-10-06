@@ -291,6 +291,17 @@
   background-color: #923C3C;
 }
 
+.donation-failed-section {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #fff5f5;
+  border-radius: 10px;
+}
+
+.donation-failed-reason {
+  margin: 8px 0 0;
+}
+
 @media (max-width: 768px) {
   .donation-details {
     padding: 20px;
