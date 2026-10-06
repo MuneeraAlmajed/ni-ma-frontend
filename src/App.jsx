@@ -16,6 +16,7 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import CollectorDashboard from "./components/Collector/CollectorDashboard";
 
 import LoadingPage from "./components/Loading/LoadingPage";
+import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
   const location = useLocation();
@@ -61,6 +62,8 @@ const App = () => {
           path="/collector/dashboard"
           element={<CollectorDashboard />}
         />
+
+        <Route path = "*" element={<NotFound/>}/>
       </Routes>
     </div>
   );
