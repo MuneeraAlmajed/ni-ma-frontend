@@ -1,0 +1,98 @@
+.add-item {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.add-item-card {
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.add-item-title {
+  margin: 0 0 10px;
+}
+
+.add-item-text {
+  margin: 0 0 30px;
+  color: #666;
+}
+
+.add-item-form {
+  display: grid;
+  gap: 20px;
+}
+
+.form-group {
+  display: grid;
+  gap: 8px;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.condition-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.condition-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.condition-radio {
+  cursor: pointer;
+}
+
+.condition-option-text {
+  font-size: 15px;
+}
+
+.form-error {
+  margin: 0;
+}
+
+.add-item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.add-item-submit-button,
+.add-item-cancel-button {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-item-submit-button {
+  background-color: #2d7d9a;
+  color: white;
+}
+
+.add-item-cancel-button {
+  background-color: #eef8ff;
+  color: #2d7d9a;
+}

@@ -5,7 +5,7 @@ import {
   getDonationById,
   updateItem,
   deleteItem,
-  uploadItemImage
+  uploadItemImage,
 } from "../../services/donationService";
 import "./ItemDetails.css";
 
@@ -63,7 +63,7 @@ const ItemDetails = () => {
         category: editData.category,
         condition: editData.condition,
         description: editData.description,
-        image_url: imageUrl
+        image_url: imageUrl,
       });
 
       setItem(updatedItem);
@@ -96,69 +96,82 @@ const ItemDetails = () => {
   if (!item || !donation) {
     return (
       <div className="item-details">
-        <p className="item-details-message">
-          Loading item...
-        </p>
+        <p className="item-details-message">Loading item...</p>
       </div>
     );
   }
 
   return (
     <div className="item-details">
-
       <button
         className="back-to-donation-button"
         type="button"
-        onClick={() =>
-          navigate(`/client/donations/${item.donation_id}`)
-        }
+        onClick={() => navigate(`/client/donations/${item.donation_id}`)}
       >
-        Back to Donation
+        ← Back to Donation
       </button>
 
-      {donation.status === "pending" && !isEditing && (
-        <div className="item-details-actions">
+      <div className="item-details-header">
+        <div className="item-details-heading">
+          <h1 className="item-details-title">
+            {isEditing ? "Edit Item" : item.name}
+          </h1>
 
-          <button
-            className="edit-item-button"
-            type="button"
-            onClick={() => {
-              setEditData({
-                name: item.name,
-                category: item.category,
-                condition: item.condition,
-                description: item.description
-              });
+          {!isEditing && (
+            <div className="item-details-meta">
+              <span className="item-details-category">{item.category}</span>
 
-              setError("");
-              setIsEditing(true);
-            }}
-          >
-            Edit Item
-          </button>
-
-          <button
-            className="delete-item-button"
-            type="button"
-            onClick={() => setShowDeletePopup(true)}
-          >
-            Delete Item
-          </button>
-
+              <span className="item-details-condition">{item.condition}</span>
+            </div>
+          )}
         </div>
-      )}
 
-      <h1 className="item-details-title">
-        {isEditing ? "Edit Item" : item.name}
-      </h1>
+        {donation.status === "pending" && !isEditing && (
+          <div className="item-details-actions">
+            <button
+              className="add-item-button"
+              type="button"
+              onClick={() =>
+                navigate(`/client/donations/${item.donation_id}/items/new`)
+              }
+            >
+              + Add Another Item
+            </button>
+
+            <button
+              className="edit-item-button"
+              type="button"
+              onClick={() => {
+                setEditData({
+                  name: item.name,
+                  category: item.category,
+                  condition: item.condition,
+                  description: item.description,
+                });
+
+                setError("");
+                setIsEditing(true);
+              }}
+            >
+              Edit Item
+            </button>
+
+            <button
+              className="delete-item-button"
+              type="button"
+              onClick={() => setShowDeletePopup(true)}
+            >
+              Delete Item
+            </button>
+
+          </div>
+        )}
+      </div>
 
       {isEditing ? (
         <div className="item-edit-form">
-
           <div className="form-group">
-            <label className="form-label">
-              Item Name
-            </label>
+            <label className="form-label">Item Name</label>
 
             <input
               className="form-input"
@@ -167,16 +180,14 @@ const ItemDetails = () => {
               onChange={(event) =>
                 setEditData({
                   ...editData,
-                  name: event.target.value
+                  name: event.target.value,
                 })
               }
             />
           </div>
 
           <div className="form-group">
-            <label className="form-label">
-              Category
-            </label>
+            <label className="form-label">Category</label>
 
             <select
               className="form-input"
@@ -184,51 +195,32 @@ const ItemDetails = () => {
               onChange={(event) =>
                 setEditData({
                   ...editData,
-                  category: event.target.value
+                  category: event.target.value,
                 })
               }
             >
-              <option value="">
-                Select a category
-              </option>
+              <option value="">Select a category</option>
 
-              <option value="Furniture">
-                Furniture
-              </option>
+              <option value="Furniture">Furniture</option>
 
-              <option value="Clothing">
-                Clothing
-              </option>
+              <option value="Clothing">Clothing</option>
 
-              <option value="Electronics">
-                Electronics
-              </option>
+              <option value="Electronics">Electronics</option>
 
-              <option value="Books">
-                Books
-              </option>
+              <option value="Books">Books</option>
 
-              <option value="Toys">
-                Toys
-              </option>
+              <option value="Toys">Toys</option>
 
-              <option value="Kitchen">
-                Kitchen
-              </option>
+              <option value="Kitchen">Kitchen</option>
 
-              <option value="Other">
-                Other
-              </option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label className="form-label">
-              Condition
-            </label>
+            <label className="form-label">Condition</label>
 
             <div className="condition-options">
-
               <label className="condition-option">
                 <input
                   className="condition-radio"
@@ -239,14 +231,12 @@ const ItemDetails = () => {
                   onChange={(event) =>
                     setEditData({
                       ...editData,
-                      condition: event.target.value
+                      condition: event.target.value,
                     })
                   }
                 />
 
-                <span className="condition-option-text">
-                  New
-                </span>
+                <span className="condition-option-text">New</span>
               </label>
 
               <label className="condition-option">
@@ -259,14 +249,12 @@ const ItemDetails = () => {
                   onChange={(event) =>
                     setEditData({
                       ...editData,
-                      condition: event.target.value
+                      condition: event.target.value,
                     })
                   }
                 />
 
-                <span className="condition-option-text">
-                  Like New
-                </span>
+                <span className="condition-option-text">Like New</span>
               </label>
 
               <label className="condition-option">
@@ -279,14 +267,12 @@ const ItemDetails = () => {
                   onChange={(event) =>
                     setEditData({
                       ...editData,
-                      condition: event.target.value
+                      condition: event.target.value,
                     })
                   }
                 />
 
-                <span className="condition-option-text">
-                  Good
-                </span>
+                <span className="condition-option-text">Good</span>
               </label>
 
               <label className="condition-option">
@@ -299,23 +285,18 @@ const ItemDetails = () => {
                   onChange={(event) =>
                     setEditData({
                       ...editData,
-                      condition: event.target.value
+                      condition: event.target.value,
                     })
                   }
                 />
 
-                <span className="condition-option-text">
-                  Fair
-                </span>
+                <span className="condition-option-text">Fair</span>
               </label>
-
             </div>
           </div>
 
           <div className="form-group">
-            <label className="form-label">
-              Description
-            </label>
+            <label className="form-label">Description</label>
 
             <textarea
               className="form-textarea"
@@ -323,35 +304,26 @@ const ItemDetails = () => {
               onChange={(event) =>
                 setEditData({
                   ...editData,
-                  description: event.target.value
+                  description: event.target.value,
                 })
               }
             />
           </div>
 
           <div className="form-group">
-            <label className="form-label">
-              Replace Image
-            </label>
+            <label className="form-label">Replace Image</label>
 
             <input
               className="form-input"
               type="file"
               accept="image/*"
-              onChange={(event) =>
-                setImageFile(event.target.files[0])
-              }
+              onChange={(event) => setImageFile(event.target.files[0])}
             />
           </div>
 
-          {error && (
-            <p className="form-error">
-              {error}
-            </p>
-          )}
+          {error && <p className="form-error">{error}</p>}
 
           <div className="item-edit-actions">
-
             <button
               className="save-item-button"
               type="button"
@@ -367,59 +339,42 @@ const ItemDetails = () => {
             >
               Cancel
             </button>
-
           </div>
-
         </div>
       ) : (
-        <>
-          <p className="item-details-category">
-            Category: {item.category}
-          </p>
+        <div className="item-display">
+          <div className="item-image-section">
+            <img
+              className="item-details-image"
+              src={`http://localhost:8000${item.image_url}`}
+              alt={item.name}
+            />
+          </div>
 
-          <p className="item-details-condition">
-            Condition: {item.condition}
-          </p>
+          <div className="item-description-section">
+            <h2 className="item-description-title">Description</h2>
 
-          <p className="item-details-description">
-            {item.description}
-          </p>
-
-          <img
-            className="item-details-image"
-            src={`http://localhost:8000${item.image_url}`}
-            alt={item.name}
-          />
-        </>
+            <p className="item-details-description">{item.description}</p>
+          </div>
+        </div>
       )}
 
-      {error && !isEditing && (
-        <p className="form-error">
-          {error}
-        </p>
-      )}
+      {error && !isEditing && <p className="form-error">{error}</p>}
 
       {showDeletePopup && (
         <div className="delete-popup-overlay">
-
           <div className="delete-popup">
-
-            <h2 className="delete-popup-title">
-              Delete Item?
-            </h2>
+            <h2 className="delete-popup-title">Delete Item?</h2>
 
             <p className="delete-popup-message">
               Are you sure you want to delete this item?
             </p>
 
             <div className="delete-popup-actions">
-
               <button
                 className="keep-item-button"
                 type="button"
-                onClick={() =>
-                  setShowDeletePopup(false)
-                }
+                onClick={() => setShowDeletePopup(false)}
               >
                 Keep Item
               </button>
@@ -431,14 +386,10 @@ const ItemDetails = () => {
               >
                 Yes, Delete
               </button>
-
             </div>
-
           </div>
-
         </div>
       )}
-
     </div>
   );
 };
