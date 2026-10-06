@@ -183,7 +183,7 @@ const Landing = () => {
 
       </section>
 
-      <section className="our-story">
+      <section className="our-story" id='our-story'>
 
         <div className="our-story-content">
 
@@ -228,7 +228,7 @@ const Landing = () => {
 
       </section>
 
-      <section className="how-it-works">
+      <section className="how-it-works" id='how-it-works'>
 
         <div className="how-it-works-header">
 
@@ -299,7 +299,7 @@ const Landing = () => {
 
       </section>
 
-      <section className="join-section">
+      <section className="join-section" id='donate'>
 
         <div className="join-content">
 
@@ -352,30 +352,6 @@ const Landing = () => {
 
           </div>
 
-          <div className="footer-links">
-
-            <a
-              className="footer-link"
-              href="#who-we-are"
-            >
-              Who We Are
-            </a>
-
-            <a
-              className="footer-link"
-              href="#our-story"
-            >
-              Our Story
-            </a>
-
-            <a
-              className="footer-link"
-              href="#how-it-works"
-            >
-              How It Works
-            </a>
-
-          </div>
 
         </div>
 

@@ -14,75 +14,96 @@ const NavBar = () => {
     setUser(null);
   };
 
+  const handleSectionClick = (sectionId) => {
+    if (window.location.pathname !== "/") {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
-
         <Link className="navbar-logo" to="/">
-          <img
-            className="navbar-logo-image"
-            src={logo}
-            alt="NI'MA logo"
-          />
+          <img className="navbar-logo-image" src={logo} alt="NI'MA logo" />
         </Link>
 
         <div className="navbar-links">
-
-          {user ? (
+          {!user ? (
             <>
-              {user.role === "admin" ? (
-                <>
-                  <Link
-                    className="navbar-link"
-                    to="/admin/dashboard"
-                  >
-                    Home
-                  </Link>
+              <button
+                className="navbar-section-link"
+                type="button"
+                onClick={() => handleSectionClick("who-we-are")}
+              >
+                Who We Are
+              </button>
 
-                  <Link
-                    className="navbar-link"
-                    to="/admin/collectors"
-                  >
+              <button
+                className="navbar-section-link"
+                type="button"
+                onClick={() => handleSectionClick("our-story")}
+              >
+                Our Story
+              </button>
+
+              <button
+                className="navbar-section-link"
+                type="button"
+                onClick={() => handleSectionClick("how-it-works")}
+              >
+                How It Works
+              </button>
+
+              <button
+              className="navbar-section-link"
+              type='button'
+              onClick={() => handleSectionClick('donate')}
+              >
+                Donate
+              </button>
+
+              <Link className="navbar-login" to="/login">
+                Login
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                className="navbar-link"
+                to={
+                  user.role === "admin"
+                    ? "/admin/dashboard"
+                    : user.role === "collector"
+                      ? "/collector/dashboard"
+                      : "/client/dashboard"
+                }
+              >
+                Dashboard
+              </Link>
+
+              {user.role === "admin" && (
+                <>
+                  <Link className="navbar-link" to="/admin/collectors">
                     Collectors
                   </Link>
 
-                  <Link
-                    className="navbar-link"
-                    to="/admin/donations"
-                  >
+                  <Link className="navbar-link" to="/admin/donations">
                     Donations
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link
-                    className="navbar-link"
-                    to={
-                      user.role === "collector"
-                        ? "/collector/dashboard"
-                        : "/client/dashboard"
-                    }
-                  >
-                    Home
-                  </Link>
-
-                  <Link
-                    className="navbar-link"
-                    to={
-                      user.role === "collector"
-                        ? "/collector/dashboard"
-                        : "/client/dashboard"
-                    }
-                  >
-                    Dashboard
                   </Link>
                 </>
               )}
 
-              <Link
-                className="navbar-link"
-                to="/profile"
-              >
+              <Link className="navbar-link" to="/profile">
                 Profile
               </Link>
 
@@ -94,31 +115,7 @@ const NavBar = () => {
                 Logout
               </button>
             </>
-          ) : (
-            <>
-              <Link
-                className="navbar-link"
-                to="/"
-              >
-                Home
-              </Link>
-
-              <Link
-                className="navbar-link"
-                to="/register"
-              >
-                Register
-              </Link>
-
-              <Link
-                className="navbar-login"
-                to="/login"
-              >
-                Login
-              </Link>
-            </>
           )}
-
         </div>
       </div>
     </nav>
