@@ -127,7 +127,7 @@ const DonationRequest = () => {
         await createItem(donation.id, itemData);
       }
 
-      navigate("/client/dashboard");
+      navigate("/success");
     } catch (err) {
       setError(err.message);
     }

@@ -9,6 +9,7 @@ import {
 import LocationPicker from "../LocationPicker/LocationPicker";
 import "./DonationDetails.css";
 
+
 const DonationDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -210,9 +211,9 @@ const DonationDetails = () => {
                 preferred_pickup_date: event.target.value,
               })
             }
-          />
-        ) : (
-          <span className="donation-info-value">
+            />
+          ) : (
+            <span className="donation-info-value">
             {donation.preferred_pickup_date}
           </span>
         )}

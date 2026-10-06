@@ -18,6 +18,8 @@ import CollectorDashboard from "./components/Collector/CollectorDashboard";
 import LoadingPage from "./components/Loading/LoadingPage";
 import NotFound from "./components/NotFound/NotFound";
 
+import SuccessPage from "./components/SuccessPage/SuccessPage";
+
 const App = () => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
@@ -64,6 +66,8 @@ const App = () => {
         />
 
         <Route path = "*" element={<NotFound/>}/>
+
+        <Route path = "/success" element={<SuccessPage/>}/>
       </Routes>
     </div>
   );

@@ -1,0 +1,124 @@
+.success-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #ffffff;
+}
+
+.success-card {
+  width: 100%;
+  max-width: 560px;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  animation: successAppear 0.5s ease;
+}
+
+.success-icon {
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #6aa84f;
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(106, 168, 79, 0.2);
+  animation: successPop 0.5s ease 0.15s both;
+}
+
+.success-title {
+  margin: 26px 0 12px;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.success-message {
+  max-width: 430px;
+  margin: 0 0 30px;
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: 0.65;
+}
+
+.success-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  border-radius: 9px;
+  background: #6aa84f;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.success-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(106, 168, 79, 0.2);
+}
+
+@keyframes successAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes successPop {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .success-page {
+    padding: 25px 15px;
+  }
+
+  .success-card {
+    padding: 40px 25px;
+  }
+
+  .success-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 28px;
+  }
+
+  .success-title {
+    font-size: 25px;
+  }
+
+  .success-message {
+    font-size: 14px;
+  }
+
+  .success-button {
+    width: 100%;
+  }
+}
