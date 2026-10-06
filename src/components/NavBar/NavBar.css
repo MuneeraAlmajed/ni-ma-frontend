@@ -124,6 +124,10 @@
   transition: width 0.3s ease;
 }
 
+.navbar {
+  font-family: Arial, sans-serif;
+}
+
 .navbar-section-link:hover {
   color: #2d6656;
 }

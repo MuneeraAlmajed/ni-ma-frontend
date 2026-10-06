@@ -1,106 +1,285 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
 
-// Services
-import * as authService from '../../services/authService';
-import { UserContext } from '../../contexts/UserContext';
+import * as authService from "../../services/authService";
+import { UserContext } from "../../contexts/UserContext";
 
+import "./SignUpForm.css";
+import logo from "../../../assets/NI'MA LOGO.png";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
-  const [message, setMessage] = useState('');
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConf: '',
-  });
   const { setUser } = useContext(UserContext);
 
-  const { username, email, password, passwordConf } = formData;
+  const [message, setMessage] = useState("");
+
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    passwordConf: "",
+  });
+
+  const {
+    username,
+    email,
+    password,
+    passwordConf,
+  } = formData;
 
   const handleChange = (evt) => {
-    setMessage('');
-    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+    setMessage("");
+
+    setFormData({
+      ...formData,
+      [evt.target.name]: evt.target.value,
+    });
   };
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
 
-    const payload = { username, email, password };
-    const user = await authService.signUp(payload)
+    try {
+      const payload = {
+        username,
+        email,
+        password,
+      };
 
-    setUser(user); // this line will print the form data to the console
-    navigate('/')
+      const user = await authService.signUp(payload);
+
+      setUser(user);
+      navigate("/");
+    } catch (error) {
+      setMessage(
+        error?.response?.data?.detail ||
+        "Something went wrong. Please try again."
+      );
+    }
   };
 
   const isFormInvalid = () => {
-    return !(username && email && password && password === passwordConf);
+    return !(
+      username &&
+      email &&
+      password &&
+      password === passwordConf
+    );
   };
 
   return (
-    <main>
-      <h1>Sign Up</h1>
-      <p>{message}</p>
-      <form onSubmit={handleSubmit}>
-        {/* Username Field */}
-        <div>
-          <label htmlFor='username'>Username:</label>
-          <input
-            type='text'
-            id='username'
-            value={username}
-            name='username'
-            onChange={handleChange}
-            required
-          />
+    <main className="signup-page">
+
+      <section className="signup-section">
+
+        <div className="signup-branding">
+
+          <div className="signup-branding-content">
+
+
+            <span className="signup-label">
+              JOIN NI’MA
+            </span>
+
+            <h1 className="signup-title">
+              Give something
+              <br />
+              a second life.
+            </h1>
+
+            <p className="signup-description">
+              Create your NI’MA account and start sharing
+              useful items with people who can give them
+              another purpose.
+            </p>
+
+            <div className="signup-message">
+
+              <span className="signup-message-mark">
+                “
+              </span>
+
+              <p className="signup-message-text">
+                What is no longer useful to you may still
+                have value for someone else.
+              </p>
+
+            </div>
+
+          </div>
+
         </div>
 
-        {/* Email Field */}
-        <div>
-          <label htmlFor='email'>Email:</label>
-          <input
-            type='email'
-            id='email'
-            value={email}
-            name='email'
-            onChange={handleChange}
-            required
-          />
+        <div className="signup-form-area">
+
+          <div className="signup-form-card">
+
+            <div className="signup-form-header">
+
+              <span className="signup-form-label">
+                CREATE ACCOUNT
+              </span>
+
+              <h2 className="signup-form-title">
+                Welcome to NI’MA
+              </h2>
+
+              <p className="signup-form-description">
+                Create your account to start sharing.
+              </p>
+
+            </div>
+
+            {message && (
+              <p className="signup-error">
+                {message}
+              </p>
+            )}
+
+            <form
+              className="signup-form"
+              onSubmit={handleSubmit}
+            >
+
+              <div className="signup-field">
+
+                <label
+                  className="signup-label-text"
+                  htmlFor="username"
+                >
+                  Username
+                </label>
+
+                <input
+                  className="signup-input"
+                  type="text"
+                  id="username"
+                  value={username}
+                  name="username"
+                  onChange={handleChange}
+                  placeholder="Enter your username"
+                  required
+                />
+
+              </div>
+
+              <div className="signup-field">
+
+                <label
+                  className="signup-label-text"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+
+                <input
+                  className="signup-input"
+                  type="email"
+                  id="email"
+                  value={email}
+                  name="email"
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  required
+                />
+
+              </div>
+
+              <div className="signup-field">
+
+                <label
+                  className="signup-label-text"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+
+                <input
+                  className="signup-input"
+                  type="password"
+                  id="password"
+                  value={password}
+                  name="password"
+                  onChange={handleChange}
+                  placeholder="Create a password"
+                  required
+                />
+
+              </div>
+
+              <div className="signup-field">
+
+                <label
+                  className="signup-label-text"
+                  htmlFor="confirm"
+                >
+                  Confirm Password
+                </label>
+
+                <input
+                  className="signup-input"
+                  type="password"
+                  id="confirm"
+                  value={passwordConf}
+                  name="passwordConf"
+                  onChange={handleChange}
+                  placeholder="Confirm your password"
+                  required
+                />
+
+                {password &&
+                  passwordConf &&
+                  password !== passwordConf && (
+                    <span className="signup-password-error">
+                      Passwords do not match.
+                    </span>
+                  )}
+
+              </div>
+
+              <button
+                className="signup-submit-button"
+                type="submit"
+                disabled={isFormInvalid()}
+              >
+                Create Account
+                <span className="signup-button-arrow">
+                  →
+                </span>
+              </button>
+
+            </form>
+
+            <div className="signup-footer">
+
+              <span className="signup-footer-text">
+                Already have an account?
+              </span>
+
+              <button
+                className="signup-login-link"
+                type="button"
+                onClick={() => navigate("/login")}
+              >
+                Sign In
+              </button>
+
+            </div>
+
+            <button
+              className="signup-cancel-button"
+              type="button"
+              onClick={() => navigate("/")}
+            >
+              Back to NI’MA
+            </button>
+
+          </div>
+
         </div>
 
-        {/* Password Field */}
-        <div>
-          <label htmlFor='password'>Password:</label>
-          <input
-            type='password'
-            id='password'
-            value={password}
-            name='password'
-            onChange={handleChange}
-            required
-          />
-        </div>
+      </section>
 
-        {/* Coinfirm Password */}
-        <div>
-          <label htmlFor='confirm'>Confirm Password:</label>
-          <input
-            type='password'
-            id='confirm'
-            value={passwordConf}
-            name='passwordConf'
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Form Actions */}
-        <div>
-          <button disabled={isFormInvalid()}>Sign Up</button>
-          <button onClick={() => navigate('/')}>Cancel</button>
-        </div>
-      </form>
     </main>
   );
 };
