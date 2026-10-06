@@ -328,11 +328,7 @@ const updateCollectorDonationStatus = async (donationId, status) => {
   }
 };
 
-const updatePickupResult = async (
-  donationId,
-  pickupSuccessful,
-  failedReason = null
-) => {
+const updatePickupResult = async (donationId, pickupResult) => {
   try {
     const config = {
       headers: {
@@ -346,10 +342,7 @@ const updatePickupResult = async (
       {
         method: "PUT",
         headers: config.headers,
-        body: JSON.stringify({
-          pickup_successful: pickupSuccessful,
-          failed_reason: failedReason
-        })
+        body: JSON.stringify(pickupResult)
       }
     );
 
@@ -361,7 +354,9 @@ const updatePickupResult = async (
 
     return data;
   } catch (err) {
-    throw new Error(err.message || "Unable to update pickup result");
+    throw new Error(
+      err.message || "Unable to update pickup result"
+    );
   }
 };
 

@@ -37,7 +37,7 @@ const App = () => {
 
         <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
 
-        <Route path='/collector/dashbaord' element={<CollectorDashboard/>}/>
+        <Route path='/collector/dashboard' element={<CollectorDashboard/>}/>
       </Routes>
     </>
   );
