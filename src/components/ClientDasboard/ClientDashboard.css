@@ -85,54 +85,48 @@
   letter-spacing: -0.03em;
 }
 
-/* Tabs */
+/* Donation Tabs */
 
 .donation-tabs {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 0.7rem;
-  border-bottom: 1px solid #ddd6c8;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  padding: 0.35rem;
+  border-radius: 12px;
+  background-color: #ebe4d6;
   overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.donation-tabs::-webkit-scrollbar {
-  display: none;
 }
 
 .donation-tab {
-  flex-shrink: 0;
-  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 110px;
+  padding: 0.7rem 0.8rem;
   border: none;
-  border-radius: 20px;
+  border-radius: 9px;
   background-color: transparent;
-  color: #7b837d;
+  color: #64716a;
   font-family: inherit;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
   cursor: pointer;
   transition:
     background-color 0.25s ease,
     color 0.25s ease,
-    transform 0.25s ease;
+    box-shadow 0.25s ease;
 }
 
 .donation-tab:hover {
-  background-color: #ebe4d6;
   color: #173f35;
+  background-color: #f5f0e6;
 }
 
 .donation-tab-active {
-  background-color: #173f35;
-  color: #f5f0e6;
-  font-weight: 600;
-}
-
-.donation-tab-active:hover {
-  background-color: #2d6656;
-  color: #f5f0e6;
+  background-color: #fffdf8;
+  color: #173f35;
+  box-shadow: 0 2px 7px rgba(23, 63, 53, 0.08);
 }
 
 /* Donations List */
@@ -223,6 +217,7 @@
   color: #47728a;
 }
 
+/* Collected */
 
 .donation-status.donation-status-collected {
   background-color: #dce9df;
@@ -230,6 +225,7 @@
   color: #3f7652;
 }
 
+/* Failed */
 
 .donation-status.donation-status-failed {
   background-color: #f9e2e2;
@@ -237,6 +233,7 @@
   color: #b34d4d;
 }
 
+/* Cancelled */
 
 .donation-status.donation-status-cancelled {
   background-color: #e8e6e1;
@@ -244,6 +241,7 @@
   color: #74736e;
 }
 
+/* Donation Date */
 
 .donation-card-date {
   margin: 1rem 0 0;
@@ -251,6 +249,8 @@
   font-size: 0.8rem;
   line-height: 1.6;
 }
+
+/* Failed Reason */
 
 .donation-card-reason {
   margin: 0.8rem 0 0;
@@ -351,16 +351,17 @@
     font-size: 1.45rem;
   }
 
+  /* Mobile Donation Tabs */
+
   .donation-tabs {
-    gap: 0.35rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.6rem;
+    justify-content: flex-start;
   }
 
   .donation-tab {
-    padding: 0.6rem 0.85rem;
-    font-size: 0.75rem;
+    flex: 0 0 auto;
   }
+
+  /* Mobile Donation Card */
 
   .donation-card {
     padding: 1.2rem;
