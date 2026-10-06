@@ -1,4 +1,5 @@
 import { Route, Routes, useLocation } from "react-router";
+import { useEffect, useState } from "react";
 
 import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
@@ -14,15 +15,30 @@ import AddItem from "./components/AddItem/AddItem";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import CollectorDashboard from "./components/Collector/CollectorDashboard";
 
+import LoadingPage from "./components/Loading/LoadingPage";
+
 const App = () => {
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const hideNavBar = 
-  location.pathname === "/register" ||
-  location.pathname === "/login";
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
+  const hideNavBar =
+    location.pathname === "/register" ||
+    location.pathname === "/login";
 
   return (
-    <>
+    <div className="app">
       {!hideNavBar && <NavBar />}
 
       <Routes>
@@ -41,9 +57,12 @@ const App = () => {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/collectors" element={<AdminDashboard />} />
         <Route path="/admin/donations" element={<AdminDashboard />} />
-        <Route path="/collector/dashboard" element={<CollectorDashboard />} />
+        <Route
+          path="/collector/dashboard"
+          element={<CollectorDashboard />}
+        />
       </Routes>
-    </>
+    </div>
   );
 };
 
