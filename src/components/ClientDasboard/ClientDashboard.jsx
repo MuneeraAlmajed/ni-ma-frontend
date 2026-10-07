@@ -25,7 +25,7 @@ const ClientDashboard = () => {
     const statusTexts = {
       pending: 'Pending',
       assigned: 'Collector Assigned',
-      collected: 'Collected',
+      completed: 'Completed',
       failed: 'Pickup Failed',
       cancelled: 'Cancelled'
     };
@@ -100,12 +100,12 @@ const ClientDashboard = () => {
 
           <button
             className={`donation-tab ${
-              activeTab === 'collected'
+              activeTab === 'completed'
                 ? 'donation-tab-active'
                 : ''
             }`}
             type="button"
-            onClick={() => setActiveTab('collected')}
+            onClick={() => setActiveTab('completed')}
           >
             Collected
           </button>

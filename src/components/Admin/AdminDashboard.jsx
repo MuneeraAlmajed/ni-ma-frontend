@@ -315,8 +315,8 @@ const AdminDashboard = () => {
     (donation) => donation.status === "assigned",
   );
 
-  const collectedDonations = donations.filter(
-    (donation) => donation.status === "collected",
+  const completedDonations = donations.filter(
+    (donation) => donation.status === "completed",
   );
 
   const failedDonations = donations.filter(
@@ -341,7 +341,7 @@ const AdminDashboard = () => {
     {
       name: "collected",
       label: "Collected",
-      count: collectedDonations.length,
+      count: completedDonations.length,
     },
     {
       name: "failed",
@@ -365,7 +365,7 @@ const AdminDashboard = () => {
     }
 
     if (activeDonationTab === "collected") {
-      return collectedDonations;
+      return completedDonations;
     }
 
     if (activeDonationTab === "failed") {
