@@ -8,26 +8,29 @@
   <a href="https://github.com/MuneeraAlmajed/ni-ma-backend">View the Backend →</a>
 </p>
 
+
 NI’MA is a web-based platform that helps people in Bahrain give unwanted but still useful items a second life by connecting Clients who want to donate items with Collectors who handle their collection.
 
-## Key Features
-- 🔐 User Authentication and Authorization
-- 👥 Role Based Access Control
-- 📦 Item Management
-- 🤝 Donation Management
-- 📋 Donation Status Tracking
-- 🚚 Collector Management
-- 📸 Collection Proof
-- 🛡️ Admin Dashborad
-- 🔄 RESTFul CRUD APIs
-- 🗄️ PostgreSQL Database
-- 📖 API Documentation 
-
-## Sreenshot of NI'MA / LOGO
-
-
 ## Live Demo 
-🔗 [Visit NI'MA]
+🔗 [Visit NI'MA](https://nima-dg6o.onrender.com/)
+
+## Key Features
+-  User Authentication and Authorization
+-  Role Based Access Control
+-  Item Management
+-  Donation Management
+-  Donation Status Tracking
+-  Collector Management
+-  Collection Proof
+-  Admin Dashborad
+-  RESTFul CRUD APIs
+-  PostgreSQL Database
+-  API Documentation 
+
+## Sreenshot of NI'MA 
+<img src="assets/ni-ma-screenshot.jpeg">
+
+
 
 ## User Stories
 
