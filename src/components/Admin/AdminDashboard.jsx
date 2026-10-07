@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
+const SERVER_URL = BASE_URL.replace("/api", "");
+
 import {
   getCollectors,
   createCollector,
@@ -33,7 +36,11 @@ const AdminDashboard = () => {
   const [selectedCollectorId, setSelectedCollectorId] = useState("");
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
+  const [showItemsPopup, setShowItemsPopup] = useState(false);
+
   const [activeDonationTab, setActiveDonationTab] = useState("pending");
+
+  const [selectedItemImage, setSelectedItemImage] = useState(null);
 
   const [collectorData, setCollectorData] = useState({
     name: "",
@@ -762,34 +769,19 @@ const AdminDashboard = () => {
             <h3 className="admin-subtitle">Donation Items</h3>
 
             {selectedDonation.items && selectedDonation.items.length > 0 ? (
-              <div className="admin-items-list">
-                {selectedDonation.items.map((item) => (
-                  <div className="admin-item-card" key={item.id}>
-                    <div className="admin-item-information">
-                      <h4 className="admin-item-name">{item.name}</h4>
+              <div className="admin-items-summary">
+                <p className="admin-items-count">
+                  {selectedDonation.items.length} item
+                  {selectedDonation.items.length !== 1 ? "s" : ""} in this
+                  donation
+                </p>
 
-                      <p className="admin-item-category">
-                        Category: {item.category}
-                      </p>
-
-                      <p className="admin-item-condition">
-                        Condition: {item.condition}
-                      </p>
-
-                      <p className="admin-item-description">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    {item.image_url && (
-                      <img
-                        className="admin-item-image"
-                        src={item.image_url}
-                        alt={item.name}
-                      />
-                    )}
-                  </div>
-                ))}
+                <button
+                  className="admin-view-items-button"
+                  onClick={() => setShowItemsPopup(true)}
+                >
+                  View Details
+                </button>
               </div>
             ) : (
               <p className="admin-no-items">
@@ -1040,6 +1032,79 @@ const AdminDashboard = () => {
                 {selectedCollector?.is_active ? "Make Inactive" : "Activate"}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {showItemsPopup && (
+        <div className="admin-items-popup-overlay">
+          <div className="admin-items-popup">
+            <div className="admin-items-popup-header">
+              <h3 className="admin-subtitle">Donation Items</h3>
+
+              <button
+                className="admin-close-items-button"
+                onClick={() => setShowItemsPopup(false)}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="admin-items-list">
+              {selectedDonation.items.map((item) => (
+                <div className="admin-item-card" key={item.id}>
+                  <div className="admin-item-information">
+                    <h4 className="admin-item-name">{item.name}</h4>
+
+                    <p className="admin-item-category">
+                      Category: {item.category}
+                    </p>
+
+                    <p className="admin-item-condition">
+                      Condition: {item.condition}
+                    </p>
+
+                    <p className="admin-item-description">{item.description}</p>
+                  </div>
+
+                  {item.image_url && (
+                    <img
+                      className="admin-item-image"
+                      src={`${SERVER_URL}${item.image_url}`}
+                      alt={item.name}
+                      onClick={() =>
+                        setSelectedItemImage(`${SERVER_URL}${item.image_url}`)
+                      }
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedItemImage && (
+        <div
+          className="admin-image-popup-overlay"
+          onClick={() => setSelectedItemImage(null)}
+        >
+          <div
+            className="admin-image-popup"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="admin-close-image-button"
+              onClick={() => setSelectedItemImage(null)}
+            >
+              ×
+            </button>
+
+            <img
+              className="admin-large-item-image"
+              src={selectedItemImage}
+              alt="Item"
+            />
           </div>
         </div>
       )}
