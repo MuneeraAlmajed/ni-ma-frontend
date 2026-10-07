@@ -379,7 +379,7 @@ const CollectorDashboard = () => {
                       
                       <img
                         className="collector-item-image"
-                        src={`${SERVER_URL}${item.image_url}`}
+                        src={item.image_url}
                         alt={item.name}
                         />
 
@@ -501,7 +501,7 @@ const CollectorDashboard = () => {
                 <div className="collector-proof-preview">
                   <img
                     className="collector-proof-image"
-                    src={`${SERVER_URL}/${selectedDonation.proof_photo_url}`}
+                    src={selectedDonation.proof_photo_url}
                     alt="Collection proof"
                   />
 

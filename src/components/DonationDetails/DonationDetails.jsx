@@ -333,7 +333,7 @@ const DonationDetails = () => {
             {item.image_url && (
               <img
                 className="donation-item-image"
-                src={`${import.meta.env.VITE_BACK_END_SERVER_URL.replace("/api", "")}${item.image_url}`}
+                src={item.image_url}
                 alt={item.name}
               />
             )}

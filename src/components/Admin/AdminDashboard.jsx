@@ -907,7 +907,7 @@ const AdminDashboard = () => {
               <div className="admin-proof-content">
                 <img
                   className="admin-proof-image"
-                  src={`http://localhost:8000/${selectedDonation.proof_photo_url}`}
+                  src={selectedDonation.proof_photo_url}
                   alt="Collection proof"
                 />
 
@@ -1180,10 +1180,10 @@ const AdminDashboard = () => {
                   {item.image_url && (
                     <img
                       className="admin-item-image"
-                      src={`${SERVER_URL}${item.image_url}`}
+                      src={item.image_url}
                       alt={item.name}
                       onClick={() =>
-                        setSelectedItemImage(`${SERVER_URL}${item.image_url}`)
+                        setSelectedItemImage(item.image_url)
                       }
                     />
                   )}

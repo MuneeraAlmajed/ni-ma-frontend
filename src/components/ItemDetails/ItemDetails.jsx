@@ -349,7 +349,7 @@ const ItemDetails = () => {
           <div className="item-image-section">
             <img
               className="item-details-image"
-              src={`${SERVER_URL}${item.image_url}`}
+              src={item.image_url}
               alt={item.name}
             />
           </div>
