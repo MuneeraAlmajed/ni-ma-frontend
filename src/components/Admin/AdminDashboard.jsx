@@ -222,42 +222,49 @@ const AdminDashboard = () => {
   };
 
   const handleAssignCollector = async () => {
-    if (!selectedDonation || !selectedCollectorId) {
-      setError("Please select a collector.");
-      return;
-    }
+  if (!selectedDonation || !selectedCollectorId) {
+    setError("Please select a collector.");
+    return;
+  }
 
-    if (
-      selectedDonation.status === "cancelled" ||
-      selectedDonation.status === "failed"
-    ) {
-      setError("Cannot assign a collector to this donation.");
-      return;
-    }
+  if (
+    selectedDonation.status === "cancelled" ||
+    selectedDonation.status === "failed"
+  ) {
+    setError("Cannot assign a collector to this donation.");
+    return;
+  }
 
-    setError("");
-    setMessage("");
+  setError("");
+  setMessage("");
 
-    try {
-      const updatedDonation = await assignCollector(
-        selectedDonation.id,
-        selectedCollectorId,
-      );
+  try {
+    const updatedDonation = await assignCollector(
+      selectedDonation.id,
+      selectedCollectorId,
+    );
 
-      setDonations(
-        donations.map((donation) =>
-          donation.id === updatedDonation.id ? updatedDonation : donation,
-        ),
-      );
+    const donationWithItems = {
+      ...updatedDonation,
+      items: selectedDonation.items,
+    };
 
-      setSelectedDonation(updatedDonation);
-      setSelectedCollectorId("");
+    setDonations(
+      donations.map((donation) =>
+        donation.id === updatedDonation.id
+          ? donationWithItems
+          : donation,
+      ),
+    );
 
-      setMessage("Collector assigned successfully.");
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+    setSelectedDonation(donationWithItems);
+    setSelectedCollectorId("");
+
+    setMessage("Collector assigned successfully.");
+  } catch (err) {
+    setError(err.message);
+  }
+};
 
   const handleDeleteDonation = async () => {
     if (!selectedDonation) {
