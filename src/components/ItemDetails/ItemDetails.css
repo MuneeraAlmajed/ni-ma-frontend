@@ -108,7 +108,7 @@
   transform: translateY(-1px);
 }
 
-/* Item Display */
+ 
 
 .item-display {
   display: grid;
@@ -157,7 +157,7 @@
   line-height: 1.7;
 }
 
-/* Edit Form */
+ 
 
 .item-edit-form {
   display: grid;
@@ -271,7 +271,7 @@
   background-color: #ebe4d6;
 }
 
-/* Delete Popup */
+ 
 
 .delete-popup-overlay {
   position: fixed;
@@ -353,7 +353,7 @@
   text-align: center;
 }
 
-/* Tablet */
+ 
 
 @media (max-width: 900px) {
   .item-details {
@@ -361,7 +361,7 @@
   }
 }
 
-/* Mobile */
+ 
 
 @media (max-width: 650px) {
   .item-details {

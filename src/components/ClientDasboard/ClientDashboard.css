@@ -8,7 +8,6 @@
   color: #173f35;
 }
 
-/* Welcome */
 
 .dashboard-welcome {
   display: flex;
@@ -40,7 +39,6 @@
   line-height: 1.7;
 }
 
-/* New Donation Button */
 
 .new-donation-button {
   flex-shrink: 0;
@@ -65,7 +63,6 @@
   box-shadow: 0 10px 25px rgba(23, 63, 53, 0.15);
 }
 
-/* Donations Section */
 
 .client-donations-section {
   width: 100%;
@@ -85,7 +82,6 @@
   letter-spacing: -0.03em;
 }
 
-/* Donation Tabs */
 
 .donation-tabs {
   display: flex;
@@ -129,7 +125,6 @@
   box-shadow: 0 2px 7px rgba(23, 63, 53, 0.08);
 }
 
-/* Donations List */
 
 .donations-list {
   display: grid;
@@ -137,7 +132,6 @@
   gap: 1.25rem;
 }
 
-/* Donation Card */
 
 .donation-card {
   position: relative;
@@ -176,7 +170,6 @@
   letter-spacing: -0.02em;
 }
 
-/* Status Badge */
 
 .donation-status {
   display: inline-flex;
@@ -201,7 +194,6 @@
   background-color: currentColor;
 }
 
-/* Pending */
 
 .donation-status.donation-status-pending {
   background-color: #f4ead2;
@@ -209,7 +201,6 @@
   color: #8a7040;
 }
 
-/* Assigned */
 
 .donation-status.donation-status-assigned {
   background-color: #e2edf3;
@@ -217,7 +208,6 @@
   color: #47728a;
 }
 
-/* Collected */
 
 .donation-status.donation-status-collected {
   background-color: #dce9df;
@@ -225,7 +215,6 @@
   color: #3f7652;
 }
 
-/* Failed */
 
 .donation-status.donation-status-failed {
   background-color: #f9e2e2;
@@ -233,7 +222,6 @@
   color: #b34d4d;
 }
 
-/* Cancelled */
 
 .donation-status.donation-status-cancelled {
   background-color: #e8e6e1;
@@ -241,7 +229,6 @@
   color: #74736e;
 }
 
-/* Donation Date */
 
 .donation-card-date {
   margin: 1rem 0 0;
@@ -250,7 +237,6 @@
   line-height: 1.6;
 }
 
-/* Failed Reason */
 
 .donation-card-reason {
   margin: 0.8rem 0 0;
@@ -262,7 +248,6 @@
   line-height: 1.6;
 }
 
-/* View Details */
 
 .donation-card-link {
   display: inline-flex;
@@ -282,7 +267,6 @@
   color: #b99a5b;
 }
 
-/* Empty State */
 
 .empty-donations {
   padding: 4rem 2rem;
@@ -299,7 +283,6 @@
   font-size: 0.85rem;
 }
 
-/* Tablet */
 
 @media (max-width: 900px) {
   .client-dashboard {
@@ -315,7 +298,6 @@
   }
 }
 
-/* Mobile */
 
 @media (max-width: 650px) {
   .client-dashboard {
@@ -351,7 +333,6 @@
     font-size: 1.45rem;
   }
 
-  /* Mobile Donation Tabs */
 
   .donation-tabs {
     justify-content: flex-start;
@@ -361,7 +342,7 @@
     flex: 0 0 auto;
   }
 
-  /* Mobile Donation Card */
+   
 
   .donation-card {
     padding: 1.2rem;
@@ -400,7 +381,7 @@
   }
 }
 
-/* Small Mobile */
+ 
 
 @media (max-width: 400px) {
   .client-dashboard {
@@ -434,7 +415,7 @@
   }
 }
 
-/* Very Small Mobile */
+ 
 
 @media (max-width: 350px) {
   .client-dashboard {

@@ -49,7 +49,7 @@
   letter-spacing: -0.03em;
 }
 
-/* Status */
+ 
 
 .donation-details .donation-status {
   display: inline-flex;
@@ -108,7 +108,7 @@
   color: #74736e;
 }
 
-/* Actions */
+ 
 
 .donation-details-actions {
   display: flex;
@@ -150,7 +150,7 @@
   transform: translateY(-1px);
 }
 
-/* Failed Pickup */
+ 
 
 .donation-failed-section {
   max-width: 1000px;
@@ -170,7 +170,7 @@
   line-height: 1.6;
 }
 
-/* Information Cards */
+ 
 
 .donation-info,
 .donation-address,
@@ -194,7 +194,7 @@
   font-weight: 700;
 }
 
-/* Donation Information */
+ 
 
 .donation-info-item {
   display: flex;
@@ -221,7 +221,7 @@
   text-align: right;
 }
 
-/* Address */
+ 
 
 .donation-address-text {
   margin: 0;
@@ -230,7 +230,7 @@
   line-height: 1.7;
 }
 
-/* Edit Form */
+ 
 
 .donation-edit-form {
   display: grid;
@@ -308,7 +308,7 @@
   background-color: #ebe4d6;
 }
 
-/* Items */
+ 
 
 .donation-item {
   margin-bottom: 0.7rem;
@@ -340,7 +340,7 @@
   font-weight: 600;
 }
 
-/* Cancel Popup */
+ 
 
 .cancel-popup-overlay {
   position: fixed;
@@ -414,7 +414,12 @@
   background-color: #963f3f;
 }
 
-/* Tablet */
+.donation-item-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
 @media (max-width: 900px) {
   .donation-details {
@@ -422,7 +427,7 @@
   }
 }
 
-/* Mobile */
+ 
 
 @media (max-width: 650px) {
   .donation-details {

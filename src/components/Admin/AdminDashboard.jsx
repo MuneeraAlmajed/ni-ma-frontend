@@ -19,6 +19,30 @@ import {
 
 import "./AdminDashboard.css";
 
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+} from "react-leaflet";
+
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+const defaultIcon = L.icon({
+  iconUrl: markerIcon,
+  iconRetinaUrl: markerIcon2x,
+  shadowUrl: markerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 const AdminDashboard = () => {
   const location = useLocation();
 
@@ -211,6 +235,7 @@ const AdminDashboard = () => {
       setError(err.message);
     }
   };
+
 
   const handleDonationClick = (donation) => {
     setSelectedDonation(donation);
@@ -772,6 +797,84 @@ const AdminDashboard = () => {
             </div>
           </div>
 
+          <div className="admin-client-section">
+  <h3 className="admin-subtitle">Client Information</h3>
+
+  <div className="admin-client-info">
+    <p>
+      <strong>Name:</strong>{" "}
+      {selectedDonation.client_name || "Not available"}
+    </p>
+
+    <p>
+      <strong>Phone:</strong>{" "}
+      {selectedDonation.client_phone || "Not available"}
+    </p>
+  </div>
+</div>
+
+          <div className="admin-map-section">
+  <h3 className="admin-subtitle">Pickup Location</h3>
+
+  <MapContainer
+    className="admin-map"
+    center={[
+      selectedDonation.latitude,
+      selectedDonation.longitude,
+    ]}
+    zoom={15}
+  >
+    <TileLayer
+      attribution="&copy; OpenStreetMap contributors"
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+
+    <Marker
+      position={[
+        selectedDonation.latitude,
+        selectedDonation.longitude,
+      ]}
+      icon={defaultIcon}
+    >
+      <Popup>
+        <div className="admin-map-popup">
+          <strong>Donation #{selectedDonation.id}</strong>
+
+          <p>
+            <strong>Client:</strong>{" "}
+            {selectedDonation.client_name}
+          </p>
+
+          <p>
+            <strong>Phone:</strong>{" "}
+            {selectedDonation.client_phone}
+          </p>
+
+          <p>
+            <strong>Area:</strong>{" "}
+            {selectedDonation.pickup_area}
+          </p>
+
+          <p>
+            <strong>House:</strong>{" "}
+            {selectedDonation.pickup_house}
+          </p>
+
+          <p>
+            <strong>Road:</strong>{" "}
+            {selectedDonation.pickup_road}
+          </p>
+
+          <p>
+            <strong>Block:</strong>{" "}
+            {selectedDonation.pickup_block}
+          </p>
+        </div>
+      </Popup>
+    </Marker>
+  </MapContainer>
+</div>
+
           <div className="admin-items-section">
             <h3 className="admin-subtitle">Donation Items</h3>
 
@@ -896,7 +999,6 @@ const AdminDashboard = () => {
         </div>
       ) : (
         <div className="admin-content">
-          {/* COLLECTORS */}
 
           {!isDonationsPage && (
             <section className="collectors-section">
@@ -954,7 +1056,7 @@ const AdminDashboard = () => {
             </section>
           )}
 
-          {/* DONATIONS */}
+
 
           {!isCollectorsPage && (
             <section className="admin-donations-section">
@@ -989,6 +1091,7 @@ const AdminDashboard = () => {
                 ))}
               </div>
 
+              
               <div className="admin-active-donations">
                 {activeDonations.length === 0 ? (
                   <div className="admin-empty-donations">

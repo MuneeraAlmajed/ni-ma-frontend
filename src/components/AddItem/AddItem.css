@@ -151,7 +151,7 @@
   transform: translateY(-1px);
 }
 
-/* Mobile */
+ 
 
 @media (max-width: 650px) {
   .add-item {
@@ -182,7 +182,7 @@
   }
 }
 
-/* Small Mobile */
+ 
 
 @media (max-width: 400px) {
   .add-item {

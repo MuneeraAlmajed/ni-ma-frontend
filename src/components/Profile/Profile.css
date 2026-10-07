@@ -31,7 +31,7 @@
   box-shadow: 0 6px 20px rgba(23, 63, 53, 0.06);
 }
 
-/* Avatar */
+ 
 
 .profile-avatar-section {
   display: flex;
@@ -81,7 +81,7 @@
   transform: translateY(-2px);
 }
 
-/* Section */
+ 
 
 .profile-section-title {
   margin: 0 0 1.5rem;
@@ -90,7 +90,7 @@
   font-weight: 700;
 }
 
-/* Fields */
+ 
 
 .profile-field {
   margin-bottom: 1.2rem;
@@ -134,7 +134,7 @@
   box-shadow: 0 0 0 3px rgba(82, 122, 90, 0.08);
 }
 
-/* Role */
+ 
 
 .profile-role {
   display: inline-flex;
@@ -148,7 +148,7 @@
   text-transform: capitalize;
 }
 
-/* Actions */
+ 
 
 .profile-actions {
   display: flex;
@@ -198,7 +198,7 @@
   background-color: #ebe4d6;
 }
 
-/* Messages */
+ 
 
 .profile-error {
   margin: 1rem 0 0;
@@ -214,13 +214,13 @@
   line-height: 1.5;
 }
 
-/* Change Password */
+ 
 
 .change-password-button {
   margin-top: 0.3rem;
 }
 
-/* Popup */
+ 
 
 .profile-popup-overlay {
   position: fixed;
@@ -293,7 +293,7 @@
   transform: translateY(-1px);
 }
 
-/* Tablet */
+ 
 
 @media (max-width: 900px) {
   .profile-page {
@@ -301,7 +301,7 @@
   }
 }
 
-/* Mobile */
+ 
 
 @media (max-width: 600px) {
   .profile-page {
@@ -340,7 +340,7 @@
   }
 }
 
-/* Small Mobile */
+ 
 
 @media (max-width: 400px) {
   .profile-page {

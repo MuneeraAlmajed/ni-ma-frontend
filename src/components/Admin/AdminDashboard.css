@@ -7,7 +7,7 @@
   color: #173f35;
 }
 
-/* Dashboard Header */
+ 
 
 .admin-dashboard-header {
   display: flex;
@@ -58,7 +58,7 @@
   transform: translateY(-1px);
 }
 
-/* Messages */
+ 
 
 .admin-success-message,
 .admin-error-message {
@@ -81,7 +81,7 @@
   border: 1px solid #e0baba;
 }
 
-/* Add Collector */
+ 
 
 .add-collector-card {
   margin-bottom: 2rem;
@@ -161,7 +161,7 @@
   transform: translateY(-1px);
 }
 
-/* Main Content */
+ 
 
 .admin-content {
   display: flex;
@@ -169,7 +169,7 @@
   gap: 2rem;
 }
 
-/* Section Header */
+ 
 
 .admin-section-header {
   display: flex;
@@ -208,7 +208,7 @@
   font-weight: 600;
 }
 
-/* Collectors */
+ 
 
 .collectors-section {
   padding: 2rem;
@@ -318,7 +318,7 @@
   text-align: center;
 }
 
-/* Donation Requests */
+
 
 .admin-donations-section {
   padding: 2rem;
@@ -328,7 +328,6 @@
   box-shadow: 0 6px 20px rgba(23, 63, 53, 0.06);
 }
 
-/* Donation Tabs */
 
 .admin-donation-tabs {
   display: flex;
@@ -396,7 +395,6 @@
   color: #74736e;
 }
 
-/* Donation List */
 
 .admin-active-donations {
   min-height: 100px;
@@ -488,7 +486,6 @@
   text-align: center;
 }
 
-/* Collector Details */
 
 .collector-details-card {
   padding: 2rem;
@@ -630,7 +627,6 @@
   transform: translateY(-1px);
 }
 
-/* Edit Collector */
 
 .edit-collector-form {
   display: grid;
@@ -664,7 +660,6 @@
   transform: translateY(-1px);
 }
 
-/* Donation Details */
 
 .admin-donation-details-card {
   margin-top: 1.5rem;
@@ -730,7 +725,6 @@
   font-weight: 500;
 }
 
-/* Donation Items */
 
 .admin-items-section {
   padding-top: 1.5rem;
@@ -792,7 +786,6 @@
   font-size: 0.8rem;
 }
 
-/* Collector Assignment */
 
 .admin-assignment-section {
   margin-top: 1.8rem;
@@ -859,7 +852,6 @@
   transform: translateY(-1px);
 }
 
-/* Delete Donation */
 
 .admin-delete-donation-section {
   margin-top: 1.5rem;
@@ -887,7 +879,6 @@
   transform: translateY(-1px);
 }
 
-/* Cancelled Donation */
 
 .admin-cancelled-message {
   margin-top: 1.5rem;
@@ -903,7 +894,6 @@
   font-size: 0.8rem;
 }
 
-/* Proof */
 
 .admin-proof-section {
   padding: 1.5rem 0;
@@ -944,7 +934,6 @@
   color: #b34d4d;
 }
 
-/* Popups */
 
 .admin-popup-overlay {
   position: fixed;
@@ -1222,6 +1211,60 @@
   background: #f0eee7;
 }
 
+.admin-map-section {
+  margin-bottom: 30px;
+}
+
+.admin-map {
+  width: 100%;
+  height: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.admin-map-popup p {
+  margin: 6px 0;
+}
+
+.admin-client-section {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 14px;
+  background-color: #f9f6ef;
+}
+
+.admin-client-section .admin-subtitle {
+  margin: 0 0 1rem;
+  color: #173f35;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.admin-client-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.admin-client-info p {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 10px;
+  background-color: #fffdf8;
+  color: #173f35;
+  font-size: 0.85rem;
+}
+
+.admin-client-info strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #64716a;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
 
 @keyframes adminItemsPopup {
   from {
@@ -1258,6 +1301,10 @@
   .admin-item-image {
     width: 100%;
     height: 180px;
+  }
+
+    .admin-client-info {
+    grid-template-columns: 1fr;
   }
 }
 
