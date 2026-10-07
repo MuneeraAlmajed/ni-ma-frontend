@@ -291,6 +291,22 @@ const CollectorDashboard = () => {
             </div>
           </div>
 
+          <div className="collector-client-section">
+            <h3 className="collector-subtitle">Client Information</h3>
+
+            <div className="collector-client-info">
+              <p>
+                <strong>Name:</strong>
+                {selectedDonation.client_name}
+              </p>
+
+              <p>
+                <strong>Phone:</strong>
+                {selectedDonation.client_phone}
+              </p>
+            </div>
+          </div>
+
           <div className="collector-map-section">
             <h3 className="collector-subtitle">Pickup Location</h3>
 
@@ -338,8 +354,6 @@ const CollectorDashboard = () => {
 
           <div className="collector-items-section">
             <h3 className="collector-subtitle">Donation Items</h3>
-
-            
 
             {selectedDonation.items && selectedDonation.items.length > 0 ? (
               <div className="collector-items-list">

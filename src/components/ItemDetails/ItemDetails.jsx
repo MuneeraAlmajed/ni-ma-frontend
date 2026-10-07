@@ -9,6 +9,9 @@ import {
 } from "../../services/donationService";
 import "./ItemDetails.css";
 
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
+const SERVER_URL = BASE_URL.replace("/api", "");
+
 const ItemDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -346,7 +349,7 @@ const ItemDetails = () => {
           <div className="item-image-section">
             <img
               className="item-details-image"
-              src={`http://localhost:8000${item.image_url}`}
+              src={`${SERVER_URL}${item.image_url}`}
               alt={item.name}
             />
           </div>

@@ -638,6 +638,45 @@
   margin: 0.4rem 0;
 }
 
+.collector-client-section {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 14px;
+  background-color: #f9f6ef;
+}
+
+.collector-client-section .collector-subtitle {
+  margin: 0 0 1rem;
+  color: #173f35;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.collector-client-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.collector-client-info p {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid #ddd6c8;
+  border-radius: 10px;
+  background-color: #fffdf8;
+  color: #173f35;
+  font-size: 0.85rem;
+}
+
+.collector-client-info strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #64716a;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
   .collector-dashboard {
     padding: 3rem 5%;
@@ -651,6 +690,11 @@
  
 
 @media (max-width: 650px) {
+
+  .collector-client-info {
+  grid-template-columns: 1fr;
+}
+
   .collector-dashboard {
     min-height: calc(100vh - 70px);
     padding: 2.5rem 5%;
