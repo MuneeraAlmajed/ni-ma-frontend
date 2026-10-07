@@ -7,7 +7,7 @@ function LoadingPage() {
         <div className="loading-logo">
           <img
             className="loading-logo-image"
-            src="../../../assets/NI'MA LOGO.png"
+            src="/NI'MA LOGO.png"
             alt="NI'MA Logo"
           />
         </div>
