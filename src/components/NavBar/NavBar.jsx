@@ -4,7 +4,6 @@ import { UserContext } from "../../contexts/UserContext";
 import { removeToken } from "../../lib/helpers/jwt-helpers";
 
 import "./NavBar.css";
-import logo from "../../../assets/NI'MA LOGO.png";
 
 const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -36,7 +35,7 @@ const NavBar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link className="navbar-logo" to="/">
-          <img className="navbar-logo-image" src={logo} alt="NI'MA logo" />
+          <img className="navbar-logo-image" src="/NI'MA LOGO.png" alt="NI'MA logo" />
         </Link>
 
         <div className="navbar-links">

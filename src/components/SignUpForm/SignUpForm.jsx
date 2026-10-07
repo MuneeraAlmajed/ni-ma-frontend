@@ -5,7 +5,7 @@ import * as authService from "../../services/authService";
 import { UserContext } from "../../contexts/UserContext";
 
 import "./SignUpForm.css";
-import logo from "../../../assets/NI'MA LOGO.png";
+
 
 const SignUpForm = () => {
   const navigate = useNavigate();

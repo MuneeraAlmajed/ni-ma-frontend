@@ -5,7 +5,6 @@ import { signIn } from "../../services/authService";
 import { UserContext } from "../../contexts/UserContext";
 
 import "./SignInForm.css";
-import logo from "../../../assets/NI'MA LOGO.png";
 
 const SignInForm = () => {
   const navigate = useNavigate();

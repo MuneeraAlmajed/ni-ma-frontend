@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import "./Landing.css";
 import heroVideo from "../../../assets/hero-video.mp4";
-import logo from "../../../assets/NI'MA LOGO.png";
 
 const Landing = () => {
   return (
@@ -137,7 +136,7 @@ const Landing = () => {
           <div className="our-story-logo">
             <img
               className="our-story-logo-image"
-              src={logo}
+              src="/NI'MA LOGO.png"
               alt="NI'MA logo"
             />
 
