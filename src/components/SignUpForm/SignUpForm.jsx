@@ -14,18 +14,15 @@ const SignUpForm = () => {
   const [message, setMessage] = useState("");
 
   const [formData, setFormData] = useState({
+    name: "",
     username: "",
     email: "",
+    phone: "",
     password: "",
     passwordConf: "",
   });
 
-  const {
-    username,
-    email,
-    password,
-    passwordConf,
-  } = formData;
+  const { name, username, email, phone, password, passwordConf } = formData;
 
   const handleChange = (evt) => {
     setMessage("");
@@ -41,27 +38,31 @@ const SignUpForm = () => {
 
     try {
       const payload = {
+        name,
         username,
         email,
+        phone,
         password,
       };
 
       const user = await authService.signUp(payload);
 
       setUser(user);
-      navigate("/");
+      navigate("/client/dashboard");
     } catch (error) {
       setMessage(
         error?.response?.data?.detail ||
-        "Something went wrong. Please try again."
+          "Something went wrong. Please try again.",
       );
     }
   };
 
   const isFormInvalid = () => {
     return !(
+      name &&
       username &&
       email &&
+      phone &&
       password &&
       password === passwordConf
     );
@@ -69,84 +70,79 @@ const SignUpForm = () => {
 
   return (
     <main className="signup-page">
-
       <section className="signup-section">
-
         <div className="signup-branding">
-
           <div className="signup-branding-content">
-
-
-            <span className="signup-label">
-              JOIN NI’MA
-            </span>
+            <span className="signup-label">JOIN NI’MA</span>
 
             <h1 className="signup-title">
               Give something
-              <br />
-              a second life.
+              <br />a second life.
             </h1>
 
             <p className="signup-description">
-              Create your NI’MA account and start sharing
-              useful items with people who can give them
-              another purpose.
+              Create your NI’MA account and start sharing useful items with
+              people who can give them another purpose.
             </p>
 
             <div className="signup-message">
-
-              <span className="signup-message-mark">
-                “
-              </span>
+              <span className="signup-message-mark">“</span>
 
               <p className="signup-message-text">
-                What is no longer useful to you may still
-                have value for someone else.
+                What is no longer useful to you may still have value for someone
+                else.
               </p>
-
             </div>
-
           </div>
-
         </div>
 
         <div className="signup-form-area">
-
           <div className="signup-form-card">
-
             <div className="signup-form-header">
+              <span className="signup-form-label">CREATE ACCOUNT</span>
 
-              <span className="signup-form-label">
-                CREATE ACCOUNT
-              </span>
-
-              <h2 className="signup-form-title">
-                Welcome to NI’MA
-              </h2>
+              <h2 className="signup-form-title">Welcome to NI’MA</h2>
 
               <p className="signup-form-description">
                 Create your account to start sharing.
               </p>
-
             </div>
 
-            {message && (
-              <p className="signup-error">
-                {message}
-              </p>
-            )}
+            {message && <p className="signup-error">{message}</p>}
 
-            <form
-              className="signup-form"
-              onSubmit={handleSubmit}
-            >
-
+            <form className="signup-form" onSubmit={handleSubmit}>
               <div className="signup-field">
+                <label className="signup-label-text" htmlFor="name">
+                  Full Name
+                </label>
 
-                <label
-                  className="signup-label-text"
-                  htmlFor="username"
-                >
+                <input
+                  className="signup-input"
+                  type="text"
+                  id="name"
+                  value={name}
+                  name="name"
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                  required
+                />
+
+                <label className="signup-label-text" htmlFor="phone">
+                  Phone
+                </label>
+
+                <input
+                  className="signup-input"
+                  type="tel"
+                  id="phone"
+                  value={phone}
+                  name="phone"
+                  onChange={handleChange}
+                  placeholder="Enter your phone number"
+                  required
+                />
+
+                <label className="signup-label-text" htmlFor="username">
                   Username
                 </label>
 
@@ -160,15 +156,10 @@ const SignUpForm = () => {
                   placeholder="Enter your username"
                   required
                 />
-
               </div>
 
               <div className="signup-field">
-
-                <label
-                  className="signup-label-text"
-                  htmlFor="email"
-                >
+                <label className="signup-label-text" htmlFor="email">
                   Email
                 </label>
 
@@ -182,15 +173,10 @@ const SignUpForm = () => {
                   placeholder="Enter your email"
                   required
                 />
-
               </div>
 
               <div className="signup-field">
-
-                <label
-                  className="signup-label-text"
-                  htmlFor="password"
-                >
+                <label className="signup-label-text" htmlFor="password">
                   Password
                 </label>
 
@@ -204,15 +190,10 @@ const SignUpForm = () => {
                   placeholder="Create a password"
                   required
                 />
-
               </div>
 
               <div className="signup-field">
-
-                <label
-                  className="signup-label-text"
-                  htmlFor="confirm"
-                >
+                <label className="signup-label-text" htmlFor="confirm">
                   Confirm Password
                 </label>
 
@@ -227,14 +208,11 @@ const SignUpForm = () => {
                   required
                 />
 
-                {password &&
-                  passwordConf &&
-                  password !== passwordConf && (
-                    <span className="signup-password-error">
-                      Passwords do not match.
-                    </span>
-                  )}
-
+                {password && passwordConf && password !== passwordConf && (
+                  <span className="signup-password-error">
+                    Passwords do not match.
+                  </span>
+                )}
               </div>
 
               <button
@@ -243,15 +221,11 @@ const SignUpForm = () => {
                 disabled={isFormInvalid()}
               >
                 Create Account
-                <span className="signup-button-arrow">
-                  →
-                </span>
+                <span className="signup-button-arrow">→</span>
               </button>
-
             </form>
 
             <div className="signup-footer">
-
               <span className="signup-footer-text">
                 Already have an account?
               </span>
@@ -263,7 +237,6 @@ const SignUpForm = () => {
               >
                 Sign In
               </button>
-
             </div>
 
             <button
@@ -273,13 +246,9 @@ const SignUpForm = () => {
             >
               Back to NI’MA
             </button>
-
           </div>
-
         </div>
-
       </section>
-
     </main>
   );
 };
