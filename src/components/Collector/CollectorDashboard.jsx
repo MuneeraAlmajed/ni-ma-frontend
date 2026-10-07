@@ -8,6 +8,9 @@ import {
 
 import "./CollectorDashboard.css";
 
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
+const SERVER_URL = BASE_URL.replace("/api", "");
+
 const CollectorDashboard = () => {
   const [donations, setDonations] = useState([]);
   const [selectedDonation, setSelectedDonation] = useState(null);
@@ -339,11 +342,7 @@ const CollectorDashboard = () => {
                     {item.image_url && (
                       <img
                         className="collector-item-image"
-                        src={
-                          item.image_url.startsWith("http")
-                            ? item.image_url
-                            : `http://localhost:8000/${item.image_url}`
-                        }
+                        src={`${SERVER_URL}${item.image_url}`}
                         alt={item.name}
                       />
                     )}
